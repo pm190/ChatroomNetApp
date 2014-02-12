@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html id="entrencePage" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <title>Portal IRC Client</title>
 <link rel="stylesheet" href="mainStyle.css" type="text/css" />
-<link rel="stylesheet" href="selectiveStyle.css" type="text/css" />
+
+
 </head>
-
-<body id="index" class="home">
-
-<header id="banner">
+<header id="banner" class="body">
 	<nav>
 <button id="createAccount"><a href="#">create account</a></button>
 	</nav>
- </header>
  
-<div>
-<p>dupa janusa<p>
-</div>
+</header>
+ 
+<body id="index" class="home">
 
- 
 <script type="text/javascript">
 $(function() {
 	$( "#createAccount" ).button(); 

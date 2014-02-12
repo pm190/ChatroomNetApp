@@ -1,0 +1,14 @@
+button#createAccount {
+	position:absolute;
+   	transition: .5s ease;
+    top: 5%;
+    left: 80%;
+	size: auto;
+	resize:both;
+}
+html#entrencePage { 
+  background-image:url(Entrence%20Room%20background.jpg); 
+  background-size: 100%;
+  background-repeat:no-repeat;
+  z-index: 0;
+}	
