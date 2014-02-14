@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+/* Very basic CSS, just changing the colour of text and position, applied to "header"*/
+#header 
+{
+text-align:center;
+color:red;
+} 
+</style>
+</head>
+<!-- end of very basic css-->
+
+
+<div id = "page wrapper">
+<body>
+
+<!--home button - not sure how to do a back button -->
+<!--to open a new page use window.open this opens new url in same page-->
+<!--insert account home url instead of hw.ac.uk-->
+<div id = "button home">
+<button type = "button" onclick="location.replace('http://www.hw.ac.uk')" > 
+Home
+</button>
+</div>
+
+<!-- header text-->
+<div id = "header">
+<h1>Edinburgh Skeptical Chattery</h1>
+</div>
+
+<!-- account button -->
+<!--insert account url instead of hw.ac.uk-->
+<div id = "button account">
+<button type = "button" onclick="location.replace('http://www.hw.ac.uk')" > 
+Account 
+</button>
+</div>
+
+<!--form-->
+<div id = "form">
+<form action="demo_form.asp">
+<!-- <form> -->
+
+<!--username input field-->
+<div id = "username">
+Username: <input type="text" name="username"/>
+</div>
+
+<!-- password input field-->
+<div id = "password">
+Password: <input type="password" name="pwd"/>
+</div>
+
+<!-- date of birth -->
+<div id = "dateofbirth">
+Date of birth: <input type="date" name "dateofbirth"/>
+</div>
+
+<!-- email address -->
+<div id = "email">
+Email: <input type = "email" name="email"/>
+</div>
+
+<!--interests -->
+<!-- The datalist tag is not supported in Internet Explorer 9 and earlier versions, or in Safari.-->
+<!-- not sure how to get a name associated with this list, so added in as label-->
+<!-- Removed the code for this until can work out if can have drop down list with no submit button associated with it.  Submit button basically means that main form submit button no longer works-->
+
+
+<!-- slider -->
+<div id = "slider">
+<label for="slidermin">Skeptical Level: believes in holistic medicine</label>
+<input type="range" name="points" min="1" max="10">
+<label for="slidermax"> total skeptic</label>
+</div>
+
+<!-- or radio buttons -->
+<div id = "skepticidentity">
+<input type="radio" name="skepid" value="holistic">Believes in holistic medicine, unicorns and fantasy
+<input type="radio" name="skepid" value="skeptic">Believes in science, reason and rationality
+</div>
+
+<!-- profile -->
+<!-- may wish to restrict this, so users don't fill up with huge amounts of text>
+<div id = "profile">
+<textarea rows="10" cols="30">
+</textarea>
+</div>
+
+<!-- privacy checkbox -->
+<div id = "privacy checkbox">
+<input type="checkbox" name="privacy" value="privacy">tick box to hide profile
+</div>
+
+<!-- this submits the form currently just to a new window" this needs to be changed, as needs to be sent to server whilst either staying on same page or moving to for example profile page-->
+<1--<input type="submit" value="Submit as normal">-->
+<input type="submit" formtarget="_blank" value="Submit to a new window">
+
+
+</form>
+</div>
+
+
+</body>
+</div>
+</html>
