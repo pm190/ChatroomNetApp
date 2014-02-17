@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html>
-#trying a change
+
 <head>
 <style>
-/* Very basic CSS, just changing the colour of text and position, applied to "header"*/
-#header 
+#headertext
 {
-text-align:center;
-color:red;
-} 
+text-align:center;;
+}
 </style>
+
+<style>
+#form
+{
+padding-top:60px;
+padding-bottom:60px;
+padding-right:15px;
+padding-left:15px;
+}
+</style>
+
+<style>
+#
+
+</style>
+
 </head>
-<!-- end of very basic css-->
+		
 
 
-<div id = "page wrapper">
+<div id = "pagewrapper">
 <body>
-
-<!--home button - not sure how to do a back button -->
-<!--to open a new page use window.open this opens new url in same page-->
-<!--insert account home url instead of hw.ac.uk-->
-<div id = "button home">
-<button type = "button" onclick="location.replace('http://www.hw.ac.uk')" > 
-Home
-</button>
-</div>
-
-<!-- header text-->
+<!-- header line-->
 <div id = "header">
-<h1>Edinburgh Skeptical Chattery</h1>
+
+<div id = "headertext">
+<h1>Account page</h1>
 </div>
 
-<!-- account button -->
-<!--insert account url instead of hw.ac.uk-->
-<div id = "button account">
-<button type = "button" onclick="location.replace('http://www.hw.ac.uk')" > 
-Account 
-</button>
+<!--closing header line-->
 </div>
+
+
 
 <!--form-->
 <div id = "form">
 <form action="demo_form.asp">
-<!-- <form> -->
+
 
 <!--username input field-->
 <div id = "username">
@@ -64,10 +67,6 @@ Date of birth: <input type="date" name "dateofbirth"/>
 Email: <input type = "email" name="email"/>
 </div>
 
-<!--interests -->
-<!-- The datalist tag is not supported in Internet Explorer 9 and earlier versions, or in Safari.-->
-<!-- not sure how to get a name associated with this list, so added in as label-->
-<!-- Removed the code for this until can work out if can have drop down list with no submit button associated with it.  Submit button basically means that main form submit button no longer works-->
 
 
 <!-- slider -->
@@ -91,7 +90,7 @@ Email: <input type = "email" name="email"/>
 </div>
 
 <!-- privacy checkbox -->
-<div id = "privacy checkbox">
+<div id = "privacycheckbox">
 <input type="checkbox" name="privacy" value="privacy">tick box to hide profile
 </div>
 

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+body
+{
+margin:50px;
+
+
+}
+</style>
+
+<style>
+form input.text-input {
+
+  
+    outline: 0;  
+    display: block;  
+    width: 330px;  
+    padding: 8px 15px;  
+   border: 1px solid gray;  
+    font-size: 14px;  
+    font-weight: 400;  
+  
+    -webkit-border-radius: 25px;  
+    -moz-border-radius: 25px;  
+    border-radius: 25px;  
+  
+   box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);  
+}
+</style>
+ 
+
+
+
+</head>
+		
+
+
+
+<body>
+<div class= "pagewrapper">
+<div class= "headertext">
+<h1>Account page</h1>
+</div>
+
+<!--form-->
+<form action="demo_form.asp">
+
+<div class ="field">
+<label for ="username"> Username:</label>
+<input type="text" name="username" id="username" class="text-input" placeholder="enter username"/>
+</div>
+
+<div class="field">
+<label for "password"> Password:</label>
+<input type ="password" name="password" id="password" class="text-input" placeholder = "Secret Password"/>
+</div>
+
+<div class="field">
+<label for "password"> Password Re-enter:</label>
+<input type ="password" name="password" id="password" class="text-input" placeholder = "Secret Password"/>
+</div>
+
+<div class ="field">
+<label for ="email"> Email:</label>
+<input type="email" name="email" id="email" class="text-input" placeholder="abc@abc.com"/>
+</div>
+
+<div class ="field">
+<label for ="dateofbirth"> Date of Birth:</label>
+<input type="date" name="dateofbirth" id="dateofbirth" class="text-input" placeholder="date of birth"/>
+</div>
+
+<div class= "profile">
+<label for ="profile"> Profile details:</label>
+<input type = "textarea" name ="profile" class="text-input" rows="10" cols="30"/>
+</div>
+
+<!-- radio buttons -->
+<div class= "skepticidentity">
+<input type="radio" name="skepid" value="holistic">Believes in holistic medicine, unicorns and fantasy
+<input type="radio" name="skepid" value="skeptic">Believes in science, reason and rationality
+</div>
+
+<!-- privacy checkbox -->
+<div id = "privacycheckbox">
+<input type="checkbox" name="privacy" value="privacy">tick box to hide profile
+</div>
+
+</form>
+
+
+</div>
+</body>
