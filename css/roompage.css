@@ -1,0 +1,145 @@
+.container
+{
+	padding: 60px 15px;
+}
+
+
+.search-box
+{
+  width: 85%;
+  padding: 5px 10px;
+  border:2px solid #dddddd;
+  border-radius:20px;
+}
+
+.chatbox
+{
+  margin-left: 80px;
+  width: 70%;
+  height: 350px;
+  font-size: 20px;
+  line-height: 140%;
+  padding: 15px;
+  color: black;
+  border:2px solid #dddddd;
+  border-radius:20px;
+}
+
+input:focus {
+    outline: 0;
+    box-shadow: 0 0 10px grey;
+}
+
+textarea:focus {
+    outline: 0;
+    box-shadow: 0 0 10px grey;
+}
+
+.friend-list
+{
+  display: inline;
+	float: left;
+	text-align: left;
+	width: 15%;
+	height: 350px;
+	font-size: 20px;
+	line-height: 140%;
+	padding: 15px;
+	color: black;
+	border:2px solid #dddddd;
+	border-radius:20px;
+}
+
+.send-message-box
+{
+	text-align: left;
+	margin-top: 20px;
+	margin-left: 300px;
+	width: 70%;
+	height: 25px;
+	font-size: 20px;
+	line-height: 140%;
+	padding-top: 15px;
+	padding: 15px;
+	border:2px solid #dddddd;
+	border-radius:20px;
+}
+/*body, html {
+          height: 100%;
+          margin: 0;
+          -webkit-font-smoothing: antialiased;
+          font-weight: 100;
+          text-align: center;
+          font-family: helvetica;
+      }
+       
+      .tabs input[type=radio] {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+      }
+      .tabs {
+        width: 650px;
+        float: none;
+        list-style: none;
+        position: relative;
+        padding: 0;
+        margin: 75px auto;
+      }
+      .tabs li{
+        float: left;
+      }
+      .tabs label {
+          display: block;
+          padding: 10px 20px;
+          border-radius: 2px 2px 0 0;
+          color: black;
+          font-size: 24px;
+          font-weight: normal;
+          font-family: 'Open Sans', sans-serif;
+          background: rgba(255,255,255,0.2);
+          cursor: pointer;
+          position: relative;
+          top: 3px;
+          -webkit-transition: all 0.2s ease-in-out;
+          -moz-transition: all 0.2s ease-in-out;
+          -o-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+      }
+      .tabs label:hover {
+        background: rgba(255,255,255,0.5);
+        top: 0;
+      }
+       
+      [id^=tab]:checked + label {
+      	background-color: #eeeeee;
+        color: #000000;
+        top: 0;
+      }
+       
+      [id^=tab]:checked ~ [id^=tab-content] {
+          display: block;
+      }
+      .tab-content{
+        z-index: 2;
+        display: none;
+        text-align: left;
+        width: 140%;
+        height: 400px;
+        font-size: 20px;
+        line-height: 140%;
+        padding-top: 10px;
+        background: #dddddd;
+        padding: 15px;
+        color: black;
+        position: absolute;
+        top: 53px;
+        left: 0;
+        border:2px solid #dddddd;
+        border-radius:10px;
+        box-sizing: border-box;
+        -webkit-animation-duration: 0.5s;
+        -o-animation-duration: 0.5s;
+        -moz-animation-duration: 0.5s;
+        animation-duration: 0.5s;
+      }*/
