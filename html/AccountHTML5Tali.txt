@@ -45,6 +45,15 @@ form input.text-input {
 <h1>Account page</h1>
 </div>
 
+<!--home button or some such to take away from account page to chatrooms -->
+<!--to open a new page use window.open this opens new url in same page-->
+<!--insert account home url instead of hw.ac.uk-->
+<div id = "button home">
+<button type = "button" onclick="location.replace('http://www.hw.ac.uk')" > 
+Home
+</button>
+</div>
+
 <!--form-->
 <form action="demo_form.asp">
 
@@ -89,8 +98,22 @@ form input.text-input {
 <input type="checkbox" name="privacy" value="privacy">tick box to hide profile
 </div>
 
+<!-- this submits the form currently just to a new window" this needs to be changed, as needs to be sent to server whilst either staying on same page or moving to for example profile page-->
+<!--<input type="submit" value="Submit as normal">-->
+<input type="submit" formtarget="_blank" value="Submit to a new window">
+
 </form>
+
+<!--help button if we produce a help page -->
+<!--to open a new page use window.open this opens new url in same page-->
+<!--insert account home url instead of hw.ac.uk-->
+<div id = "button help">
+<button type = "button" onclick="location.replace('http://www.hw.ac.uk')" > 
+Help
+</button>
+</div>
 
 
 </div>
 </body>
+</html>
