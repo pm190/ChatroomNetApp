@@ -1,12 +1,23 @@
-button {
+body{
+	padding: 0px;
+}
+input {
+	 font-size: 20px;
+     border: 1px solid #006;
+     background: #65a9d7;
+	 border-radius: 30px;
+	 text-decoration: none;
+ }
+input[type=submit] {
    border-top: 1px solid #96d1f8;
    background: #65a9d7;
-   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+   background: -webkit-gradient(linear, left top, left bottom,
+from(#3e779d), to(#65a9d7));
    background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
    background: -moz-linear-gradient(top, #3e779d, #65a9d7);
    background: -ms-linear-gradient(top, #3e779d, #65a9d7);
    background: -o-linear-gradient(top, #3e779d, #65a9d7);
-   padding: 5px 10px;
+   padding: 0px 0px;
    -webkit-border-radius: 30px;
    -moz-border-radius: 30px;
    border-radius: 30px;
@@ -18,25 +29,35 @@ button {
    border-bottom-color:#3e779d;
    border-left-color:#3e779d;
    border-style:solid;
-   font-size: 20px;
-   font-family: Georgia, serif;
-   text-decoration: none;
    color: #ff8900;
    vertical-align: middle;
    }
-button:hover {
+input[type=submit]:hover {
    border-color:#28597a;
    background: #28597a;
    border-left-color:#28597a;
    border-style:solid;
    }
-button:active {
+input[type=submit]:active {
 	border-color:#03bcff;
     background: #03bcff;
 	border-style:solid;
    }
-a,input[type=checkbox] {
+input[type=checkbox] {
 	color: #ff8900;
 	text-decoration: none;
 }
+input:hover {
+   border-color:#03bcff;
+   background: #28597a;
+   border-left-color:#28597a;
+   border-style:solid;
+ }
+-webkit-validation-bubble-arrow {
+ border: 1px solid #E6C700;
+ background: #FAF1B4;
+ margin-bottom:1px;
+ padding: 2px;
+}
+
 
