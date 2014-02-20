@@ -15,7 +15,7 @@ div#centralLogin {
  top:20%;
 }
 html#background{
-	background-image:url(BrassEye_by_y2jabba.jpg);
+	background-image:url(../img/BrassEye_by_y2jabba.jpg);
 	background-size:cover;
 	background-repeat:no-repeat;
 }
