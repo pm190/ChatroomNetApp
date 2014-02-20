@@ -9,10 +9,10 @@ header.createAccount {
 div#loginContainer{
 	position:absolute;	
 	top:30%;
+	left:40%;
 }
 div#centralLogin {
  position:relative;
- top:20%;
 }
 html#background{
 	background-image:url(../img/BrassEye_by_y2jabba.jpg);
