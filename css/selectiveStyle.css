@@ -1,26 +1,21 @@
-button#createAccount {
-	position:relative;
+header.createAccount {
+	position:absolute;
    	transition: .5s ease;
     top: 10%;
     left: 80%;
 	size:auto;
 	resize:both;
 }
-button#login {
-	position:relative;
-   	transition: .5s ease;
-    left: 25%;
-	size:auto;
-	resize:both;
+div#loginContainer{
+	position:absolute;	
+	top:30%;
 }
-html#background { 
-  background-image:url(PortaWallpaper-backgroundjpg.jpg);
-  background-size: cover;
+div#centralLogin {
+ position:relative;
+ top:20%;
 }
-
-
-div#login {
- position:absolute;
- top:45%;
- left:44%;
+html#background{
+	background-image:url(BrassEye_by_y2jabba.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;
 }
