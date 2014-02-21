@@ -1,12 +1,16 @@
 body{
 	padding: 0px;
+	width: 1440px;
+ 	height: 900px;
 }
 input {
 	 font-size: 20px;
+	 text-indent: 10px;
      border: 1px solid #006;
      background: #65a9d7;
 	 border-radius: 30px;
 	 text-decoration: none;
+	 display:block;
  }
 input[type=submit] {
    border-top: 1px solid #96d1f8;
@@ -46,6 +50,8 @@ input[type=submit]:active {
 input[type=checkbox] {
 	color: #ff8900;
 	text-decoration: none;
+	font-size: 24px;
+	display:inline;
 }
 input:hover {
    border-color:#03bcff;
@@ -53,6 +59,10 @@ input:hover {
    border-left-color:#28597a;
    border-style:solid;
  }
+
+input[type=submit]{
+ padding: 0px 10px;
+}
 -webkit-validation-bubble-arrow {
  border: 1px solid #E6C700;
  background: #FAF1B4;

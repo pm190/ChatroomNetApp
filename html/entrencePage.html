@@ -5,13 +5,15 @@
 <title>Portal IRC Client</title>
 <link rel="stylesheet" href="../css/mainStyle.css" type="text/css" />
 <link rel="stylesheet" href="../css/selectiveStyle.css" type="text/css" />
+<script src="//jQuery/jquery-2.1.0.min.js"></script>
 </head>
 
 <body id="index" class="home">
+
 <header id="banner" class="createAccount">
 	<nav>
     <form action="">
-    <input type="submit" value="create account">
+    <input type="submit" name="accCre" id="hideshow" value="create acccount">
     </form>
 	</nav>
 </header>
@@ -21,23 +23,93 @@
 <div id="centralLogin">
 <form autocomplete="on">
 <input type="text" name="login" required placeholder="username">
+<br/>
+<input type="checkbox" name="asGuest" id="desc"/ onclick="document.getElementById('passwd').style.display = this.checked ? 'none' : 'block'; this.form.elements['pass'].disabled = this.checked">
+<label for="desc"><font color="#ff8900" size=4.5>enter as a guest</font></label>
 <br/><br/>
-<input type="checkbox" name="asGuest" /><font color="#ff8900">enter as a guest</font>
-<br/><br/>
-<input type="password" name="pass" placeholder="password">
-<br/><br/>
+<div id="passwd">
+<input type="password" name="pass" placeholder="password" id="pass">
+</div>
+<br/>
 <input type="text" name="room" required placeholder="select room">
-<br/><br/>
+<br/>
 <input type="submit" id="login">
 </form>
 </div>
 
 </div>
 
+<div id="accountCreation" style="display: none;">
+<form action="">
 
-<script type="text/javascript">
-$(function() {
-	$( "#createAccount" ).button(); 
+<div class ="field">
+<label for ="username"> Username:</label>
+<input type="text" name="username" id="username" class="text-input" placeholder="enter username"/>
+</div>
+
+<div class="field">
+<label for "password"> Password:</label>
+<input type ="password" name="password" id="password" class="text-input" class="accCre" placeholder = "Secret Password"/>
+</div>
+
+<div class="field">
+<label for "password"> Password Re-enter:</label>
+<input type ="password" name="password" id="password" class="text-input" class="accCre" placeholder = "Secret Password"/>
+</div>
+
+<div class ="field">
+<label for ="email"> Email:</label>
+<input type="email" name="email" id="email" class="text-input" class="accCre" placeholder="abc@abc.com"/>
+</div>
+
+<div class ="field">
+<label for ="dateofbirth"> Date of Birth:</label>
+<input type="date" name="dateofbirth" id="dateofbirth" class="text-input" class="accCre" placeholder="date of birth"/>
+</div>
+
+<div class= "profile">
+<label for ="profile"> Profile details:</label>
+<input type = "textarea" name ="profile" class="text-input" class="accCre" rows="10" cols="30"/>
+</div>
+
+<!-- radio buttons -->
+<div class= "skepticidentity">
+<input type="radio" name="skepid" value="holistic">Believes in holistic medicine, unicorns and fantasy
+<input type="radio" name="skepid" value="skeptic">Believes in science, reason and rationality
+</div>
+
+<!-- privacy checkbox -->
+<div id = "privacycheckbox">
+<input type="checkbox" name="privacy" class="accCre" value="privacy">tick box to hide profile
+</div>
+
+<!-- this submits the form currently just to a new window" this needs to be changed, as needs to be sent to server whilst either staying on same page or moving to for example profile page-->
+<!--<input type="submit" value="Submit as normal">-->
+<input type="submit" formtarget="_blank" value="Submit to a new window" class="accCre">
+
+</form>
+
+<!--help button if we produce a help page -->
+<!--to open a new page use window.open this opens new url in same page-->
+<!--insert account home url instead of hw.ac.uk-->
+<div id = "button help">
+<button type = "button" onclick="location.replace('http://www.hw.ac.uk')" > 
+Help
+</button>
+</div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+    $("input#hideshow").click(function() {
+    	if ( $( "div#accountCreation" ).is( ":hidden" ) ) {
+           $("#accountCreation").slideDown("slow");
+    	}
+    	else{
+    		 $( "div#accountCreation" ).hide();
+    	}
+    });
 });
 </script>
 
