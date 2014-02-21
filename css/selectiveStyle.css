@@ -2,7 +2,7 @@ header.createAccount {
 	position:relative;
    	transition: .5s ease;
     top: 10%;
-    left: 80%;
+    left: 60%;
 	size:auto;
 	resize:both;
 }

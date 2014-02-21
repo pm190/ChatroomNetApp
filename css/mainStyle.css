@@ -3,7 +3,10 @@ body{
 	width: 1440px;
  	height: 900px;
 }
-input {
+div.field{
+	padding:15px;
+	}
+input, button {
 	 font-size: 20px;
 	 text-indent: 10px;
      border: 1px solid #006;
@@ -12,7 +15,7 @@ input {
 	 text-decoration: none;
 	 display:block;
  }
-input[type=submit] {
+input[type=submit], button {
    border-top: 1px solid #96d1f8;
    background: #65a9d7;
    background: -webkit-gradient(linear, left top, left bottom,
@@ -36,13 +39,13 @@ from(#3e779d), to(#65a9d7));
    color: #ff8900;
    vertical-align: middle;
    }
-input[type=submit]:hover {
+button:hover, input[type=submit]:hover {
    border-color:#28597a;
    background: #28597a;
    border-left-color:#28597a;
    border-style:solid;
    }
-input[type=submit]:active {
+button:active, input[type=submit]:active {
 	border-color:#03bcff;
     background: #03bcff;
 	border-style:solid;
@@ -60,7 +63,7 @@ input:hover {
    border-style:solid;
  }
 
-input[type=submit]{
+button, input[type=submit]{
  padding: 0px 10px;
 }
 -webkit-validation-bubble-arrow {
