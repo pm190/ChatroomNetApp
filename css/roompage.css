@@ -6,38 +6,39 @@
 
 .search-box
 {
-  width: 85%;
-  padding: 5px 10px;
-  border:2px solid #dddddd;
-  border-radius:20px;
+	width: 85%;
+	padding: 5px 10px;
+	border:2px solid #dddddd;
+	border-radius:20px;
 }
 
 .chatbox
-{
-  margin-left: 80px;
-  width: 70%;
-  height: 350px;
-  font-size: 20px;
-  line-height: 140%;
-  padding: 15px;
-  color: black;
-  border:2px solid #dddddd;
-  border-radius:20px;
+{	
+	resize: none;
+	margin-left: 80px;
+	width: 70%;
+	height: 350px;
+	font-size: 20px;
+	line-height: 140%;
+	padding: 15px;
+	color: black;
+	border:2px solid #dddddd;
+	border-radius:20px;
 }
 
 input:focus {
-    outline: 0;
-    box-shadow: 0 0 10px grey;
+	outline: 0;
+	box-shadow: 0 0 10px grey;
 }
 
 textarea:focus {
-    outline: 0;
-    box-shadow: 0 0 10px grey;
+	outline: 0;
+	box-shadow: 0 0 10px grey;
 }
 
 .friend-list
 {
-  display: inline;
+	display: inline;
 	float: left;
 	text-align: left;
 	width: 15%;
@@ -54,7 +55,7 @@ textarea:focus {
 {
 	text-align: left;
 	margin-top: 20px;
-	margin-left: 300px;
+	margin-left: 325px;
 	width: 70%;
 	height: 25px;
 	font-size: 20px;
