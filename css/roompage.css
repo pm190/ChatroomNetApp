@@ -1,5 +1,6 @@
 .container
 {
+	height: 100%;
 	padding: 60px 15px;
 }
 
@@ -13,17 +14,18 @@
 }
 
 .chatbox
-{	
+{	display: inline;
 	resize: none;
-	margin-left: 80px;
+	margin: 0 auto auto 5%;
 	width: 70%;
-	height: 350px;
+	height: 55%;
 	font-size: 20px;
 	line-height: 140%;
 	padding: 15px;
 	color: black;
 	border:2px solid #dddddd;
 	border-radius:20px;
+	position: absolute;
 }
 
 input:focus {
@@ -54,9 +56,9 @@ textarea:focus {
 .send-message-box
 {
 	text-align: left;
-	margin-top: 20px;
-	margin-left: 325px;
-	width: 70%;
+	margin-top: 35%;
+	margin-left: 5%;
+	width: 73%;
 	height: 25px;
 	font-size: 20px;
 	line-height: 140%;
