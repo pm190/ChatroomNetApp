@@ -2,19 +2,29 @@ body{
 	padding: 0px;
 	width: 1440px;
  	height: 900px;
+ 	font-family:"Times New Roman", Times, serif;
+	font-size:20px;
+	 color: #ff8900;
+}
+html.basicBackground{
+	background-image:url(../img/simpleBackGround.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;
 }
 div.field{
 	padding:15px;
 	}
 input, button {
 	 font-size: 20px;
-	 text-indent: 10px;
      border: 1px solid #006;
      background: #65a9d7;
 	 border-radius: 30px;
 	 text-decoration: none;
 	 display:block;
  }
+input[type=text], input[type=password],input[type=email]{
+	text-indent: 10px;
+}
 input[type=submit], button {
    border-top: 1px solid #96d1f8;
    background: #65a9d7;
