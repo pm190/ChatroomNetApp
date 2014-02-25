@@ -9,8 +9,7 @@
 	function showSpoiler(obj)
     {
     var spoiler = document.getElementById(obj);
-    	alert(spoiler.style.display);
-    if (spoiler.style.display == "none"){
+    if (spoiler.style.display == ""){
         spoiler.style.display = "block";
     }
     else{
@@ -68,28 +67,21 @@
 		Authors: Marcin Kopacz, Saad Arif
 		</p>
 		
-		<p><bold><a href="../html/reportPage.html"> About Web Chat Project</a></bold>
-		<br>
-		Put description......
-		Authors: Marcin Kopacz, Talitha Brown
-		</p>
-		
 		<p> We use piece of <a href="http://dynamicz34.deviantart.com/art/Portal-Themed-Wallpaper-1080p-399679319">art </a>
 		from artist <a href="http://dynamicz34.deviantart.com/"> dynamicz34</a>, with his permission to use it for non-profit project. 
 		We use some tricks to adapt it to website and make it more dynamic.
 		</p>
 		</div>
-		<div class="features" styel="display:block-line">
+		<div class="features">
 		<strong> New HTML5/CSS3 features used</strong>
 		<br>
-			
-			<input type="button" value="Show/Hide CSS" onclick="showSpoiler('cssSpoiler')" style="display: inline">
+			<input type="button" value="Show/Hide CSS" onclick="showSpoiler('cssSpoiler')" style="display:inline-block">
 			<div class="spoiler" id="cssSpoiler" style="diplay:none">
 			<p> List all of features...
 			</p>
 			</div>
 			
-			<input type="button" value="Show/Hide HTML5" onclick="showSpoiler('htmlSpoiler')" style="diplay:none">
+			<input type="button" value="Show/Hide HTML5" onclick="showSpoiler('htmlSpoiler')" style="diplay:inline-block">
 			<div class="spoiler" id="htmlSpoiler" style="diplay:none">
 			<p> List all of features...
 			</p>
@@ -97,15 +89,7 @@
 			</div>
 
 		</div>
-		
 </div>
-	
-	
-	
-	
-	
-	
-	
 	<div class="validation">
 		<a href="http://jigsaw.w3.org/css-validator/check/referer"> 
 		<img style="width: 88px; height: 31px; border: 0" alt="OK CSS" src="http://jigsaw.w3.org/css-validator/images/vcss" /> 

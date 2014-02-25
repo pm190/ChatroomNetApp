@@ -9,7 +9,7 @@ body{
 html.basicBackground{
 	background-image:url(../img/simpleBackGround.jpg);
 	background-size:cover;
-	background-repeat:no-repeat;
+
 }
 div.field{
 	padding:15px;
