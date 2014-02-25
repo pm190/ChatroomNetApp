@@ -4,10 +4,24 @@
 <head>
 <link rel="stylesheet" href="../css/mainStyle.css" type="text/css" />
 <link rel="stylesheet" href="../css/selectiveStyle.css" type="text/css" />
-<title>About Web Chat project</title>
+<title>About web chat project</title>
+<script type="text/javascript">
+	function showSpoiler(obj)
+    {
+    var spoiler = document.getElementById(obj);
+    	alert(spoiler.style.display);
+    if (spoiler.style.display == "none"){
+        spoiler.style.display = "block";
+    }
+    else{
+        spoiler.style.display = "none";
+    }
+    }
+    </script>
 </head>
 
 <body>
+
 	<div class="pagewrapper">
 		<div id="basicInfo">
 			<strong> Network Applications Report Webpage: Coursework
@@ -18,73 +32,71 @@
 			<ol>Marcin Kopacz mpk31@hw.ac.uk,</ol>
 			<ol>Talitha Brown tsb4@hw.ac.uk,</ol>
 			</p>
-			<br>
+	
 		</div>
 
 		<div id="projectDesc">
-			<strong> Description</strong>
+			<strong>Project description</strong>
 			<p>This web application is a Synchronous Chat Service
 			
 			
 			</p>
-			<br>
+		
 		</div>
 			
-			<div class="secthead">
-				<sectHead>Page Descriptions and links</sectHead>
+		<div class="pagesDesc">
+				<strong> Descriptions of subpages</strong>	
+		<p><bold><a href="../html/entrencePage.html"> 
+		<br>Portal Web Chat Client</a></bold>
+		This page as entrance page. User can create account using button in header,
+		get more information about project. User can also login to chat room using registered credencials
+		or use guest pass. Authors: Marcin Kopacz, Talitha Brown
+		</p>
+		
+		<p><bold><a href="../html/chatRoom.html">Chat Rooms</a></bold>
+		<br>
+		Put description......
+		Authors: Marcin Kopacz, Saad Arif
+		</p>
+		
+		<p><bold><a href="../html/reportPage.html"> About Web Chat Project</a></bold>
+		<br>
+		Put description......
+		Authors: Marcin Kopacz, Talitha Brown
+		</p>
+		
+		<p> We use piece of <a href="http://dynamicz34.deviantart.com/art/Portal-Themed-Wallpaper-1080p-399679319">art </a>
+		from artist <a href="http://dynamicz34.deviantart.com/"> dynamicz34</a>, with his permission to use it for non-profit project. 
+		We use some tricks to adapt it to website and make it more dynamic.
+		</p>
+		</div>
+		<div class="features" styel="display:block-line">
+		<strong> New HTML5/CSS3 features used</strong>
+		<br>
+			
+			<input type="button" value="Show/Hide CSS" onclick="showSpoiler('cssSpoiler')" style="display: inline">
+			<div class="spoiler" id="cssSpoiler" style="diplay:none">
+			<p> List all of features...
+			</p>
 			</div>
-			<div class="links">
-				<!-- Insert correct link!-->
-				<a href="http://www.hw.ac.uk" target="_blank">Chatroom</a>
-			</div>
-			<div class="paragraph">
-				<paragraph>The chatroom - insert details here </paragraph>
-				<br> </br>
-			</div>
-			<div class="secthead">
-				<sectHead>Authors by page</sectHead>
-			</div>
-			<div class="paragraph">
-				<paragraph>Chatroom: Saad Arif, Marcin Kopacz </paragraph>
-			</div>
-			<div class="paragraph">
-				<paragraph>Home Page: Marcin Kopacz, Talitha Brown </paragraph>
-				<br> </br>
-			</div>
-			<div class="secthead">
-				<sectHead>Links etc to external files used</sectHead>
-			</div>
-			<div class="links">
-				<!-- Insert correct link!-->
-				<a href="http://www.hw.ac.uk" target="_blank">Link Name</a>
-			</div>
-			<div class="paragraph">
-				<paragraph>Author: insert author name</paragraph>
-			</div>
-			<div class="paragraph">
-				<paragraph>Overview: insert overview details of what
-				used</paragraph>
-				<br> </br>
-			</div>
-			<div class="secthead">
-				<sectHead>New HTML5/CSS3 Used</sectHead>
-			</div>
-			<div class="paragraph">
-				<div class="parahead">
-					<parahead>New HTML5</parahead>
-				</div>
-				<paragraph>List of HTML5 new stuff used</paragraph>
-				<br></br>
-				<div class="parahead">
-					<parahead>New CSS3</parahead>
-
-				</div>
-				<paragraph>List of CSS3 new stuff used</paragraph>
-				<br> </br>
+			
+			<input type="button" value="Show/Hide HTML5" onclick="showSpoiler('htmlSpoiler')" style="diplay:none">
+			<div class="spoiler" id="htmlSpoiler" style="diplay:none">
+			<p> List all of features...
+			</p>
+			
 			</div>
 
 		</div>
-	</div>
+		
+</div>
+	
+	
+	
+	
+	
+	
+	
 	<div class="validation">
 		<a href="http://jigsaw.w3.org/css-validator/check/referer"> 
 		<img style="width: 88px; height: 31px; border: 0" alt="OK CSS" src="http://jigsaw.w3.org/css-validator/images/vcss" /> 
