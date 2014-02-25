@@ -35,9 +35,15 @@ top:50%;
 	position: relative;
 	left: 25%;
 	}
+div.pagewrapper{
+	width:50%;
+}
 div#centralLogin {
  position:relative;
  padding:30px;
+}
+div.spoiler{
+	display:none;
 }
 ::-webkit-input-placeholder {
     color:#ff8900;

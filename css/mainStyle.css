@@ -2,7 +2,7 @@ body{
 	padding: 0px;
 	width: 1440px;
  	height: 900px;
- 	font-family:"Times New Roman", Times, serif;
+ 	font-family:"San-serif", Times, serif;
 	font-size:20px;
 	 color: #ff8900;
 }
@@ -43,8 +43,6 @@ from(#3e779d), to(#65a9d7));
    box-shadow: rgba(0,0,0,1) 0 1px 0;
    text-shadow: rgba(0,0,0,.4) 0 1px 0;
    border-color:#3e779d;
-   border-bottom-color:#3e779d;
-   border-left-color:#3e779d;
    border-style:solid;
    color: #ff8900;
    vertical-align: middle;
@@ -83,4 +81,8 @@ button, input[type=submit]{
  padding: 2px;
 }
 
+a{
+	color: color: #ff8900;
+	text-decoration: none;
+}
 
