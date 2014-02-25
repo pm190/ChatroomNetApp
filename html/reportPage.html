@@ -23,9 +23,16 @@
 
 		<div id="projectDesc">
 			<strong> Description</strong>
-			<p>This web application is a Synchronous Chat Service
-			
-			
+			<p>This web application is a Synchronous Chat Service. 
+			The first tier of the application is the client's interface to the chatroom. This
+			will be implemented using Java Server Faces to allow dynamic creation of html at runtime.
+			To stop the entire page needing to be refreshed every time there is an update, ajax will be
+			used to allow partial page updates, providing a more friendly user experience. This will
+			run on a Java web server, most likely to be tomcat. The middle or second tier of the application will
+			also run on the web server an act as the communication layer between the first and third tiers.
+			This tier will function as a servlet and will alter the requests sent to it by the first tier and
+			pass them onto the third tier. This tier acts like a XMPP client. The third tier is essentially 
+			the XMPP server, which will relay chat messages back through to the tiers to the client.
 			</p>
 			<br>
 		</div>
