@@ -1,15 +1,15 @@
 body{
 	padding: 0px;
-	width: 1440px;
- 	height: 900px;
  	font-family:"San-serif", Times, serif;
 	font-size:20px;
-	 color: #ff8900;
+	color: #ff8900;
+	overflow-x:scroll;
+	width:100%;
+   	height:100%;
 }
 html.basicBackground{
 	background-image:url(../img/simpleBackGround.jpg);
 	background-size:cover;
-
 }
 div.field{
 	padding:15px;
@@ -61,7 +61,6 @@ button:active, input[type=submit]:active {
 input[type=checkbox] {
 	color: #ff8900;
 	text-decoration: none;
-	font-size: 24px;
 	display:inline;
 }
 input:hover {
@@ -82,7 +81,6 @@ button, input[type=submit]{
 }
 
 a{
-	color: color: #ff8900;
-	text-decoration: none;
+	color:#ff8900;
 }
 
