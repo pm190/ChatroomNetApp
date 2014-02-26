@@ -1,40 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charaset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta charset="UTF-8"/>
 	<title>BanterBox</title>
 	<link rel="stylesheet" href="../css/roompage.css" type="text/css">
-	<link rel="stylesheet" href="../css/tabs.css" type="text/css">
+<!-- 	<link rel="stylesheet" href="../css/tabs.css" type="text/css"> -->
 <!-- 	<link rel="stylesheet" href="../css/mainStyle.css" type="text/css" /> -->
 	<script type="text/javascript" src="../js/tabs.js"></script>
 </head>
 <body>
 	<div class="container">
-		<div id="tabContainer">
+		<div class="left">			
 			<div class="tabs">
-				<ul>
-					<li id="tabHeader_1">Room 1</li>
-					<li id="tabHeader_2">Room 2</li>
-					<li id="tabHeader_3">Room 3</li>
-				</ul>
-			</div>
-			<div class="tabscontent">
-				<div class="tabpage" id="tabpage_1">
-				</div>
-				<div class="tabpage" id="tabpage_2">
-				</div>
-				<div class="tabpage" id="tabpage_3">
+				<div id="leftTabs">
+					<ul>
+						<li class="clickTab" id="tab_friends">Friends</li>
+						<li class="clickTab" id="tab_users">Current Users</li>
+						<li class="clickTab" id="tab_rooms">Rooms</li>
+					</ul>
 				</div>
 			</div>
+			<div class="sidePanelWrapper">			
+				<div class="searchBox">
+					<input class="box" type="text" placeholder="Search" />
+				</div>
+				<div class="tabscontent">
+					<div class="tabContent" id="friends">test friends</div>
+					<div class="tabContent" id="users">test users</div>
+					<div class="tabContent" id="rooms">test rooms</div>
+				</div>
+			</div>
 		</div>
-		<div class="friend-list">
-			<input class="search-box" type="text" placeholder="Search">
-		</div>
-		<div>
-			<textarea class="chatbox" rows="10" readonly></textarea>
-		</div>
-		<div>
-			<input type="text" class="send-message-box" placeholder="Send a message">
+		<div class="right">
+			<div class="tabs">
+				<div id="rightTabs">
+					<ul>
+					<li class="clickTab" id="room_1">Room 1</li>
+						<li class="clickTab" id="room_2">Room 2</li>
+						<li class="clickTab" id="room_3">Room 3</li>
+					</ul>
+					<div class="tabscontent">
+						<div class="tabContent" id="1">Room 1 Text</div>
+						<div class="tabContent" id="2">Room 2 Text</div>
+						<div class="tabContent" id="3">Room 3 Text</div>
+				</div>
+				</div>
+			</div>
+			<div class="chat">
+				<textarea class="chat" readonly="readonly"></textarea>
+			</div>
+			<div class="messageBox">
+				<input class="box" type="text" placeholder="Message" />
+			</div>
 		</div>
 	</div>
 </body>
