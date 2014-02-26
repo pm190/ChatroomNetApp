@@ -6,9 +6,9 @@ window.onload=function() {
 function setUpTabs(){
   // get all the tab headers
   var tabHeaders = document.getElementsByClassName('clickTab'); 
-  // hid all the tab contents
-  // hideTabs('tabContent');
-  // set a on click event for all tab headers
+  // get the active headers specified
+  var activeHeader = document.getElementsByClassName('activeHeader');
+  activeHeader.style.display = "inline-block";
   for(index = 0; index < tabHeaders.length; ++index)
   {
     tabHeaders[index].addEventListener("click", displayTab, false);
@@ -17,58 +17,53 @@ function setUpTabs(){
 
 function displayTab(id)
 {
-  //before displaying hide all tabs and effectively an other tabs that have been clicked
-  hideTabs('tabContent');
+  //remove any active headers
+  removeActive(this.parentNode.id);
+
+  //set this header as activeheader
+  this.className = "clickTab activeHeader";
+  //work out the tab content id from last part of the tab header id
   var tabID = this.id.split("_")[1];
+
   var tab = document.getElementById(tabID);
-  tab.style.display="inline-block";
+  // hide all tabls
+  hideTabs(tab.parentNode.id);
+
+  // if this is the left tab list we just display data
+  // if it is the right tab list we display the chat in the text area
+  if(this.parentNode.id === 'leftTabList')
+  {
+    tab.style.display="inline-block";
+  }
+  else if(this.parentNode.id === 'rightTabList')
+  {
+    displayChat(tab.innerHTML);
+  }
 }
 
 function hideTabs(id)
 {
-  var tabContents = document.getElementsByClassName(id);  
+  var tabContents = document.getElementById(id).getElementsByTagName('div'); 
   // set a on click event for all tab headers
   for(index = 0; index < tabContents.length; ++index)
   {
     tabContents[index].style.display = "none";
   }
 }
-// function setUpTabs(tab-container-id){
 
-//    // get tab container
-//    var container = document.getElementsByName(tab);
-//     // set current tab
-//     var navitem = container.querySelector(".tabs ul li");
-//     //store which tab we are on
-//     var ident = navitem.id.split("_")[1];
-//     navitem.parentNode.setAttribute("data-current",ident);
-//     //set current tab with class of activetabheader
-//     navitem.setAttribute("class","tabActiveHeader");
+//get id using id find all childer li and set their class to 'clickTab'
+//essentially removing any active tabs
+function removeActive(id)
+{
+  var tabHeaders = document.getElementById(id).getElementsByTagName('li'); 
+  for(index = 0; index < tabHeaders.length; ++index)
+  {
+    tabHeaders[index].className = "clickTab";
+  }
+}
 
-//     //hide two tab contents we don't need
-//     var pages = container.querySelectorAll(".tabpage");
-//     for (var i = 1; i < pages.length; i++) {
-//       pages[i].style.display="none";
-//     }
-
-//     //this adds click event to tabs
-//     var tabs = container.querySelectorAll(".tabs ul li");
-//     for (var i = 0; i < tabs.length; i++) {
-//       tabs[i].onclick=displayPage;
-//     }
-// }
-
-// // on click of one of tabs
-// function displayPage() {
-//   var current = this.parentNode.getAttribute("data-current");
-//   //remove class of activetabheader and hide old contents
-//   document.getElementById("tabHeader_" + current).removeAttribute("class");
-//   document.getElementById("tabpage_" + current).style.display="none";
-
-//   var ident = this.id.split("_")[1];
-//   //add class of activetabheader to new active tab and show contents
-//   this.setAttribute("class","tabActiveHeader");
-//   document.getElementById("tabpage_" + ident).style.display="block";
-//   this.parentNode.setAttribute("data-current",ident);
-// }
-  
+function displayChat(data)
+{
+  var chat = document.getElementById('chat');
+  chat.innerHTML = data;
+}

@@ -14,8 +14,8 @@
 		<div class="left">			
 			<div class="tabs">
 				<div id="leftTabs">
-					<ul>
-						<li class="clickTab" id="tab_friends">Friends</li>
+					<ul id="leftTabList">
+						<li class="clickTab activeHeader" id="tab_friends">Friends</li>
 						<li class="clickTab" id="tab_users">Current Users</li>
 						<li class="clickTab" id="tab_rooms">Rooms</li>
 					</ul>
@@ -25,7 +25,7 @@
 				<div class="searchBox">
 					<input class="box" type="text" placeholder="Search" />
 				</div>
-				<div class="tabscontent">
+				<div class="tabsContent" id="leftTabContent">
 					<div class="tabContent" id="friends">test friends</div>
 					<div class="tabContent" id="users">test users</div>
 					<div class="tabContent" id="rooms">test rooms</div>
@@ -35,12 +35,12 @@
 		<div class="right">
 			<div class="tabs">
 				<div id="rightTabs">
-					<ul>
-					<li class="clickTab" id="room_1">Room 1</li>
+					<ul id ="rightTabList">
+						<li class="clickTab activeHeader" id="room_1">Room 1</li>
 						<li class="clickTab" id="room_2">Room 2</li>
 						<li class="clickTab" id="room_3">Room 3</li>
 					</ul>
-					<div class="tabscontent">
+					<div class="tabsContent" id="rightTabContent">
 						<div class="tabContent" id="1">Room 1 Text</div>
 						<div class="tabContent" id="2">Room 2 Text</div>
 						<div class="tabContent" id="3">Room 3 Text</div>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="chat">
-				<textarea class="chat" readonly="readonly"></textarea>
+				<textarea class="chat" id="chat" readonly="readonly"></textarea>
 			</div>
 			<div class="messageBox">
 				<input class="box" type="text" placeholder="Message" />
