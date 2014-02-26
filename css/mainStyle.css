@@ -2,19 +2,29 @@ body{
 	padding: 0px;
 	width: 1440px;
  	height: 900px;
+ 	font-family:"San-serif", Times, serif;
+	font-size:20px;
+	 color: #ff8900;
+}
+html.basicBackground{
+	background-image:url(../img/simpleBackGround.jpg);
+	background-size:cover;
+
 }
 div.field{
 	padding:15px;
 	}
 input, button {
 	 font-size: 20px;
-	 text-indent: 10px;
      border: 1px solid #006;
      background: #65a9d7;
 	 border-radius: 30px;
 	 text-decoration: none;
 	 display:block;
  }
+input[type=text], input[type=password],input[type=email]{
+	text-indent: 10px;
+}
 input[type=submit], button {
    border-top: 1px solid #96d1f8;
    background: #65a9d7;
@@ -33,8 +43,6 @@ from(#3e779d), to(#65a9d7));
    box-shadow: rgba(0,0,0,1) 0 1px 0;
    text-shadow: rgba(0,0,0,.4) 0 1px 0;
    border-color:#3e779d;
-   border-bottom-color:#3e779d;
-   border-left-color:#3e779d;
    border-style:solid;
    color: #ff8900;
    vertical-align: middle;
@@ -73,4 +81,8 @@ button, input[type=submit]{
  padding: 2px;
 }
 
+a{
+	color: color: #ff8900;
+	text-decoration: none;
+}
 

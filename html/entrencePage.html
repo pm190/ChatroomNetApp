@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="background" lang="en">
+<html class="basicBackground" lang="en">
 <head>
 <meta charset="utf-8" />
 <title>Portal IRC Client</title>
@@ -10,9 +10,11 @@
 
 <body id="index" class="home">
 
+
 <header id="banner" class="createAccount">
-	<nav>
-    <button name="accCre" id="hideshow" value="create acccount">create account</button>
+	<nav >
+    <button name="accCre" id="hideshow" value="create acccount" style="display: inline">create account</button>
+    <button name="about" value="about" id="about" style="display: inline" onclick="location.href='../html/reportPage.html'">about project</button>
 	</nav>
 </header>
 
@@ -31,7 +33,7 @@
 <br/>
 <input type="text" name="room" required placeholder="select room">
 <br/>
-<input type="submit" id="login">
+<input type="submit" value="enter"id="login">
 </form>
 </div>
 
@@ -81,7 +83,7 @@
 <!--<input type="submit" value="Submit as normal">-->
 <div class="twoButtons" style="display:inline-block">
 <div class="field" style="display:inline-block" >
-<input type="submit" formtarget="_blank" class="accCre">
+<input type="submit" value="register" formtarget="_blank" class="accCre">
 </div>
 
 <!--help button if we produce a help page -->
@@ -99,7 +101,15 @@ cancel
 
 
 </div>
-
+<div class="validation">
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+   <img style="width: 88px; height: 31px; border: 0" alt="OK CSS"
+        src="http://jigsaw.w3.org/css-validator/images/vcss"/> </a>
+ 
+<a href="http://validator.w3.org/check?uri=referer">
+<img src="http://www.w3.org/Icons/valid-xhtml10.gif" alt="Valid XHTML 1.0!" style="border: 0; width: 88px; height: 31px"/>
+</a>
+</div>
 
 <script>
 $(document).ready(function() {
