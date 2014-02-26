@@ -9,7 +9,6 @@ header.createAccount {
 div#loginContainer{
 	position:relative;	
 	top:20%;
-	left:20%;
  	width: 320px;
  	height: 280px;
  	margin: 30px 50px;
@@ -26,6 +25,21 @@ div#accountCreation{
  	margin: 30px 50px;
  	border-radius: 30px;
     background: rgba(0, 0, 0, 0.5);
+}
+div.siders{
+	float:left;
+}
+div#sidersContainer{
+	position:absolute;	
+	top:30%;
+}
+div#leftSide{
+	max-width : 781px;
+	max-height: 587x;
+}
+div#rightSide{
+	max-width : 781px;
+	max-height: 587x;
 }
 div.validation{
 position: relative;
