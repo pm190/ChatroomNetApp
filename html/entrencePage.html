@@ -18,6 +18,13 @@
 	</nav>
 </header>
 
+<div class="mainLogo">
+<strong></strong><p> Portal Web Chat</p></strong>	
+</div>
+<div class="subLogo">
+<p> your xmpp chat client</p>
+</div>
+
 <div id="sidersContainer">
 
 <div class="siders" id="leftSide">
@@ -41,7 +48,7 @@
 <br/>
 <input type="text" name="room" required placeholder="select room">
 <br/>
-<input type="submit" value="enter"id="login">
+<input type="submit" value="enter"id="login" onclick="location.href='../html/chatRoom.html'">
 </form>
 </div>
 
@@ -121,19 +128,29 @@ cancel
 </div>
 <div class="validation">
 <a href="http://jigsaw.w3.org/css-validator/check/referer">
-   <img style="width: 88px; height: 31px; border: 0" alt="OK CSS"
-        src="http://jigsaw.w3.org/css-validator/images/vcss"/> </a>
+   <img style="width: 88px; height: 31px; border: 0" alt="OK CSS" src="http://jigsaw.w3.org/css-validator/images/vcss"/> </a>
  
 <a href="http://validator.w3.org/check?uri=referer">
-<img src="http://www.w3.org/Icons/valid-xhtml10.gif" alt="Valid XHTML 1.0!" style="border: 0; width: 88px; height: 31px"/>
-</a>
+		<img src="http://www.w3.org/Icons/valid-xhtml10.gif" alt="Valid XHTML 1.0!" style="border: 0; width: 88px; height: 31px"/> </a>
 </div>
+
+
 
 <script>
 $(document).ready(function() {
     $("#hideshow").click(function() {
            $("#accountCreation").toggle();
     });
+});
+</script>
+<script>
+$(window).on('load resize', function(){
+
+    var w = $(window).width();
+    var h = $(window).height();
+    
+    $('section').height(h);
+    
 });
 </script>
 

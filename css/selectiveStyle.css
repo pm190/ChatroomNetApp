@@ -1,8 +1,8 @@
 header.createAccount {
-	position:relative;
+	position:absolute;
    	transition: .5s ease;
-    top: 10%;
-    left: 90%;
+    top: 15%;
+    left: 80%;
 	size:auto;
 	resize:both;
 }
@@ -17,8 +17,8 @@ div#loginContainer{
 }
 
 div#accountCreation{
-	position:relative;
-	top:15%;
+	position:absolute;
+	top:20%;
 	left:65%;
  	width: 320px;
  	height: 600px;
@@ -27,16 +27,17 @@ div#accountCreation{
     background: rgba(0, 0, 0, 0.5);
 }
 div.siders{
-	 display: inline-block;
+	 float:left;
 }
 div#sidersContainer{
-	position:relative;
+	position:absolute;
+	max-width:3200px;
 	top:30%;
 	
 }
 div.validation{
-position: relative;
-top:70%;	
+position: absolute;
+top:80%;	
 }
 #login{
 	position: relative;
@@ -45,6 +46,7 @@ top:70%;
 div.pagewrapper{
 	width:50%;
 }
+
 div#centralLogin {
  position:relative;
  padding:30px;
@@ -64,3 +66,15 @@ div.spoiler{
 :-ms-input-placeholder{
     color:#ff8900;
 }
+div.mainLogo{
+ 	font-family:"Decibel";
+ 	font-size: 60px;
+ 	color: #ff8900;
+}
+div.subLogo{
+	font-family:"Decibel";
+ 	font-size: 40px;
+ 	color: #03bcff;
+ 	margin:0px;
+}
+	
