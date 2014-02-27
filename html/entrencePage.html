@@ -5,73 +5,68 @@
 <title>Portal IRC Client</title>
 <link rel="stylesheet" href="../css/mainStyle.css" type="text/css" />
 <link rel="stylesheet" href="../css/selectiveStyle.css" type="text/css" />
-<script src="../jQuery/jquery-2.1.0.min.js"></script>
+<script src="../jQuery/jquery-2.1.0.min.js" type="text/javascript"></script>
 </head>
 
 <body>
 
-<header id="banner" class="createAccount">
-	<nav >
-    <button name="accCre" value="create acccount" style="display: inline" onclick="location.href='../html/accountCreation.html'">create account</button>
-    <button name="about" id="about" style="display: inline" onclick="location.href='../html/reportPage.html'">about project</button>
-	</nav>
-</header>
+	<header id="banner" class="createAccount">
+		<nav>
+			<button name="accCre" value="create acccount" style="display: inline" onclick="location.href='../html/accountCreation.html'">create account</button>
+			<button name="about" id="about" style="display: inline" onclick="location.href='../html/reportPage.html'">about project</button>
+		</nav>
+	</header>
 
-<div class="mainLogo" style="">
-Portal Web Chat
-</div>
-<div class="subLogo">
-your xmpp chat client
-</div>
+	<div class="mainLogo" style="">Portal Web Chat</div>
+	<div class="subLogo">your xmpp chat client</div>
 
-<div id="sidersContainer">
+	<div id="sidersContainer">
 
-<div class="siders" id="leftSide">
-<img src="../img/left.png" alt="left graphics">
-</div> 
+		<div class="siders" id="leftSide">
+			<img src="../img/left.png" alt="left graphics">
+		</div>
 
 
-<div id="loginContainer" class="siders">
+		<div id="loginContainer" class="siders">
 
-<div id="centralLogin">
+			<div id="centralLogin">
 
-<form>
-<input type="text" name="login" required placeholder="username">
-<br/>
-<input type="checkbox" name="asGuest" id="desc" onclick="document.getElementById('passwd').style.display = this.checked ? 'none' : 'block'; this.form.elements['pass'].disabled = this.checked">
-<label for="desc">enter as a guest</label>
-<br/><br/>
-<div id="passwd">
-<input type="password" name="pass" placeholder="password" id="pass">
-</div>
-<br/>
-<input type="text" name="room" required placeholder="select room">
-<br/>
-<input type="submit" value="enter" id="login" onclick="location.href='../html/chatRoom.html'">
-</form>
-</div>
+				<form action="">
+					<input type="text" name="login" required placeholder="username">
+					<br /> <input type="checkbox" name="asGuest" id="desc" onclick="document.getElementById('passwd').style.display = this.checked ? 'none' : 'block'; this.form.elements['pass'].disabled = this.checked">
+					<label for="desc">enter as a guest</label> <br />
+					<br />
+					<div id="passwd">
+						<input type="password" name="pass" placeholder="password"
+							id="pass">
+					</div>
+						<br/> 
+						<input type="text" name="room" required placeholder="select room"> <br /> <input type="submit"value="enter" id="login" onclick="location.href='../html/chatRoom.html'">
+				</form>
+			</div>
 
-</div>
+		</div>
 
-<div class="siders" id="rightSide">
-<img src="../img/right.png" alt="right graphics">
-</div>
+		<div class="siders" id="rightSide">
+			<img src="../img/right.png" alt="right graphics">
+		</div>
 
-</div>
+	</div>
 
 
-<div class="validationLeft">
-<a href="http://jigsaw.w3.org/css-validator/check/referer">
-   <img style="width: 88px; height: 31px; border: 0" alt="OK CSS" src="http://jigsaw.w3.org/css-validator/images/vcss"/> </a>
- 
-<a href="http://validator.w3.org/check?uri=referer">
-		<img src="http://www.w3.org/Icons/valid-xhtml10.gif" alt="Valid XHTML 1.0!" style="border: 0; width: 88px; height: 31px"/> </a>
-</div>
-<div id="thanks">
-<p> Art thanks to <a href="http://dynamicz34.deviantart.com/"> dynamicz34</a></p>
-</div>
+	<div class="validationLeft">
+		<a href="http://jigsaw.w3.org/css-validator/check/referer"> 
+			<img style="width: 88px; height: 31px; border: 0" alt="OK CSS" src="http://jigsaw.w3.org/css-validator/images/vcss" /></a> 	
+		<a href="http://validator.w3.org/check?uri=referer">
+			 <img src="http://www.w3.org/Icons/valid-xhtml10.gif" alt="Valid XHTML 1.0!" style="border: 0; width: 88px; height: 31px" /></a>
+	</div>
+	<div id="thanks">
+		<p>
+			Art thanks to <a href="http://dynamicz34.deviantart.com/">dynamicz34</a>
+		</p>
+	</div>
 
-<script>
+	<script type="text/javascript">
 $(window).on('load resize', function(){
 
     var w = $(window).width();
