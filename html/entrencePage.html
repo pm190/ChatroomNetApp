@@ -8,8 +8,7 @@
 <script src="../jQuery/jquery-2.1.0.min.js"></script>
 </head>
 
-<body id="index" class="home">
-
+<body>
 
 <header id="banner" class="createAccount">
 	<nav >
@@ -18,11 +17,11 @@
 	</nav>
 </header>
 
-<div class="mainLogo">
-<strong></strong><p> Portal Web Chat</p></strong>	
+<div class="mainLogo" style="">
+Portal Web Chat
 </div>
 <div class="subLogo">
-<p> your xmpp chat client</p>
+your xmpp chat client
 </div>
 
 <div id="sidersContainer">
@@ -61,9 +60,6 @@
 </div>
 
 
-
-
-
 <div id="accountCreation" style="display: none;">
 <form action="">
 
@@ -76,7 +72,7 @@
 </div>
 
 <div class="field">
-<input type ="password" name="rePassword" id="rePassword" class="text-input" class="accCre" placeholder = "type again password"/>
+<input type ="password" name="rePassword" id="rePassword" class="text-input" class="accCre" placeholder = "confirm password"/>
 </div>
 
 <div class ="field">
@@ -84,7 +80,7 @@
 </div>
 
 <div class ="field">
-<input type="email" name="reEmail" id="reEmail" class="text-input" class="accCre" placeholder="re-type your e-mail"/>
+<input type="email" name="reEmail" id="reEmail" class="text-input" class="accCre" placeholder="confirm your e-mail"/>
 </div>
 
 <div class ="field" id="dob">
@@ -115,7 +111,7 @@
 <!--to open a new page use window.open this opens new url in same page-->
 <!--insert account home url instead of hw.ac.uk-->
 <div class="field" style="display:inline-block" >
-<button type ="button" onclick="location.replace('http://www.hw.ac.uk')" > 
+<button type ="button" id="cancel" > 
 cancel
 </button>
 </div>
@@ -133,12 +129,18 @@ cancel
 <a href="http://validator.w3.org/check?uri=referer">
 		<img src="http://www.w3.org/Icons/valid-xhtml10.gif" alt="Valid XHTML 1.0!" style="border: 0; width: 88px; height: 31px"/> </a>
 </div>
-
-
+<div id="thanks">
+<p> Art thanks to <a href="http://dynamicz34.deviantart.com/"> dynamicz34</a></p>
+</div>
 
 <script>
 $(document).ready(function() {
     $("#hideshow").click(function() {
+           $("#accountCreation").toggle();
+    });
+});
+$(document).ready(function() {
+    $("#cancel").click(function() {
            $("#accountCreation").toggle();
     });
 });
@@ -150,7 +152,7 @@ $(window).on('load resize', function(){
     var h = $(window).height();
     
     $('section').height(h);
-    
+    $('section').width(w);
 });
 </script>
 
