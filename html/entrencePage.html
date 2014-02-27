@@ -27,7 +27,7 @@ your xmpp chat client
 <div id="sidersContainer">
 
 <div class="siders" id="leftSide">
-<img src="../img/left.png">
+<img src="../img/left.png" alt="left graphics">
 </div> 
 
 
@@ -38,7 +38,7 @@ your xmpp chat client
 <form>
 <input type="text" name="login" required placeholder="username">
 <br/>
-<input type="checkbox" name="asGuest" id="desc"/ onclick="document.getElementById('passwd').style.display = this.checked ? 'none' : 'block'; this.form.elements['pass'].disabled = this.checked">
+<input type="checkbox" name="asGuest" id="desc" onclick="document.getElementById('passwd').style.display = this.checked ? 'none' : 'block'; this.form.elements['pass'].disabled = this.checked">
 <label for="desc"><font color="#ff8900" size=4.5>enter as a guest</font></label>
 <br/><br/>
 <div id="passwd">
@@ -47,14 +47,14 @@ your xmpp chat client
 <br/>
 <input type="text" name="room" required placeholder="select room">
 <br/>
-<input type="submit" value="enter"id="login" onclick="location.href='../html/chatRoom.html'">
+<input type="submit" value="enter" id="login" onclick="location.href='../html/chatRoom.html'">
 </form>
 </div>
 
 </div>
 
 <div class="siders" id="rightSide">
-<img src="../img/right.png">
+<img src="../img/right.png" alt="right graphics">
 </div>
 
 </div>
@@ -64,11 +64,11 @@ your xmpp chat client
 <form action="">
 
 <div class ="field">
-<input type="text" name="enter username" id="username" placeholder="choose username" class="text-input" placeholder="enter username"/>
+<input type="text" name="enter username" id="username" class="text-input" placeholder="enter username"/>
 </div>
 
 <div class="field">
-<input type ="password" name="Password" id="password" class="text-input" placeholder="type strong password"class="accCre"/>
+<input type ="password" name="Password" id="password" class="text-input" placeholder="type strong password" class="accCre"/>
 </div>
 
 <div class="field">
@@ -90,7 +90,7 @@ your xmpp chat client
 
 <div class= "field" id="desc">
 <label for ="desc"> <font color="#ff8900" size=4.5>describe yourself in one sentence </font></label>
-<input type = "textarea" name ="profile" class="text-input" class="accCre" rows="10" cols="30"/>
+<input type = "text" name ="profile" class="text-input" class="accCre"/>
 </div>
 
 
