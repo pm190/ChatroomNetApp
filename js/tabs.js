@@ -7,8 +7,16 @@ function setUpTabs(){
   // get all the tab headers
   var tabHeaders = document.getElementsByClassName('clickTab'); 
   // get the active headers specified
-  var activeHeader = document.getElementsByClassName('activeHeader');
-  activeHeader.style.display = "inline-block";
+  var activeHeaders = document.getElementsByClassName('activeHeader');
+
+  for(index = 0; index < activeHeaders.length;++index)
+  {
+    activeHeaderId = activeHeaders[index].id.split("_")[1]
+    var activeHeaderContent = document.getElementById(activeHeaderId);
+    activeHeaderContent.style.display = "inline-block";
+  }
+
+
   for(index = 0; index < tabHeaders.length; ++index)
   {
     tabHeaders[index].addEventListener("click", displayTab, false);

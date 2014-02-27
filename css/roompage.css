@@ -6,6 +6,8 @@ body, html {
     height:100%;
     margin: 0;
     padding: 0;
+    background-image:url('../img/simpleBackGround.jpg');
+    color: #ff8900;
 }
 div.container {
     height:100%;
@@ -32,17 +34,23 @@ div.right {
 div.tabs {
     height:5%;
     background-color: lightgreen;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 .tabContent
 {
     display: none;
+    padding: 30px;
 }
 
-li
+.clickTab
 {
+    height: 100%;
     color: black;
+    color: #73C0F5;
     margin:0px 0px 5px 5px;
-    padding:7px 10px;
+    padding:2px 10px;
     display:inline-block;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -82,6 +90,7 @@ textarea.chat, textarea.users {
     resize: none;
     border-radius: 30px;
     padding: 15px;
+    color: #ff8900;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -90,7 +99,7 @@ div.searchBox {
     height: 5%;
     width: 100%;
     background-color: darkgreen;
-    padding: 0px 15px;
+    padding: 15px 15px;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
@@ -105,6 +114,7 @@ div.messageBox{
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
+    color: #ff8900
 }
 
 div.sidePanelWrapper
@@ -114,7 +124,6 @@ div.sidePanelWrapper
     border-radius: 30px;
     overflow: hidden;
     border: solid rgb(169, 169, 169) 1px;
-    padding: 5px 2%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -128,6 +137,11 @@ input.box {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box
+    color: #ff8900;
+}
+input
+{
+    color: #ff8900
 }
 
 input:focus
@@ -139,4 +153,17 @@ input:focus
 textarea:focus {
     outline: 0;
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+::-webkit-input-placeholder {
+    color:#ff8900;
+}
+:-moz-placeholder {
+    color:#ff8900;
+}
+::-moz-placeholder {
+    color:#ff8900;
+}
+:-ms-input-placeholder{
+    color:#ff8900;
 }
