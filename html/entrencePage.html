@@ -39,7 +39,7 @@ your xmpp chat client
 <input type="text" name="login" required placeholder="username">
 <br/>
 <input type="checkbox" name="asGuest" id="desc" onclick="document.getElementById('passwd').style.display = this.checked ? 'none' : 'block'; this.form.elements['pass'].disabled = this.checked">
-<label for="desc"><font color="#ff8900" size=4.5>enter as a guest</font></label>
+<label for="desc">enter as a guest</label>
 <br/><br/>
 <div id="passwd">
 <input type="password" name="pass" placeholder="password" id="pass">
@@ -61,50 +61,50 @@ your xmpp chat client
 
 
 <div id="accountCreation" style="display: none;">
-<form action="">
+<form action="somePost">
 
 <div class ="field">
 <input type="text" name="enter username" id="username" class="text-input" placeholder="enter username"/>
 </div>
 
 <div class="field">
-<input type ="password" name="Password" id="password" class="text-input" placeholder="type strong password" class="accCre"/>
+<input type ="password" name="Password" id="password" class="text-input" placeholder="type strong password"/>
 </div>
 
 <div class="field">
-<input type ="password" name="rePassword" id="rePassword" class="text-input" class="accCre" placeholder = "confirm password"/>
+<input type ="password" name="rePassword" id="rePassword" class="text-input" placeholder = "confirm password"/>
 </div>
 
 <div class ="field">
-<input type="email" name="email" id="email" class="text-input" class="accCre" placeholder="type your e-mail"/>
+<input type="email" name="email" id="email" class="text-input" placeholder="type your e-mail"/>
 </div>
 
 <div class ="field">
-<input type="email" name="reEmail" id="reEmail" class="text-input" class="accCre" placeholder="confirm your e-mail"/>
+<input type="email" name="reEmail" id="reEmail" class="text-input" placeholder="confirm your e-mail"/>
 </div>
 
 <div class ="field" id="dob">
-<label for="dob"><font color="#ff8900" size=4.5>enter date of birth </font></label>
-<input type="date" name="dateofbirth" id="dateofbirth" class="text-input" class="accCre" placeholder="date of birth"/>
+enter date of birth
+<input type="date" name="dateofbirth" id="dateofbirth" class="text-input"/>
 </div>
 
-<div class= "field" id="desc">
-<label for ="desc"> <font color="#ff8900" size=4.5>describe yourself in one sentence </font></label>
-<input type = "text" name ="profile" class="text-input" class="accCre"/>
+<div class= "field" id="personalDescription">
+ describe yourself in one sentence
+<input type = "text" name ="profile" class="text-input"/>
 </div>
 
 
 <!-- privacy checkbox -->
-<div class="field" id = "privacycheckbox">
-<label for ="privacycheckbox"> <font color="#ff8900" size=4.5>tick box to hide profile </font></label>
-<input type="checkbox" name="privacy" class="accCre" value="privacy">
+<div class="field" id ="privacycheckbox">
+<label for ="privacy"> tick box to hide profile</label>
+<input type="checkbox" name="privacy" id="privacy">
 </div>
 
 <!-- this submits the form currently just to a new window" this needs to be changed, as needs to be sent to server whilst either staying on same page or moving to for example profile page-->
 <!--<input type="submit" value="Submit as normal">-->
 <div class="twoButtons" style="display:inline-block">
 <div class="field" style="display:inline-block" >
-<input type="submit" value="register" formtarget="_blank" class="accCre">
+<input type="submit" value="register" formtarget="_blank">
 </div>
 
 <!--help button if we produce a help page -->
