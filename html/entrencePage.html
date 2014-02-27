@@ -12,8 +12,8 @@
 
 <header id="banner" class="createAccount">
 	<nav >
-    <button name="accCre" id="hideshow" value="create acccount" style="display: inline">create account</button>
-    <button name="about" value="about" id="about" style="display: inline" onclick="location.href='../html/reportPage.html'">about project</button>
+    <button name="accCre" value="create acccount" style="display: inline" onclick="location.href='../html/accountCreation.html'">create account</button>
+    <button name="about" id="about" style="display: inline" onclick="location.href='../html/reportPage.html'">about project</button>
 	</nav>
 </header>
 
@@ -60,68 +60,6 @@ your xmpp chat client
 </div>
 
 
-<div id="accountCreation" style="display: none;">
-<form action="somePost">
-
-<div class ="field">
-<input type="text" name="enter username" id="username" class="text-input" placeholder="enter username"/>
-</div>
-
-<div class="field">
-<input type ="password" name="Password" id="password" class="text-input" placeholder="type strong password"/>
-</div>
-
-<div class="field">
-<input type ="password" name="rePassword" id="rePassword" class="text-input" placeholder = "confirm password"/>
-</div>
-
-<div class ="field">
-<input type="email" name="email" id="email" class="text-input" placeholder="type your e-mail"/>
-</div>
-
-<div class ="field">
-<input type="email" name="reEmail" id="reEmail" class="text-input" placeholder="confirm your e-mail"/>
-</div>
-
-<div class ="field" id="dob">
-enter date of birth
-<input type="date" name="dateofbirth" id="dateofbirth" class="text-input"/>
-</div>
-
-<div class= "field" id="personalDescription">
- describe yourself in one sentence
-<input type = "text" name ="profile" class="text-input"/>
-</div>
-
-
-<!-- privacy checkbox -->
-<div class="field" id ="privacycheckbox">
-<label for ="privacy"> tick box to hide profile</label>
-<input type="checkbox" name="privacy" id="privacy">
-</div>
-
-<!-- this submits the form currently just to a new window" this needs to be changed, as needs to be sent to server whilst either staying on same page or moving to for example profile page-->
-<!--<input type="submit" value="Submit as normal">-->
-<div class="twoButtons" style="display:inline-block">
-<div class="field" style="display:inline-block" >
-<input type="submit" value="register" formtarget="_blank">
-</div>
-
-<!--help button if we produce a help page -->
-<!--to open a new page use window.open this opens new url in same page-->
-<!--insert account home url instead of hw.ac.uk-->
-<div class="field" style="display:inline-block" >
-<button type ="button" id="cancel" > 
-cancel
-</button>
-</div>
-</div>
-
-</form>
-
-
-
-</div>
 <div class="validationLeft">
 <a href="http://jigsaw.w3.org/css-validator/check/referer">
    <img style="width: 88px; height: 31px; border: 0" alt="OK CSS" src="http://jigsaw.w3.org/css-validator/images/vcss"/> </a>
@@ -133,18 +71,6 @@ cancel
 <p> Art thanks to <a href="http://dynamicz34.deviantart.com/"> dynamicz34</a></p>
 </div>
 
-<script>
-$(document).ready(function() {
-    $("#hideshow").click(function() {
-           $("#accountCreation").toggle();
-    });
-});
-$(document).ready(function() {
-    $("#cancel").click(function() {
-           $("#accountCreation").toggle();
-    });
-});
-</script>
 <script>
 $(window).on('load resize', function(){
 

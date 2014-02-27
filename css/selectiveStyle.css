@@ -16,12 +16,10 @@ div#loginContainer{
     background: rgba(0, 0, 0, 0.5);
 }
 div#accountCreation{
-	position:absolute;
-	top:20%;
-	left:65%;
+	position:relative;
  	width: 320px;
  	height: 600px;
- 	margin: 40px 50px;
+ 	margin: 0px 50px;
  	border-radius: 30px;
     background: rgba(0, 0, 0, 0.5);
 }
@@ -53,9 +51,6 @@ div.pagewrapper{
 div#centralLogin {
  position:relative;
  padding:30px;
-}
-div.spoiler{
-	display:none;
 }
 div.mainLogo{
  	font-family:"Decibel";
