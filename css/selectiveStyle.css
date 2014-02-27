@@ -33,9 +33,14 @@ div#sidersContainer{
 	max-width:3200px;
 	top:30%;
 }
-div.validation{
+div.validationLeft{
 position: absolute;
 top:80%;	
+}
+div.validationRight{
+position: absolute;
+top:80%;
+left:80%;
 }
 #login{
 	position: relative;
