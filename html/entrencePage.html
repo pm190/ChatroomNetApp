@@ -8,8 +8,7 @@
 <script src="../jQuery/jquery-2.1.0.min.js"></script>
 </head>
 
-<body id="index" class="home">
-
+<body>
 
 <header id="banner" class="createAccount">
 	<nav >
@@ -18,10 +17,25 @@
 	</nav>
 </header>
 
-<div id="loginContainer">
+<div class="mainLogo" style="">
+Portal Web Chat
+</div>
+<div class="subLogo">
+your xmpp chat client
+</div>
+
+<div id="sidersContainer">
+
+<div class="siders" id="leftSide">
+<img src="../img/left.png">
+</div> 
+
+
+<div id="loginContainer" class="siders">
 
 <div id="centralLogin">
-<form autocomplete="on">
+
+<form>
 <input type="text" name="login" required placeholder="username">
 <br/>
 <input type="checkbox" name="asGuest" id="desc"/ onclick="document.getElementById('passwd').style.display = this.checked ? 'none' : 'block'; this.form.elements['pass'].disabled = this.checked">
@@ -33,11 +47,18 @@
 <br/>
 <input type="text" name="room" required placeholder="select room">
 <br/>
-<input type="submit" value="enter"id="login">
+<input type="submit" value="enter"id="login" onclick="location.href='../html/chatRoom.html'">
 </form>
 </div>
 
 </div>
+
+<div class="siders" id="rightSide">
+<img src="../img/right.png">
+</div>
+
+</div>
+
 
 <div id="accountCreation" style="display: none;">
 <form action="">
@@ -51,7 +72,7 @@
 </div>
 
 <div class="field">
-<input type ="password" name="rePassword" id="rePassword" class="text-input" class="accCre" placeholder = "type again password"/>
+<input type ="password" name="rePassword" id="rePassword" class="text-input" class="accCre" placeholder = "confirm password"/>
 </div>
 
 <div class ="field">
@@ -59,7 +80,7 @@
 </div>
 
 <div class ="field">
-<input type="email" name="reEmail" id="reEmail" class="text-input" class="accCre" placeholder="re-type your e-mail"/>
+<input type="email" name="reEmail" id="reEmail" class="text-input" class="accCre" placeholder="confirm your e-mail"/>
 </div>
 
 <div class ="field" id="dob">
@@ -90,7 +111,7 @@
 <!--to open a new page use window.open this opens new url in same page-->
 <!--insert account home url instead of hw.ac.uk-->
 <div class="field" style="display:inline-block" >
-<button type ="button" onclick="location.replace('http://www.hw.ac.uk')" > 
+<button type ="button" id="cancel" > 
 cancel
 </button>
 </div>
@@ -103,12 +124,13 @@ cancel
 </div>
 <div class="validation">
 <a href="http://jigsaw.w3.org/css-validator/check/referer">
-   <img style="width: 88px; height: 31px; border: 0" alt="OK CSS"
-        src="http://jigsaw.w3.org/css-validator/images/vcss"/> </a>
+   <img style="width: 88px; height: 31px; border: 0" alt="OK CSS" src="http://jigsaw.w3.org/css-validator/images/vcss"/> </a>
  
 <a href="http://validator.w3.org/check?uri=referer">
-<img src="http://www.w3.org/Icons/valid-xhtml10.gif" alt="Valid XHTML 1.0!" style="border: 0; width: 88px; height: 31px"/>
-</a>
+		<img src="http://www.w3.org/Icons/valid-xhtml10.gif" alt="Valid XHTML 1.0!" style="border: 0; width: 88px; height: 31px"/> </a>
+</div>
+<div id="thanks">
+<p> Art thanks to <a href="http://dynamicz34.deviantart.com/"> dynamicz34</a></p>
 </div>
 
 <script>
@@ -116,6 +138,21 @@ $(document).ready(function() {
     $("#hideshow").click(function() {
            $("#accountCreation").toggle();
     });
+});
+$(document).ready(function() {
+    $("#cancel").click(function() {
+           $("#accountCreation").toggle();
+    });
+});
+</script>
+<script>
+$(window).on('load resize', function(){
+
+    var w = $(window).width();
+    var h = $(window).height();
+    
+    $('section').height(h);
+    $('section').width(w);
 });
 </script>
 

@@ -1,43 +1,50 @@
 header.createAccount {
-	position:relative;
+	position:absolute;
    	transition: .5s ease;
-    top: 10%;
-    left: 60%;
+    top: 15%;
+    left: 80%;
 	size:auto;
 	resize:both;
 }
 div#loginContainer{
 	position:relative;	
 	top:20%;
-	left:20%;
  	width: 320px;
  	height: 280px;
  	margin: 30px 50px;
  	border-radius: 30px;
     background: rgba(0, 0, 0, 0.5);
 }
-
 div#accountCreation{
-	position:absolute;	
-	top:15%;
-	left:55%;
+	position:absolute;
+	top:20%;
+	left:65%;
  	width: 320px;
  	height: 600px;
- 	margin: 30px 50px;
+ 	margin: 40px 50px;
  	border-radius: 30px;
     background: rgba(0, 0, 0, 0.5);
 }
+div.siders{
+	 float:left;
+}
+div#sidersContainer{
+	position:absolute;
+	max-width:3200px;
+	top:30%;
+}
 div.validation{
-position: relative;
-top:50%;	
+position: absolute;
+top:80%;	
 }
 #login{
 	position: relative;
-	left: 25%;
+	left: 35%;
 	}
 div.pagewrapper{
 	width:50%;
 }
+
 div#centralLogin {
  position:relative;
  padding:30px;
@@ -45,15 +52,22 @@ div#centralLogin {
 div.spoiler{
 	display:none;
 }
-::-webkit-input-placeholder {
-    color:#ff8900;
+div.mainLogo{
+ 	font-family:"Decibel";
+ 	font-size: 60px;
+ 	color: #ff8900;
+ 	margin:20px;
 }
-:-moz-placeholder {
-    color:#ff8900;
+div.subLogo{
+	font-family:"Decibel";
+ 	font-size: 40px;
+ 	color: #03bcff;
+ 	margin:0px;
+ 	margin-left:20px;
 }
-::-moz-placeholder {
-    color:#ff8900;
+div#thanks{
+	position:absolute;
+	top:80%;
+	left:80%;
 }
-:-ms-input-placeholder{
-    color:#ff8900;
-}
+	

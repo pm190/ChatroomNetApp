@@ -1,19 +1,17 @@
 body{
 	padding: 0px;
-	width: 1440px;
- 	height: 900px;
  	font-family:"San-serif", Times, serif;
 	font-size:20px;
-	 color: #ff8900;
+	color: #ff8900;
 }
 html.basicBackground{
 	background-image:url(../img/simpleBackGround.jpg);
 	background-size:cover;
-
 }
 div.field{
 	padding:15px;
-	}
+	margin-left:15px;
+}
 input, button {
 	 font-size: 20px;
      border: 1px solid #006;
@@ -22,7 +20,8 @@ input, button {
 	 text-decoration: none;
 	 display:block;
  }
-input[type=text], input[type=password],input[type=email]{
+input[type=text], input[type=password],input[type=email],input[type=textarea], input[type=date]{
+	background: #146591;
 	text-indent: 10px;
 }
 input[type=submit], button {
@@ -61,13 +60,11 @@ button:active, input[type=submit]:active {
 input[type=checkbox] {
 	color: #ff8900;
 	text-decoration: none;
-	font-size: 24px;
 	display:inline;
 }
 input:hover {
    border-color:#03bcff;
    background: #28597a;
-   border-left-color:#28597a;
    border-style:solid;
  }
 
@@ -82,7 +79,27 @@ button, input[type=submit]{
 }
 
 a{
-	color: color: #ff8900;
-	text-decoration: none;
+	color:#ff8900;
+}
+@font-face {
+    font-family: 'Decibel';
+    src: url("../misc/Decibel_2.ttf");
+}
+input[placeholder]{
+	 color:#ff8900;
+}
+::-webkit-input-placeholder {
+   color:#ff8900
 }
 
+:-moz-placeholder { /* Firefox 18- */
+   color:#ff8900;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color:#ff8900;  
+}
+
+:-ms-input-placeholder {  
+   color:#ff8900;  
+}
