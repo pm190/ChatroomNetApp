@@ -3,7 +3,6 @@ header.createAccount {
    	transition: .5s ease;
     top: 15%;
     left: 80%;
-	size:auto;
 	resize:both;
 }
 div#loginContainer{
