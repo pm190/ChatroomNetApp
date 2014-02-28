@@ -78,7 +78,7 @@ button, input[type=submit]{
  padding: 2px;
 }
 
-a{
+a,input[type=date]{
 	color:#ff8900;
 }
 @font-face {

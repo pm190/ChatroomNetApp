@@ -1,90 +1,114 @@
 <!DOCTYPE html>
-<html id="background">
-
+<html class="basicBackground" lang="en">
 <head>
-<title>Account creation</title>
+<meta charset="utf-8" />
+<title>Account Creation</title>
 <link rel="stylesheet" href="../css/mainStyle.css" type="text/css" />
 <link rel="stylesheet" href="../css/selectiveStyle.css" type="text/css" />
+<script src="../jQuery/jquery-2.1.0.min.js" type="text/javascript"></script>
 </head>
-		
-
-
 
 <body>
-<div class= "pagewrapper">
-<div class= "headertext">
-<h1>Account page</h1>
-</div>
 
-<!--home button or some such to take away from account page to chatrooms -->
-<!--to open a new page use window.open this opens new url in same page-->
-<!--insert account home url instead of hw.ac.uk-->
-<div id = "button home">
-<button type = "button" onclick="location.replace('http://www.hw.ac.uk')" > 
-Home
-</button>
-</div>
+	<header id="banner" class="createAccount">
+		<nav>
+			<button name="about" value="about" id="about" style="display: inline" onclick="location.href='../html/reportPage.html'">about project</button>
+		</nav>
+	</header>
 
-<!--form-->
-<form action="demo_form.asp">
+	<div class="mainLogo" style="">Portal Web Chat</div>
+	<div class="subLogo">create account for better chat experience</div>
 
-<div class ="field">
-<label for ="username"> Username:</label>
-<input type="text" name="username" id="username" class="text-input" class="accCre" placeholder="enter username"/>
-</div>
+	<div id="sidersContainer">
 
-<div class="field">
-<label for "password"> Password:</label>
-<input type ="password" name="password" id="password" class="text-input" class="accCre" placeholder = "Secret Password"/>
-</div>
+		<div class="siders" id="leftSide">
+			<img src="../img/left.png" alt="left graphics">
+		</div>
 
-<div class="field">
-<label for "password"> Password Re-enter:</label>
-<input type ="password" name="password" id="password" class="text-input" class="accCre" placeholder = "Secret Password"/>
-</div>
+		<div id="accountCreation" class="siders">
+			<form action="somePost">
 
-<div class ="field">
-<label for ="email"> Email:</label>
-<input type="email" name="email" id="email" class="text-input" class="accCre" placeholder="abc@abc.com"/>
-</div>
+				<div class="field">
+					<input type="text" name="enter username" id="username" class="text-input" placeholder="enter username" />
+				</div>
 
-<div class ="field">
-<label for ="dateofbirth"> Date of Birth:</label>
-<input type="date" name="dateofbirth" id="dateofbirth" class="text-input" class="accCre" placeholder="date of birth"/>
-</div>
+				<div class="field">
+					<input type="password" name="Password" id="password" class="text-input" placeholder="type strong password" />
+				</div>
 
-<div class= "profile">
-<label for ="profile"> Profile details:</label>
-<input type = "textarea" name ="profile" class="text-input" class="accCre" rows="10" cols="30"/>
-</div>
+				<div class="field">
+					<input type="password" name="rePassword" id="rePassword" class="text-input" placeholder="confirm password" />
+				</div>
 
-<!-- radio buttons -->
-<div class= "skepticidentity">
-<input type="radio" name="skepid" value="holistic">Believes in holistic medicine, unicorns and fantasy
-<input type="radio" name="skepid" value="skeptic">Believes in science, reason and rationality
-</div>
+				<div class="field">
+					<input type="email" name="email" id="email" class="text-input" placeholder="type your e-mail" />
+				</div>
 
-<!-- privacy checkbox -->
-<div id = "privacycheckbox">
-<input type="checkbox" name="privacy" class="accCre" value="privacy">tick box to hide profile
-</div>
+				<div class="field">
+					<input type="email" name="reEmail" id="reEmail" class="text-input" placeholder="confirm your e-mail" />
+				</div>
 
-<!-- this submits the form currently just to a new window" this needs to be changed, as needs to be sent to server whilst either staying on same page or moving to for example profile page-->
-<!--<input type="submit" value="Submit as normal">-->
-<input type="submit" formtarget="_blank" value="Submit to a new window" class="accCre">
+				<div class="field" id="dob"> 
+				enter date of birth 
+					<input type="date" name="dateofbirth" id="dateofbirth" class="text-input" />
+				</div>
 
-</form>
-
-<!--help button if we produce a help page -->
-<!--to open a new page use window.open this opens new url in same page-->
-<!--insert account home url instead of hw.ac.uk-->
-<div id = "button help">
-<button type = "button" onclick="location.replace('http://www.hw.ac.uk')" > 
-Help
-</button>
-</div>
+				<div class="field" id="personalDescription"> 
+				describe yourself in one sentence
+					<input type="text" name="profile" class="text-input" />
+				</div>
 
 
-</div>
+				<!-- privacy checkbox -->
+				<div class="field" id="privacycheckbox">
+					<label for="privacy"> tick box to hide profile</label> 
+					<input type="checkbox" name="privacy" id="privacy">
+				</div>
+
+				<!-- this submits the form currently just to a new window" this needs to be changed, as needs to be sent to server whilst either staying on same page or moving to for example profile page-->
+				<!--<input type="submit" value="Submit as normal">-->
+				<div class="twoButtons">
+					<div class="field" style="display: inline-block">
+						<input type="submit" value="register" formtarget="_blank">
+					</div>
+
+					<!--help button if we produce a help page -->
+					<!--to open a new page use window.open this opens new url in same page-->
+					<!--insert account home url instead of hw.ac.uk-->
+					<div class="field" style="display: inline-block">
+						<button type="button" name="cancelRegist" onclick="location.href='../html/entrencePage.html'">cancel</button>
+					</div>
+				</div>
+
+			</form>
+
+		</div>
+
+		<div class="siders" id="rightSide">
+			<img src="../img/right.png" alt="right graphics">
+		</div>
+
+	</div>
+
+
+
+
+	<div></div>
+	<div class="validationLeft">
+		<a href="http://jigsaw.w3.org/css-validator/check/referer"> 
+			<img style="width: 88px; height: 31px; border: 0" alt="OK CSS" src="http://jigsaw.w3.org/css-validator/images/vcss" /> 
+		</a> 
+		<a href="http://validator.w3.org/check?uri=referer"> 
+			<img src="http://www.w3.org/Icons/valid-xhtml10.gif" alt="Valid XHTML 1.0!" style="border: 0; width: 88px; height: 31px" />
+		</a>
+	</div>
+	<div id="thanks">
+		<p>
+			Art thanks to <a href="http://dynamicz34.deviantart.com/">dynamicz34</a>
+		</p>
+	</div>
+
+
 </body>
+
 </html>
