@@ -11,9 +11,17 @@ function setUpTabs(){
 
   for(index = 0; index < activeHeaders.length;++index)
   {
-    activeHeaderId = activeHeaders[index].id.split("_")[1]
+    activeHeaderFullId = activeHeaders[index].id.split("_");
+    activeHeaderId = activeHeaderFullId[1];
     var activeHeaderContent = document.getElementById(activeHeaderId);
-    activeHeaderContent.style.display = "inline-block";
+    if(activeHeaderFullId[0] === "room")
+    {
+      displayChat(activeHeaderContent.innerHTML);
+    }
+    else
+    {
+      activeHeaderContent.style.display = "inline-block";
+    }
   }
 
 
