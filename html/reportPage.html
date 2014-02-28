@@ -73,7 +73,24 @@
 		<p>
 		<strong><a href="../html/accountCreation.html">Account Creation</a></strong>
 		<br>
-		Put description......
+		The account page allows the user to create an account for accessing the chat rooms.  
+		This will enhance the users experience by offering them the ability to retain their identity across many sessions.
+		The page is set up to operate on an HTML5 form.  The user enters their requested username, on moving away from
+		that field the server will check whether that username is available.  If not the user will be informed, and 
+		offered the chance to create a different username.  The user then enters a password into an HTML5 password type text entry.  
+		They then are required to re-enter the password, this will be checked to see it matches, on the user moving off that element.
+		  They then enter their email address, this must be of the type set by the HTML5 email type.  The user then re-enters this, and again
+		  the server checks whether the two entries match when the user moves off that element.  The user then enters their date of birth, into
+		  an HTML5 date type input field.  They can describe themselves in one sentence if they wish.<\br>
+		  
+		  Currently the information in the profile page is for account creation, in order to allow the user to choose a username.  However, 
+		  we have a potential plan to develop a profile page that other users can click on to see information about a given user.
+		  If we do include this option, the tick box contained within the account creation page, (currently obsolete) would then allow
+		  a user to enter details about themselves, but choose to have them hidden from other users if they wish.
+		  
+		  There are also 3 buttons on this page.  "about project" brings the user to this report page.
+		  "register" sends the details to be attached to the database.  "cancel" takes the user back to the main entrance page, from wher
+		  they can enter the chat room as a guest if they wish.
 		Authors: Marcin Kopacz, Talitha Brown
 		</p>
 		
@@ -110,8 +127,22 @@
 			<input type="button" value="Show/Hide HTML5" onclick="showSpoiler('htmlSpoiler')" style="diplay:inline-block">
 			<div class="spoiler" id="htmlSpoiler" style="diplay:none">
 			<p> List all of features...
+			<p>HTML5 Forms: 
+			tick box; email input type; password input type; date input type
 			</p>
-			
+			<p>
+			CSS3 Backgrounds
+			background-size
+			</p>
+			CSS3 Gradients
+			background: linear-gradient
+			transparently - rgba() function
+
+			CSS3 Text Effects
+			text-shadow
+
+			CSS3 Web Fonts
+			@font-face
 			</div>
 
 		</div>
