@@ -24,9 +24,9 @@
 
 	<div class="pagewrapper">
 		<div id="basicInfo">
-			<strong> Network Applications Report Webpage: Coursework
-				Friday 28th February 2014 </strong>
-			<p>Authors:</p>
+			<h2> Network Applications Report Webpage: Coursework
+				Friday 28th February 2014 </h2>
+			<h3>Authors:</h3>
 			<ol>
 				<li>Saad Arif sa521@hw.ac.uk</li>
 				<li>Patrick Mackinder pm190@hw.ac.uk</li>
@@ -37,7 +37,7 @@
 
 		<div id="projectDesc">
 
-			<strong> Description</strong>
+			<h3> Description of Application</h3>
 			<p>This web application is a Synchronous Chat Service. 
 			The first tier of the application is the client's interface to the chatroom. This
 			will be implemented using Java Server Faces to allow dynamic creation of html at runtime.
@@ -50,24 +50,42 @@
 			the XMPP server, which will relay chat messages back through to the tiers to the client.
 
 			</p>
+			<p>Author: Patrick McKinder</p>
 		
 		</div>
 			
 		<div class="pagesDesc">
-				<strong> Descriptions of subpages</strong>	
+				<h3> Descriptions of pages</h3>	
 		<p>
 		<strong><a href="../html/entrencePage.html">Portal Web Chat Client</a></strong>
 		<br>
-		This page as entrance page. User can create account using button in header,
-		get more information about project. User can also login to chat room using registered credencials
-		or use guest pass. Authors: Marcin Kopacz, Talitha Brown
+		This is the page that the user arrives at when first accessing the application.  The user can either enter the
+		application as a registered account user by entering in a valid 
+		username and password to the form; or as a guest, by clicking the tickbox "enter as a guest".  The user can decide which room
+		they wish to enter at this stage, and they will be sent direct to that page, bypassing the main chatroom page.  On submitting the 
+		information above, on clicking the "enter" button they will be directed to the chatrooms. </p>
+		<p>
+		If a user wishes to create an account they can access the account creation page from here, 
+		by use of the "create account" button.  The report page is also accessible from this page by the use of the "about project"
+		button.
+		</p>
+		<p>Author: Marcin Kopacz
 		</p>
 		
 		<p>
 		<strong><a href="../html/chatRoom.html">Chat Rooms</a></strong>
 		<br>
-		Put description......
-		Authors:Saad Arif
+		The chat room page will be the main page of the application. It will contain a chat box to show received 
+		and sent messages, a send message input box and a side panel.  The top of the chat box will contain tabs 
+		to show the different rooms the user is currently in. Each tab will contain the name of a room and by clicking 
+		on it the user will be able change rooms.  </p>
+		<p>The side panel will consist of three tabs, friends, rooms and users. 
+		We plan to develop the friends feature if we have time.  This will show all the friends that the current user has. 
+		The rooms tab will show all the rooms currently created. The user can the use this to quickly join other rooms. 
+		This tab will also show how many people are currently in each room. The final, users, 
+		tab will show all the people in the current room.​
+		</p>
+		<p>Authors:Saad Arif, Patrick Mackinder
 		</p>
 		
 		<p>
@@ -81,30 +99,28 @@
 		They then are required to re-enter the password, this will be checked to see it matches, on the user moving off that element.
 		  They then enter their email address, this must be of the type set by the HTML5 email type.  The user then re-enters this, and again
 		  the server checks whether the two entries match when the user moves off that element.  The user then enters their date of birth, into
-		  an HTML5 date type input field.  They can describe themselves in one sentence if they wish.<\br>
+		  an HTML5 date type input field.  They can describe themselves in one sentence if they wish.</p>
 		  
-		  Currently the information in the profile page is for account creation, in order to allow the user to choose a username.  However, 
+		 <p> Currently the information in the profile page is for account creation, in order to allow the user to choose a username.  However, 
 		  we have a potential plan to develop a profile page that other users can click on to see information about a given user.
 		  If we do include this option, the tick box contained within the account creation page, (currently obsolete) would then allow
-		  a user to enter details about themselves, but choose to have them hidden from other users if they wish.
+		  a user to enter details about themselves, but choose to have them hidden from other users if they wish.</p>
 		  
-		  There are also 3 buttons on this page.  "about project" brings the user to this report page.
-		  "register" sends the details to be attached to the database.  "cancel" takes the user back to the main entrance page, from wher
-		  they can enter the chat room as a guest if they wish.
-		Authors: Marcin Kopacz, Talitha Brown
+		  <p>There are also 3 buttons on this page.  "about project" brings the user to this report page.
+		  "register" sends the details to be attached to the database.  "cancel" takes the user back to the main entrance page, from where
+		  they can enter the chat room as a guest if they wish.</p>
+		<p>Authors: Marcin Kopacz, Talitha Brown
 		</p>
-		
-		<p> We use piece of <a href="http://dynamicz34.deviantart.com/art/Portal-Themed-Wallpaper-1080p-399679319">art </a>
-		from artist <a href="http://dynamicz34.deviantart.com/"> dynamicz34</a>, with his permission to use it for non-profit project. 
-		We use some tricks to adapt it to website and make it more dynamic.
+		<strong><p> References to External Sources</p></strong>
+		<p> We used a piece of <a href="http://dynamicz34.deviantart.com/art/Portal-Themed-Wallpaper-1080p-399679319">artwork </a>
+		from the artist <a href="http://dynamicz34.deviantart.com/"> dynamicz34</a>.  This was with his permission to use it for non-profit project. 
+		We adapted it for our web application in order to make it more dynamic.
 		</p>
 		</div>
 		<div class="features">
-		<strong> New HTML5/CSS3 features used</strong>
-		<br>
-			<input type="button" value="Show/Hide CSS" onclick="showSpoiler('cssSpoiler')" style="display:inline-block">
-			<div class="spoiler" id="cssSpoiler" style="diplay:none">
-			<h2>  List all of CSS 3 features used in our web application</h2>
+		
+			
+			<h3>  List all of CSS 3 features used in our web application</h3>
 			<p>
 				<strong>CSS3 Borders</strong>
 				<br>
@@ -123,13 +139,28 @@
 				-background: linear-gradient
 				-transparently - rgba() function
 			</p>
+			<p>
+				<strong> CSS3 Text Effects</strong>
+				<br>
+				-text-shadow
+			</p>
+			
+			<p>
+				<strong>CSS3 Web Fonts</strong>
+				<br>
+				-@font-face
+			</p>
 			
 			</div>
 			
-				<input type="button" value="Show/Hide HTML5" onclick="showSpoiler('htmlSpoiler')" style="diplay:inline-block">
-				<div class="spoiler" id="htmlSpoiler" style="diplay:none">
-					<p> List all of features...
-					</p>
+				
+					<h3>  List all of HTML5 features used in our web application</h3>
+			<p>
+				<strong>HTML5 Forms</strong>
+				<br>
+				- tick box; email input type; password input type; date input type</br>
+			</p>
+				
 				</div>
 
 		</div>
