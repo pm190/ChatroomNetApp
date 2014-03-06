@@ -21,6 +21,6 @@ public class TimeBean
 
 	public String getTime()
 	{
-		return String.format("Time: %d:%02d", time.get(Calendar.MINUTE), time.get(Calendar.SECOND));
+		return String.format("Time: %2d:%02d", time.get(Calendar.MINUTE), time.get(Calendar.SECOND));
 	}
 }

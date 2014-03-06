@@ -62,16 +62,17 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="chat">
-						<h:inputTextarea class="chat" id="chat" readonly="true"/>
+						<h:inputTextarea id="chat" class="chat" readonly="true" value="#{messageBean.messageOutput}"/>
 					</div>
 					<div class="messageBox">
-						<h:form>
-							<p:remoteCommand name="send" actionListener="#{messageBean.send}"/>
-							<h:inputText id="message" class="box" value="#{messageBean.message}" 
-								onkeypress="if (event.keyCode == 13) { send(); return false; }" 
-								render="output" pt:placeholder="Message"/>
-	    	   				<h:outputText id="output" value="#{messageBean.messageOutput}" />
+						<h:form id="messageForm">
+							<h:inputText id="message" class="box" value="#{messageBean.message}" onkeydown="return (event.keyCode == 13);">
+								<f:ajax event="keydown"
+					                listener="#{messageBean.send}"
+					                render=":chat"/>
+							</h:inputText>
     	   				</h:form>
 					</div>
 				</div>
