@@ -68,11 +68,13 @@
 					</div>
 					<div class="messageBox">
 						<h:form id="messageForm">
-							<h:inputText id="message" class="box" value="#{messageBean.message}" onkeydown="return (event.keyCode == 13);">
+							<p:inputText id="message" styleClass="box" value="#{messageBean.message}" 
+								onkeydown="return (event.keyCode == 13);"
+								oncomplete="$('.messageInput').val('').focus()">
 								<f:ajax event="keydown"
 					                listener="#{messageBean.send}"
 					                render=":chat"/>
-							</h:inputText>
+							</p:inputText>
     	   				</h:form>
 					</div>
 				</div>

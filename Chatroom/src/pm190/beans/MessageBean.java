@@ -33,6 +33,11 @@ public class MessageBean
 		return messageOutput;
 	}
 	
+	public void setMessageOutput(String message)
+	{
+		this.messageOutput = message;
+	}
+	
 	public void send() 
 	{
 		messageOutput = "User 1: " + message;
