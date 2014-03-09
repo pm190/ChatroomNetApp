@@ -4,18 +4,14 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
 	<h:head>
-		<h:outputStylesheet library="css" name="styles.css"/>
+		<h:outputStylesheet library="css" name="master.css"/>
 		<title>
 			<ui:insert name="title">Banter Box</ui:insert>
 		</title>
 	</h:head>
 	<h:body>
-		<div id="debugTime" style="width:100%">
-			<p style="color:white;">#{timeBean.time}</p>
-		</div>
-		<div id="content" style="height:100%;width:100%">
-		    <ui:insert name="content">
-		    </ui:insert>
+		<div id="content">
+		    <ui:insert name="content"/>
 		</div>
 	</h:body>
 </html>

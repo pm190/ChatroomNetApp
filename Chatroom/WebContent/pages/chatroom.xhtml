@@ -10,73 +10,33 @@
 
 	<ui:composition template="../WEB-INF/templates/master.xhtml">
 		<ui:define name="content">
-			<h:outputStylesheet library="css" name="roompage.css" />
+			<h:outputStylesheet library="css" name="roompage.css"/>
 			<div class="container">
 				<div class="left">
-					<div class="tabs">
-						<div id="leftTabs">
-							<ul id="leftTabList">
-								<li class="clickTab activeHeader" id="tab_friends">Friends</li>
-								<li class="clickTab" id="tab_users">Current Users</li>
-								<li class="clickTab" id="tab_rooms">Rooms</li>
-							</ul>
-						</div>
-					</div>
-					<div class="sidePanelWrapper">
-						<div class="searchBox">
-							<h:inputText class="box" pt:placeholder="Search"/>
-						</div>
-						<div class="tabsContent" id="leftTabContent">
-							<div class="tabContent" id="friends">
-								Friend 1 <br /> Friend 2 <br /> Friend 3 <br />
-							</div>
-							<div class="tabContent" id="users">
-								User 1 <br /> User 2 <br />
-							</div>
-							<div class="tabContent" id="rooms">
-								Room 1 <br /> Room 2 <br /> Room 3 <br /> Room 4 <br />
-							</div>
-						</div>
-					</div>
-					<a href="http://jigsaw.w3.org/css-validator/check/referer"> <img
-						style="width: 88px; height: 31px; border: 0; margin-top: 30px"
-						alt="OK CSS" src="http://jigsaw.w3.org/css-validator/images/vcss" />
-					</a> <a href="http://validator.w3.org/check?uri=referer"> <img
-						src="http://www.w3.org/Icons/valid-xhtml10.gif"
-						alt="Valid XHTML 1.0!"
-						style="border: 0; width: 88px; height: 31px; margin-top: 30px" />
-					</a>
+					<p:tabView id="leftTabs">
+						<p:tab id="friendsTab" title="Friends">
+							<ui:include src="/WEB-INF/templates/sidePanel.xhtml"/>
+						</p:tab>
+						<p:tab id="usersTab" title="Users">
+							<ui:include src="/WEB-INF/templates/sidePanel.xhtml"/>
+						</p:tab>
+						<p:tab id="roomsTab" title="Rooms">
+							<ui:include src="/WEB-INF/templates/sidePanel.xhtml"/>
+						</p:tab>
+					</p:tabView>
 				</div>
 				<div class="right">
-					<div class="tabs">
-						<div id="rightTabs">
-							<ul id="rightTabList">
-								<li class="clickTab activeHeader" id="room_1">Room 1</li>
-								<li class="clickTab" id="room_2">Room 2</li>
-								<li class="clickTab" id="room_3">Room 3</li>
-							</ul>
-							<div class="tabsContent" id="rightTabContent">
-								<div class="tabContent" id="1"></div>
-								<div class="tabContent" id="2">Room 2 Text</div>
-								<div class="tabContent" id="3">Room 3 Text</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="chat">
-						<h:inputTextarea id="chat" class="chat" readonly="true" value="#{messageBean.messageOutput}"/>
-					</div>
-					<div class="messageBox">
-						<h:form id="messageForm">
-							<p:inputText id="message" styleClass="box" value="#{messageBean.message}" 
-								onkeydown="return (event.keyCode == 13);"
-								oncomplete="$('.messageInput').val('').focus()">
-								<f:ajax event="keydown"
-					                listener="#{messageBean.send}"
-					                render=":chat"/>
-							</p:inputText>
-    	   				</h:form>
-					</div>
+					<p:tabView id="rightTabs">
+						<p:tab id="room1" title="Room 1">
+							<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
+						</p:tab>
+						<p:tab id="room2" title="Room 2">
+							<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
+						</p:tab>
+						<p:tab id="room3" title="Room 3">
+							<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
+						</p:tab>
+					</p:tabView>
 				</div>
 			</div>
 		</ui:define>

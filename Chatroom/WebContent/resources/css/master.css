@@ -1,0 +1,12 @@
+ body, html 
+ {
+    font-family:"San-serif", Times, serif;
+    height:98%;
+    width:99%;
+    background-image:url("#{resource['img/simpleBackGround.jpg']}");
+}
+ 
+ div#content {
+ 	height:100%;
+ 	width:100%;
+ }

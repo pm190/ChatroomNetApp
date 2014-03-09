@@ -1,0 +1,18 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:p="http://primefaces.org/ui">
+    <div class="chat">
+		
+	</div>
+	<div class="messageBox">
+		<h:form>
+			<h:inputText styleClass="box" value="#{messageBean.message}" pt:placeholder="Message">
+				<!-- <f:ajax event="keydown" listener="#{messageBean.send}" render="chat"/>  -->
+			</h:inputText>
+		</h:form>
+	</div>
+</ui:composition>
