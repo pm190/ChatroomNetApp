@@ -1,7 +1,6 @@
 div.container {
     height:100%;
     width:100%;
-    color: #ff8900;
 }
 div.left {
     height:100%;
@@ -13,17 +12,84 @@ div.right {
     width:70%;
     float: left;
 }
-div#leftTabs, div#rightTabs
-{
+div#leftTabs, div#rightTabs {
 	height:100%;
 	width:100%;
+	background:transparent;
+	padding:0px;
+	border:0px;
 }
-div.chat, div.users {
-    height: 80%;
-    padding: 0px 2%;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
+div#rightTabs > ul, div#leftTabs > ul {
+	background:transparent;
+	margin-left: 50px;
+}
+div#rightTabs > ul > li, div#leftTabs > ul > li {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	webkit-box-shadow: none;
+}
+div#rightTabs > ul > li > a, div#leftTabs > ul > li > a {
+	text-shadow: none;
+	font-weight: normal;
+}
+li.ui-state-default a:link {
+	color: #73C0F5;
+	border-radius: 10px;
+}
+li.ui-state-hover a:link {
+	color: black;
+	background: #65A5D1;
+	border-radius: 10px;
+}
+li.ui-state-active, li.ui-state-active a:link {
+	color: black;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0C91EC), color-stop(100%,#257AB6));
+	background: -moz-linear-gradient(top, #0C91EC 0%, #257AB6 100%);
+	border-radius: 10px;
+}
+div.ui-tabs-panels {
+	height:90%;
+}
+div.ui-tabs-panels > div {
+	height: 100%;
+}
+div.chat, div.sidePanel {
+	height:100%;
+}
+div.sidePanel {
+	border:1px solid white;
+	border-radius: 30px;
+	padding: 5px;
+	overflow: hidden;
+}
+div.messages {
+	border:1px solid white;
+	border-radius: 30px;
+	height:95%;
+	margin-bottom: 10px;
+}
+div.messageBox, div.searchBox {
+	height: 5%;
+	width: 100%;
+}
+div.searchBox {
+	margin-top: 10px;
+}
+input.box {
+	width: 100%;
+	height: 100%;
+	border:0px;
+	border-radius: 30px;
+	box-sizing: border-box;
+	padding: 5px;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0C91EC), color-stop(100%,#257AB6));
+	background: -moz-linear-gradient(top, #0C91EC 0%, #257AB6 100%);
+	color: #ff8900;
+}
+input:focus
+{
+	outline: 0;
 }
 ::-webkit-input-placeholder {
     color:#ff8900;

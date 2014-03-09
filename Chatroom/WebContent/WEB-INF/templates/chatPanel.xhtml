@@ -5,14 +5,17 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
     xmlns:p="http://primefaces.org/ui">
-    <div class="chat">
-		
-	</div>
-	<div class="messageBox">
-		<h:form>
-			<h:inputText styleClass="box" value="#{messageBean.message}" pt:placeholder="Message">
-				<!-- <f:ajax event="keydown" listener="#{messageBean.send}" render="chat"/>  -->
-			</h:inputText>
-		</h:form>
-	</div>
+    <f:subview>
+	    <div class="chat">
+		    <div id="messages" class="messages">
+		    	<h:outputLabel id="outLabel" value="#{messageBean.messageOutput}"/>
+			</div>
+			<div class="messageBox">
+				<h:form>
+					<h:inputText id="message" styleClass="box" value="#{messageBean.message}" pt:placeholder="Message">
+					</h:inputText>
+				</h:form>
+			</div>
+		</div>
+	</f:subview>
 </ui:composition>

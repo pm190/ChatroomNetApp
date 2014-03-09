@@ -51,7 +51,7 @@ public class XMPPManager implements MessageListener
 		XMPPManager c = new XMPPManager();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String msg;
-
+		
 		// Enter your login information here
 		c.login("test1", "test1");
 		
