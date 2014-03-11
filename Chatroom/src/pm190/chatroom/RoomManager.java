@@ -1,7 +1,9 @@
 package pm190.chatroom;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.jivesoftware.smack.Connection;
+import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smackx.muc.*;
+import org.jivesoftware.smackx.Form;
 
 /**
  * 
@@ -9,5 +11,11 @@ import java.util.Map;
  */
 public class RoomManager
 {
-	private final Map<String, Room> rooms = new HashMap<String, Room>();
+	public void createRoom(Connection connection,String roomName) throws XMPPException
+	{
+		MultiUserChat muc = new MultiUserChat(connection, roomName);
+		muc.create(roomName);
+		muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
+	}
+	
 }
