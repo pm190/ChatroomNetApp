@@ -20,7 +20,7 @@ public class XMPPManager implements MessageListener
 
 	public void login(String userName, String password) throws XMPPException
 	{
-		ConnectionConfiguration config = new ConnectionConfiguration("192.168.0.10", 5222);
+		ConnectionConfiguration config = new ConnectionConfiguration("92.236.126.119", 5222);
 		connection = new XMPPConnection(config);
 
 		connection.connect();
