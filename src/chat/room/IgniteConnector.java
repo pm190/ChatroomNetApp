@@ -17,11 +17,13 @@ import org.jivesoftware.smack.packet.Presence.Type;
 public class IgniteConnector 
 {
 	private static final int packetReplyTimeout = 500; // millis
-	private String serverHost = "92.236.126.119";
-	private int serverPort = 5222;
+	private static String serverHost = "92.236.126.119";
+	private static int serverPort = 5222;
+	private static String openfireDomain ="olympus";
 
 	private ConnectionConfiguration config;
 	private XMPPConnection connection;
+
 
 
 
@@ -48,7 +50,7 @@ public class IgniteConnector
 			
 			// Connect to the server
 			connection.connect();
-			System.out.println("Connected: " + connection.isConnected());
+			System.out.println("Connection has been established: " + connection.isConnected());
 
 			//log in
 			performLogin(username, password);
@@ -115,9 +117,9 @@ public class IgniteConnector
 	/** Create String array consisting of server and port number
 	 * @return string array[2]
 	 */
-	public String[] getServerDetails()
+	public static String[] getServerDetails()
 	{
-		String [] details = new String[]{serverHost, Integer.toString(serverPort)};
+		String [] details = new String[]{serverHost, Integer.toString(serverPort),openfireDomain};
 		return details;
 	}
 
@@ -127,10 +129,11 @@ public class IgniteConnector
 	 * @param serverHost 
 	 * @param serverPort
 	 */
-	public void setIgniteServer(String serverHost, int serverPort)
+	public void setIgniteServer(String serverHost, int serverPort,String openfireDomain)
 	{
-		this.serverHost = serverHost;
-		this.serverPort = serverPort;
+		IgniteConnector.serverHost = serverHost;
+		IgniteConnector.serverPort = serverPort;
+		IgniteConnector.openfireDomain = openfireDomain;
 	}
 
 	/**Get connection
