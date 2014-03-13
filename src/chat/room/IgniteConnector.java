@@ -1,15 +1,10 @@
 package chat.room;
 
-import org.jivesoftware.smack.Chat;
-import org.jivesoftware.smack.ChatManager;
 import org.jivesoftware.smack.ConnectionConfiguration;
-import org.jivesoftware.smack.MessageListener;
-import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode;
-import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.packet.Presence.Type;
 
@@ -32,10 +27,10 @@ public class IgniteConnector
 
 	/**Connect to ignite type of server
 	 * Use server declared in  serverHost, serverPort
-	 * @param username 
-	 * @param password
+	 * @param username String
+	 * @param password String
 	 */
-	public void connect()
+	public void connect(String username, String password)
 	{
 		try{
 
@@ -55,9 +50,8 @@ public class IgniteConnector
 			connection.connect();
 			System.out.println("Connected: " + connection.isConnected());
 
-			
-			//chatManager = connection.getChatManager();
-			//messageListener = new MessageListener();
+			//log in
+			performLogin(username, password);
 
 			
 		} 
@@ -83,7 +77,7 @@ public class IgniteConnector
 
 	}
 
-	/**Log in user with givern username and password
+	/**Log in user with given username and password
 	 * @param username
 	 * @param password
 	 */
@@ -106,7 +100,7 @@ public class IgniteConnector
 	}
 
 	
-	/**Disconncet a conncetion
+	/**Disconnect a connection
 	 */
 	public void destroyConnection() 
 	{
@@ -139,4 +133,14 @@ public class IgniteConnector
 		this.serverPort = serverPort;
 	}
 
+	/**Get connection
+	 * 
+	 * @return
+	 */
+	public XMPPConnection getConnection()
+	{
+		return connection;
+	}
+	
+	
 }

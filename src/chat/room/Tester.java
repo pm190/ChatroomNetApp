@@ -1,21 +1,31 @@
 package chat.room;
 
+import org.jivesoftware.smack.ChatManager;
+import org.jivesoftware.smack.XMPPConnection;
+
 public class Tester {
 
 	public static void main(String[] args) throws InterruptedException 
 	{
 
 
-		//run test for conncetion to our ignite server 
+		//run test for IgniteConnection to our ignite server 
 		IgniteConnector testConnector = new IgniteConnector();
-		testConnector.connect();
-
-		//log in
-		testConnector.performLogin("javatester","test");
+		testConnector.connect("javatester","test");
 		testConnector.setStatus(true, "mistrzu entered");
-
 		
-		// just for testing infinite loop to maintain conncetion
+		
+		XMPPConnection con = testConnector.getConnection();
+		ChatManager chatManager = con.getChatManager();
+		
+		RoomManager rc = new RoomManager(chatManager);
+		
+		
+		
+		
+		
+		
+		// just for testing infinite loop to maintain connection
 		boolean isRunning = true;
 		while (isRunning) 
 		{
