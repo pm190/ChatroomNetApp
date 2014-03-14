@@ -1,7 +1,9 @@
 package chat.room;
 
 
+import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smackx.muc.MultiUserChat;
 
 public class Tester {
 
@@ -23,7 +25,12 @@ public class Tester {
 		//Create instant public room with given name and user that will enter automaticly
 		rc.createInstantPublicRoom("testRoom","javatester");
 		
-		
+		//Create private chat with another user
+		//This tart a chat with another user in MultiUserChat instance
+		//MultiUserChat muc = get
+		//Chat chat1 = RoomManager.startPrivateChat(muc,"privateNameRoom", "sparktestclient");
+		//RoomManager.sendMessages("Hi, how old are you",chat1);
+		//RoomManager.sendMessages("I am 22",chat1);
 		
 		
 		
