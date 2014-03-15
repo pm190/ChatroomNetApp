@@ -25,7 +25,7 @@ public class Tester {
 		//Create instant public room with name testroom1  and user that will enter automatically and being set as owner
 		rc.createInstantPublicRoom("testRoom2", "javatester");
 
-
+		
 
 		//start private chat this method need some work to work
 		rc.startPrivateChat("testRoom1","nice", "sparktestclient");
@@ -34,7 +34,8 @@ public class Tester {
 
 		// invite to multi user chat
 		rc.invite("testRoom2","sparktestclient", "Lets talk");
-
+		
+		
 		//Send Message to muc room
 		rc.sendMessaage("hi I am Marcin","testRoom2");
 
@@ -43,6 +44,7 @@ public class Tester {
 		
 
 		boolean isRunning = true;
+			
 		while (isRunning) 
 		{
 			Thread.sleep(50);

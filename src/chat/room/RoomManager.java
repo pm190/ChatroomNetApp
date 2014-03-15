@@ -171,7 +171,7 @@ public class RoomManager
 	{
 		for (Room room : roomList)
 		{
-			System.out.println("user is this rooms" + room.getRoomName());
+			System.out.println("user is in rooms:  " + room.getRoomName());
 		}
 			
 
