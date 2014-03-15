@@ -23,27 +23,24 @@ public class Tester {
 		XMPPConnection connection = testConnector.getConnection();
 		RoomManager rc = new RoomManager(connection);
 		//Create instant public room with name testroom1  and user that will enter automatically and being set as owner
-		rc.createInstantPublicRoom("testRoom1","javatester");
+		rc.createInstantPublicRoom("testRoom1", "javatester");
 		//Create instant public room with name testroom1  and user that will enter automatically and being set as owner
 		rc.createInstantPublicRoom("testRoom2", "javatester");
 		
 		
-		//First find room with given Name
-		Room testroom1 = rc.getRoomByName("testroom1");
-		//Send Message to room
-		rc.sendMessaage("hi I am Marcin",testroom1);
 		
+		//start private chat
+		rc.startPrivateChat("testroom1","nice", "sparktestclient");
+		//send message to private chat
+		rc.sendMessaage("hi I am Marcin","nice");
 		
+		// invite to multi user chat
+		rc.invite("testroom2","sparktestclient", "Lets talk");
 		
+		//Send Message to muc room
+		rc.sendMessaage("hi I am Marcin","testroom2");
 		
-		// just for testing infinite loop to maintain connection
-		boolean isRunning = true;
-		while (isRunning) 
-		{
-			Thread.sleep(50);
-
-		}
-		
+	
 
 	}
 

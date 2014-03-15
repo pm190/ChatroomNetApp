@@ -1,22 +1,10 @@
 package chat.room;
 
-import java.util.HashMap;
 import java.util.TreeSet;
 
-import muc.MultiUserChatManager;
-
 import org.jivesoftware.smack.Chat;
-import org.jivesoftware.smack.ChatManager;
-import org.jivesoftware.smack.ConnectionConfiguration;
-import org.jivesoftware.smack.MessageListener;
-import org.jivesoftware.smack.Roster;
-import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode;
-import org.jivesoftware.smack.packet.Message;
-import org.jivesoftware.smack.packet.Presence;
-import org.jivesoftware.smack.packet.Presence.Type;
 import org.jivesoftware.smackx.Form;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
@@ -56,6 +44,7 @@ public class RoomManager
 			// Create a MultiUserChat using a Connection for a room
 			String [] serverDetails = IgniteConnector.getServerDetails();
 			String roomNameFull = roomName + "@conference." + serverDetails[2];
+			System.out.println(roomNameFull);
 			MultiUserChat muc = new MultiUserChat(connection, roomNameFull);
 
 			// Create the room
@@ -68,10 +57,12 @@ public class RoomManager
 			//show confirmation in console
 			System.out.println("Connected: " + roomName + " has been created");
 			
-			joinRoomByName(roomName,username);
-			
 			Room room = new Room(muc,roomName);
 			roomList.add(room);
+			
+			joinRoomByName(roomName,username);
+			
+			
 			
 		}
 		catch (XMPPException e) 
@@ -95,12 +86,27 @@ public class RoomManager
 		}
 	}
 	
-	public void startPrivateChat(MultiUserChat muc,String privateNameRoom, String participant)
+	
+	public void invite(String roomName,String username, String message)
 	{
+		
+			Room room = getRoomByName(roomName);
+			String [] serverDetails = IgniteConnector.getServerDetails();
+			String participant = username +"@" + serverDetails[2] + "/Spark 2.6.3";
+			room.muc.invite(participant, message);
+		
+	}
+	
+	
+	//
+	public void startPrivateChat(String roomOfOrgin,String privateNameRoom, String participant)
+	
+	{
+		Room room = getRoomByName(roomOfOrgin);
 		String [] serverDetails = IgniteConnector.getServerDetails();
 		String roomNameFull = "Priv-"+ privateNameRoom + "@conference." + serverDetails[2]+ "/"+ participant;
 		MyMessageListener ml = new MyMessageListener();
-		Chat chat = muc.createPrivateChat(roomNameFull,ml);
+		Chat chat = room.muc.createPrivateChat(roomNameFull,ml);
 		
 		Room chatRoom = new Room(chat, participant);
 		roomList.add(chatRoom);
@@ -112,8 +118,9 @@ public class RoomManager
 	 * @param messaage string
 	 * @param muc
 	 */
-	public void sendMessaage(String messaage, Room room)
+	public void sendMessaage(String messaage, String roomName)
 	{
+		Room room = getRoomByName(roomName);
 		try 
 		{
 			if(room.muc != null)

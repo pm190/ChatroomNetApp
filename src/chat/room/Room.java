@@ -37,6 +37,11 @@ public class Room
 		return roomName;
 	}
 
+	public int compareTo(Room other)
+	{
+		return  roomName.compareTo(other.getRoomName());
+		
+	}
 	
 	
 }
