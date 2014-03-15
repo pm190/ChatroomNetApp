@@ -1,5 +1,7 @@
 package chat.room;
 
+
+
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
@@ -23,9 +25,8 @@ public class IgniteConnector
 
 	private ConnectionConfiguration config;
 	private XMPPConnection connection;
-
-
-
+	
+	private String username;
 
 	/**Connect to ignite type of server
 	 * Use server declared in  serverHost, serverPort
@@ -54,7 +55,7 @@ public class IgniteConnector
 
 			//log in
 			performLogin(username, password);
-
+			this.username = username;
 			
 		} 
 		catch (XMPPException e) 
@@ -124,7 +125,7 @@ public class IgniteConnector
 	}
 
 
-	/**Change default ignite server
+	/**Change default openfire server
 	 * 
 	 * @param serverHost 
 	 * @param serverPort
@@ -145,5 +146,10 @@ public class IgniteConnector
 		return connection;
 	}
 	
+	
+	public String getUsername()
+	{
+		return username;
+	}
 	
 }

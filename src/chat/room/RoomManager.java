@@ -1,6 +1,9 @@
 package chat.room;
 
 import java.util.HashMap;
+import java.util.TreeSet;
+
+import muc.MultiUserChatManager;
 
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManager;
@@ -26,7 +29,7 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
 public class RoomManager 
 {
 	private XMPPConnection connection;
-	
+	private TreeSet<Room> roomList ;
 	
 	/**Constructor for RoomManager
 	 * To create room we need to use user connection 
@@ -35,9 +38,11 @@ public class RoomManager
 	public RoomManager(XMPPConnection connection) 
 	{
 		this.connection = connection;
+		roomList = new TreeSet<Room>();
+		
 	}
-
-
+	
+	
 	/**Create simple room with basic settings
 	 * Insert owner of the room into room
 	 * @param roomName String
@@ -47,24 +52,27 @@ public class RoomManager
 	{
 		try
 		{
-			HashMap<String,Room> RoomCollection= new HashMap<String,Room>();
-					
-			Room Room  = new Room();
+			
 			// Create a MultiUserChat using a Connection for a room
 			String [] serverDetails = IgniteConnector.getServerDetails();
 			String roomNameFull = roomName + "@conference." + serverDetails[2];
 			MultiUserChat muc = new MultiUserChat(connection, roomNameFull);
 
 			// Create the room
-			muc.create("roomName");
+			muc.create(username);
 			
 			// Send an empty room configuration form which indicates that we want
 			// an instant room
 			muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
 
-			joinRoom(muc,username);
 			//show confirmation in console
 			System.out.println("Connected: " + roomName + " has been created");
+			
+			joinRoomByName(roomName,username);
+			
+			Room room = new Room(muc,roomName);
+			roomList.add(room);
+			
 		}
 		catch (XMPPException e) 
 		{
@@ -74,11 +82,12 @@ public class RoomManager
 	}
 
 	
-	public void joinRoom(MultiUserChat muc,String username)
+	public void joinRoomByName(String roomName, String username)
 	{
 		try 
 		{
-			muc.join(username);
+		Room room =getRoomByName(roomName);
+		room.muc.join(username);
 		} 
 		catch (XMPPException e) 
 		{
@@ -86,27 +95,59 @@ public class RoomManager
 		}
 	}
 	
-	public static Chat startPrivateChat(MultiUserChat muc,String privateNameRoom, String participant)
+	public void startPrivateChat(MultiUserChat muc,String privateNameRoom, String participant)
 	{
 		String [] serverDetails = IgniteConnector.getServerDetails();
 		String roomNameFull = "Priv-"+ privateNameRoom + "@conference." + serverDetails[2]+ "/"+ participant;
 		MyMessageListener ml = new MyMessageListener();
 		Chat chat = muc.createPrivateChat(roomNameFull,ml);
 		
-	    return chat;
+		Room chatRoom = new Room(chat, participant);
+		roomList.add(chatRoom);
+	    
 	}
 	
 	
-	
-	public static void sendMessages(String message, Chat chat)
+	/**send Message to Room
+	 * @param messaage string
+	 * @param muc
+	 */
+	public void sendMessaage(String messaage, Room room)
 	{
-		 try {
-			chat.sendMessage(message);
+		try 
+		{
+			if(room.muc != null)
+			{
+			room.muc.sendMessage(messaage);
+			}
+			else
+			{
+			room.chatRoom.sendMessage(messaage);
+			}
+			
 		} catch (XMPPException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 	}
 	
 
+	
+	/** Finds room with givenName
+	 * ChatName == MultiUserChat Name or ChatName == 
+	 * @param ChatName 
+	 * @return Room
+	 */
+	public Room getRoomByName(String chatName)
+	{
+		for (Room room : roomList)
+		{
+			if (room.getRoomName().equals(chatName))
+			{
+				return room;
+			}
+				
+		}
+		return null;
+		
+	}
 }

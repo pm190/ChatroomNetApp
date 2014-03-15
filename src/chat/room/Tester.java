@@ -22,15 +22,17 @@ public class Tester {
 		//If we want to have permanents rooms we need to have some bots
 		XMPPConnection connection = testConnector.getConnection();
 		RoomManager rc = new RoomManager(connection);
-		//Create instant public room with given name and user that will enter automaticly
-		rc.createInstantPublicRoom("testRoom","javatester");
+		//Create instant public room with name testroom1  and user that will enter automatically and being set as owner
+		rc.createInstantPublicRoom("testRoom1","javatester");
+		//Create instant public room with name testroom1  and user that will enter automatically and being set as owner
+		rc.createInstantPublicRoom("testRoom2", "javatester");
 		
-		//Create private chat with another user
-		//This tart a chat with another user in MultiUserChat instance
-		//MultiUserChat muc = get
-		//Chat chat1 = RoomManager.startPrivateChat(muc,"privateNameRoom", "sparktestclient");
-		//RoomManager.sendMessages("Hi, how old are you",chat1);
-		//RoomManager.sendMessages("I am 22",chat1);
+		
+		//First find room with given Name
+		Room testroom1 = rc.getRoomByName("testroom1");
+		//Send Message to room
+		rc.sendMessaage("hi I am Marcin",testroom1);
+		
 		
 		
 		
