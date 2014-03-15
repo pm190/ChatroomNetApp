@@ -3,7 +3,7 @@ package chat.room;
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
-public class Room 
+public class Room implements Comparable<Room>
 {
 	
 	private String roomName;

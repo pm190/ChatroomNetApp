@@ -1,9 +1,7 @@
 package chat.room;
 
-
-import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.XMPPConnection;
-import org.jivesoftware.smackx.muc.MultiUserChat;
+
 
 public class Tester {
 
@@ -15,9 +13,9 @@ public class Tester {
 		IgniteConnector testConnector = new IgniteConnector();
 		testConnector.connect("javatester","test");
 		testConnector.setStatus(true, "mistrzu entered");
-		
-		
-		
+
+
+
 		//To create room we need to user connection because rooms instance are tied to user connection
 		//If we want to have permanents rooms we need to have some bots
 		XMPPConnection connection = testConnector.getConnection();
@@ -26,21 +24,35 @@ public class Tester {
 		rc.createInstantPublicRoom("testRoom1", "javatester");
 		//Create instant public room with name testroom1  and user that will enter automatically and being set as owner
 		rc.createInstantPublicRoom("testRoom2", "javatester");
-		
-		
-		
-		//start private chat
-		rc.startPrivateChat("testroom1","nice", "sparktestclient");
+
+
+
+		//start private chat this method need some work to work
+		rc.startPrivateChat("testRoom1","nice", "sparktestclient");
 		//send message to private chat
-		rc.sendMessaage("hi I am Marcin","nice");
-		
+		rc.sendMessaage("hi I am Marcin","sparktestclient");
+
 		// invite to multi user chat
-		rc.invite("testroom2","sparktestclient", "Lets talk");
-		
+		rc.invite("testRoom2","sparktestclient", "Lets talk");
+
 		//Send Message to muc room
-		rc.sendMessaage("hi I am Marcin","testroom2");
+		rc.sendMessaage("hi I am Marcin","testRoom2");
+
+		//List of Room
+		rc.getListOfActiveRooms();
 		
-	
+
+		boolean isRunning = true;
+		while (isRunning) 
+		{
+			Thread.sleep(50);
+		}
+
+
+
+
+
+
 
 	}
 

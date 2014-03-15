@@ -44,7 +44,6 @@ public class RoomManager
 			// Create a MultiUserChat using a Connection for a room
 			String [] serverDetails = IgniteConnector.getServerDetails();
 			String roomNameFull = roomName + "@conference." + serverDetails[2];
-			System.out.println(roomNameFull);
 			MultiUserChat muc = new MultiUserChat(connection, roomNameFull);
 
 			// Create the room
@@ -55,7 +54,7 @@ public class RoomManager
 			muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
 
 			//show confirmation in console
-			System.out.println("Connected: " + roomName + " has been created");
+			System.out.println(roomName + " has been created");
 			
 			Room room = new Room(muc,roomName);
 			roomList.add(room);
@@ -98,13 +97,13 @@ public class RoomManager
 	}
 	
 	
-	//
+	//this neeed some work
 	public void startPrivateChat(String roomOfOrgin,String privateNameRoom, String participant)
 	
 	{
 		Room room = getRoomByName(roomOfOrgin);
 		String [] serverDetails = IgniteConnector.getServerDetails();
-		String roomNameFull = "Priv-"+ privateNameRoom + "@conference." + serverDetails[2]+ "/"+ participant;
+		String roomNameFull = "Priv-"+ privateNameRoom + "@conference." + serverDetails[1]+ "/"+ participant;
 		MyMessageListener ml = new MyMessageListener();
 		Chat chat = room.muc.createPrivateChat(roomNameFull,ml);
 		
@@ -157,4 +156,19 @@ public class RoomManager
 		return null;
 		
 	}
+
+	/**
+	 * Print list of room in roomList
+	 * I dont know how to remove inactive rooms yet
+	 */
+	public void getListOfActiveRooms()
+	{
+		for (Room room : roomList)
+		{
+			System.out.println("user is this rooms" + room.getRoomName());
+		}
+			
+
+	}
+
 }
