@@ -26,7 +26,8 @@ public class Tester {
 		rc.createInstantPublicRoom("testRoom2", "javatester");
 
 		
-
+		
+		
 		//start private chat this method need some work to work
 		rc.startPrivateChat("testRoom1","nice", "sparktestclient");
 		//send message to private chat

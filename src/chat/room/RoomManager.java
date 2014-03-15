@@ -1,12 +1,15 @@
 package chat.room;
 
+
 import java.util.TreeSet;
 
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.Form;
+
 import org.jivesoftware.smackx.muc.MultiUserChat;
+
 
 
 /**This class contain methods to create and manage rooms
@@ -48,18 +51,19 @@ public class RoomManager
 
 			// Create the room
 			muc.create(username);
-			
+		
 			// Send an empty room configuration form which indicates that we want
 			// an instant room
+			muc.join(username);
 			muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
-
+			
+			
+			
 			//show confirmation in console
 			System.out.println(roomName + " has been created");
 			
 			Room room = new Room(muc,roomName);
 			roomList.add(room);
-			
-			joinRoomByName(roomName,username);
 			
 			
 			
