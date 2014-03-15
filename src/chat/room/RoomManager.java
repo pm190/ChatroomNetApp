@@ -85,7 +85,13 @@ public class RoomManager
 		}
 	}
 	
-	
+	/**To invite another user Now work only for Spark "/Spark 2.6.3" 
+	 * if you want to work with another Smack users you need to change
+	 * "/Spark 2.6.3" => "/Smack"
+	 * @param roomName
+	 * @param username
+	 * @param message
+	 */
 	public void invite(String roomName,String username, String message)
 	{
 		
