@@ -22,40 +22,36 @@
 				<div id="accountCreation" class="siders">
 					<form action="somePost">
 						<div class="field">
-							<input type="text" name="enter username" id="username"
-								class="text-input" pt:placeholder="enter username" />
+							<input id="username" class="text-input" type="text" name="enter username" pt:placeholder="enter username">
+								 <f:passThroughAttribute name="placeholder" value="Enter text"/>
+							</input>
 						</div>
 						<div class="field">
-							<input type="password" name="Password" id="password"
-								class="text-input" pt:placeholder="type strong password" />
+							<input id="password" class="text-input" type="password" name="Password" pt:placeholder="type strong password" />
 						</div>
 						<div class="field">
-							<input type="password" name="rePassword" id="rePassword"
-								class="text-input" pt:placeholder="confirm password" />
+							<input id="rePassword" class="text-input" type="password" name="rePassword" pt:placeholder="confirm password" />
 						</div>
 						<div class="field">
-							<input pt:type="email" name="email" id="email" class="text-input"
-								pt:placeholder="type your e-mail" />
+							<input id="email" class="text-input" pt:type="email" name="email" pt:placeholder="type your e-mail" />
 						</div>
 						<div class="field">
-							<input pt:type="email" name="reEmail" id="reEmail" class="text-input"
-								pt:placeholder="confirm your e-mail" />
+							<input id="reEmail" class="text-input" pt:type="email" name="reEmail" pt:placeholder="confirm your e-mail" />
 						</div>
 						<div class="field" id="dob">
-							enter date of birth <input pt:type="date" name="dateofbirth"
-								id="dateofbirth" class="text-input" />
+							enter date of birth 
+							<input id="dateofbirth" class="text-input" pt:type="date" name="dateofbirth"/>
 						</div>
 						<div class="field" id="personalDescription">
-							describe yourself in one sentence <input type="text"
-								name="profile" class="text-input" />
+							describe yourself in one sentence 
+							<input name="profile" class="text-input" type="text"/>
 						</div>
 						<div class="twoButtons">
 							<div class="field" style="display: inline-block">
 								<input pt:type="submit" value="register"/>
 							</div>
 							<div class="field" style="display: inline-block">
-								<button type="button" name="cancelRegist"
-									onclick="location.href='../html/entrencePage.html'">cancel</button>
+								<button type="button" name="cancelRegist" onclick="location.href='../html/entrencePage.html'">cancel</button>
 							</div>
 						</div>
 					</form>
