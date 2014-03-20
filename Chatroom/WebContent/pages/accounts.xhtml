@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+	<ui:composition template="../WEB-INF/templates/master.xhtml">
+		<ui:define name="content">
+			<h:outputStylesheet library="css" name="main.css"/>
+			<h:outputStylesheet library="css" name="accounts.css"/>
+			<div class="mainLogo" style="">Portal Web Chat</div>
+			<div class="subLogo">create account for better chat experience</div>
+	
+			<div id="sidersContainer">
+				<div class="siders" id="leftSide">
+					<h:graphicImage value="#{resource['img/left.png']}" alt="left graphics"/>
+				</div>
+				<div id="accountCreation" class="siders">
+					<form action="somePost">
+						<div class="field">
+							<input type="text" name="enter username" id="username"
+								class="text-input" pt:placeholder="enter username" />
+						</div>
+						<div class="field">
+							<input type="password" name="Password" id="password"
+								class="text-input" pt:placeholder="type strong password" />
+						</div>
+						<div class="field">
+							<input type="password" name="rePassword" id="rePassword"
+								class="text-input" pt:placeholder="confirm password" />
+						</div>
+						<div class="field">
+							<input pt:type="email" name="email" id="email" class="text-input"
+								pt:placeholder="type your e-mail" />
+						</div>
+						<div class="field">
+							<input pt:type="email" name="reEmail" id="reEmail" class="text-input"
+								pt:placeholder="confirm your e-mail" />
+						</div>
+						<div class="field" id="dob">
+							enter date of birth <input pt:type="date" name="dateofbirth"
+								id="dateofbirth" class="text-input" />
+						</div>
+						<div class="field" id="personalDescription">
+							describe yourself in one sentence <input type="text"
+								name="profile" class="text-input" />
+						</div>
+						<div class="twoButtons">
+							<div class="field" style="display: inline-block">
+								<input pt:type="submit" value="register"/>
+							</div>
+							<div class="field" style="display: inline-block">
+								<button type="button" name="cancelRegist"
+									onclick="location.href='../html/entrencePage.html'">cancel</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="siders" id="rightSide">
+					<img src="#{resource['img/right.png']}" alt="right graphics"/>
+				</div>
+			</div>
+			<div id="thanks">
+				<p>
+					Art thanks to <a href="http://dynamicz34.deviantart.com/">dynamicz34</a>
+				</p>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
