@@ -12,6 +12,11 @@
 		<ui:define name="content">
 			<h:outputStylesheet library="css" name="main.css"/>
 			<h:outputStylesheet library="css" name="accounts.css"/>
+			<div class="createAccount">
+				<h:form>
+					<h:commandButton name="accCre" value="create account" action="createAccount"/>
+				</h:form>
+			</div>
 			<div class="mainLogo" style="">Portal Web Chat</div>
 			<div class="subLogo">your xmpp chat client</div>
 			<div id="sidersContainer">
@@ -20,20 +25,22 @@
 				</div>
 				<div id="loginContainer" class="siders">
 					<div id="centralLogin">
-						<form action="somePostToBeMadeSooon">
-							<input type="text" name="login" pt:placeholder="username"/>
+						<h:form>
+							<h:inputText name="login" pt:placeholder="username"/>
 							<br/>
 							<input type="checkbox" name="asGuest" id="desc"
 								onclick="document.getElementById('passwd').style.display = this.checked ? 'none' : 'block'; this.form.elements['pass'].disabled = this.checked"/>
 								<label for="desc">enter as a guest</label> 
 								<br/><br/>
 							<div id="passwd">
-								<input id="pass" type="password" name="pass" pt:placeholder="password"/>
+								<h:inputSecret id="pass" name="pass" pt:placeholder="password"/>
 							</div>
 							<br/> 
-							<input type="text" name="room" pt:placeholder="select room"/><br/> 
-							<input id="login" type="submit" value="enter"  onclick="location.href='../html/chatRoom.html'"/>
-						</form>
+							<h:inputText name="room" pt:placeholder="select room"/><br/>
+							<h:form>
+								<h:commandButton value="Enter" action="enterChat"/>
+							</h:form>
+						</h:form>
 					</div>
 				</div>
 				<div class="siders" id="rightSide">

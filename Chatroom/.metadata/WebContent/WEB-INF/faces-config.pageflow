@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13940345982340" configfile="/Chatroom/WebContent/WEB-INF/faces-config.xml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13940345982340" configfile="/Chatroom/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="pages/accounts.xhtml" x="156" y="180" id="pf13954143547890" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" outlinks="pf13954146702575" inlinks="pf13954143547891" path="/pages/accounts.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/home.xhtml" x="324" y="72" id="pf13954143547902" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13954143547891 pf13954143547903" inlinks="pf13954146702575 pf13954148145076" path="/pages/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/chatroom.xhtml" x="408" y="180" id="pf13954143547904" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf13954148145076" inlinks="pf13954143547903" path="/pages/chatroom.xhtml"/>
+  <links id="pf13954143547891" target="pf13954143547890" source="pf13954143547902" outcome="createAccount"/>
+  <links id="pf13954143547903" target="pf13954143547904" source="pf13954143547902" outcome="enterChat"/>
+  <links id="pf13954146702575" target="pf13954143547902" source="pf13954143547890" outcome="cancel"/>
+  <links id="pf13954148145076" target="pf13954143547902" source="pf13954143547904"/>
+</pageflow:Pageflow>

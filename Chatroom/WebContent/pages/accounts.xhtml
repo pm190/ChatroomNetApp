@@ -20,7 +20,7 @@
 					<h:graphicImage value="#{resource['img/left.png']}" alt="left graphics"/>
 				</div>
 				<div id="accountCreation" class="siders">
-					<form action="somePost">
+					<h:form>
 						<div class="field">
 							<input id="username" class="text-input" type="text" name="enter username" pt:placeholder="enter username">
 								 <f:passThroughAttribute name="placeholder" value="Enter text"/>
@@ -51,10 +51,12 @@
 								<input pt:type="submit" value="register"/>
 							</div>
 							<div class="field" style="display: inline-block">
-								<button type="button" name="cancelRegist" onclick="location.href='../html/entrencePage.html'">cancel</button>
+								<h:form>
+									<h:commandButton value="cancelRegist" action="cancel"/>
+								</h:form>
 							</div>
 						</div>
-					</form>
+					</h:form>
 				</div>
 				<div class="siders" id="rightSide">
 					<h:graphicImage value="#{resource['img/right.png']}" alt="right graphics"/>
