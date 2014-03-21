@@ -1,72 +1,76 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html>
+
+<ui:composition template="../WEB-INF/templates/master.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-
-	<ui:composition template="../WEB-INF/templates/master.xhtml">
-		<ui:define name="content">
-			<h:outputStylesheet library="css" name="main.css"/>
-			<h:outputStylesheet library="css" name="accounts.css"/>
-			<div class="mainLogo" style="">Portal Web Chat</div>
-			<div class="subLogo">create account for better chat experience</div>
-	
-			<div id="sidersContainer">
-				<div class="siders" id="leftSide">
-					<h:graphicImage value="#{resource['img/left.png']}" alt="left graphics"/>
-				</div>
-				<div id="accountCreation" class="siders">
-					<h:form>
-						<div class="field">
-							<input id="username" class="text-input" type="text" name="enter username" pt:placeholder="enter username">
-								 <f:passThroughAttribute name="placeholder" value="Enter text"/>
-							</input>
-						</div>
-						<div class="field">
-							<input id="password" class="text-input" type="password" name="Password" pt:placeholder="type strong password" />
-						</div>
-						<div class="field">
-							<input id="rePassword" class="text-input" type="password" name="rePassword" pt:placeholder="confirm password" />
-						</div>
-						<div class="field">
-							<input id="email" class="text-input" pt:type="email" name="email" pt:placeholder="type your e-mail" />
-						</div>
-						<div class="field">
-							<input id="reEmail" class="text-input" pt:type="email" name="reEmail" pt:placeholder="confirm your e-mail" />
-						</div>
-						<div class="field" id="dob">
-							enter date of birth 
-							<input id="dateofbirth" class="text-input" pt:type="date" name="dateofbirth"/>
-						</div>
-						<div class="field" id="personalDescription">
-							describe yourself in one sentence 
-							<input name="profile" class="text-input" type="text"/>
-						</div>
-						<div class="twoButtons">
-							<div class="field" style="display: inline-block">
-								<input pt:type="submit" value="register"/>
-							</div>
-							<div class="field" style="display: inline-block">
-								<h:form>
-									<h:commandButton value="cancelRegist" action="cancel"/>
-								</h:form>
-							</div>
-						</div>
-					</h:form>
-				</div>
-				<div class="siders" id="rightSide">
-					<h:graphicImage value="#{resource['img/right.png']}" alt="right graphics"/>
-				</div>
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="main.css" />
+		<h:outputStylesheet library="css" name="accounts.css" />
+		<div class="mainLogo" style="">Portal Web Chat</div>
+		<div class="subLogo">create account for better chat experience</div>
+		<div id="sidersContainer">
+			<div class="siders" id="leftSide">
+				<h:graphicImage value="#{resource['img/left.png']}"
+					alt="left graphics" />
 			</div>
-			<div id="thanks">
-				<p>
-					Art thanks to <a href="http://dynamicz34.deviantart.com/">dynamicz34</a>
-				</p>
+			<div id="accountCreation" class="siders">
+				<form action="somePost">
+					<div class="field">
+						<h:inputText id="username" class="text-input"
+							name="enter username" pt:placeholder="enter username" />
+					</div>
+					<div class="field">
+						<h:inputSecret id="password" class="text-input" type="password"
+							name="Password" pt:placeholder="type strong password" />
+					</div>
+					<div class="field">
+						<h:inputSecret id="rePassword" class="text-input" type="password"
+							name="rePassword" pt:placeholder="confirm password" />
+					</div>
+					<div class="field">
+						<h:inputText id="email" class="text-input" name="email"
+							pt:placeholder="type your e-mail" />
+					</div>
+					<div class="field">
+						<h:inputText id="reEmail" class="text-input"
+							name="reEmail" pt:placeholder="confirm your e-mail" />
+					</div>
+					<div class="field" id="dob">
+						enter date of birth 
+						<h:inputText id="dateofbirth" class="text-input" name="dateofbirth" />
+					</div>
+					<div class="field" id="personalDescription">
+						describe yourself in one sentence 
+						<h:inputText name="profile" class="text-input"/>
+					</div>
+					<div class="twoButtons">
+						<div class="field" style="display: inline-block">
+							<input pt:type="submit" value="register" />
+						</div>
+						<div class="field" style="display: inline-block">
+							<button type="button" name="cancelRegist"
+								onclick="location.href='../html/entrencePage.html'">cancel</button>
+						</div>
+					</div>
+				</form>
 			</div>
-		</ui:define>
-	</ui:composition>
+			<div class="siders" id="rightSide">
+				<h:graphicImage value="#{resource['img/right.png']}"
+					alt="right graphics" />
+			</div>
+		</div>
+		<div id="thanks">
+			<p>
+				Art thanks to <a href="http://dynamicz34.deviantart.com/">dynamicz34</a>
+			</p>
+		</div>
+	</ui:define>
+</ui:composition>
 </html>
