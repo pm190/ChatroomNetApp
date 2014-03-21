@@ -21,7 +21,7 @@
 					alt="left graphics" />
 			</div>
 			<div id="accountCreation" class="siders">
-				<form action="somePost">
+				<h:form>
 					<div class="field">
 						<h:inputText id="username" class="text-input"
 							name="enter username" pt:placeholder="enter username" />
@@ -52,14 +52,13 @@
 					</div>
 					<div class="twoButtons">
 						<div class="field" style="display: inline-block">
-							<input pt:type="submit" value="register" />
+							<h:commandButton value="register" action="register"/>
 						</div>
 						<div class="field" style="display: inline-block">
-							<button type="button" name="cancelRegist"
-								onclick="location.href='../html/entrencePage.html'">cancel</button>
+							<h:commandButton value="cancel" action="cancel"/>
 						</div>
 					</div>
-				</form>
+				</h:form>
 			</div>
 			<div class="siders" id="rightSide">
 				<h:graphicImage value="#{resource['img/right.png']}"
