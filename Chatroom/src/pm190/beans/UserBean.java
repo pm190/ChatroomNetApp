@@ -74,4 +74,9 @@ public class UserBean
 		}
 		return "enterChat";
 	}
+	
+	public void sendMessage(String message)
+	{
+		
+	}
 }

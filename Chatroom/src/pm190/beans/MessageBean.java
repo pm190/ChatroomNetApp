@@ -26,9 +26,4 @@ public class MessageBean
 	{
 		this.message = message;
 	}
-
-	public void send()
-	{
-		
-	}
 }

@@ -1,10 +1,9 @@
 package pm190.chatroom;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
-
+import java.util.Map;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smackx.muc.MultiUserChat;
@@ -17,7 +16,7 @@ public class User
 {
 	private final XMPPConnection connection;
 	private final String username;
-	private final Set<Room> rooms = new HashSet<Room>();
+	private final Map<String, MultiUserChat> roomChats = new HashMap<String, MultiUserChat>();
 	
 	public User(XMPPConnection connection)
 	{
@@ -63,27 +62,21 @@ public class User
 		return username;
 	}
 	
-	public void joinRoom(String roomName)
+	public MultiUserChat joinRoomWithMUC(String roomName)
 	{
-		MultiUserChat muc = new MultiUserChat(connection, roomName + "@" + ServerProperties.getServicename());
-		try
-		{
-			muc.join(username);
-			rooms.add(new Room(roomName));
-		}
-		catch(XMPPException e)
-		{
-			e.printStackTrace();
-		}
+		roomChats.put(roomName, new MultiUserChat(connection, roomName + "@" + ServerProperties.getServicename()));
+		return roomChats.get(roomName);
+	}
+	
+	public MultiUserChat getMultiUserChat(String roomName)
+	{
+		return roomChats.get(roomName);
 	}
 	
 	public List<String> getRoomNames()
 	{
 		List<String> roomNames = new ArrayList<String>();
-		for(Room room : rooms)
-		{
-			roomNames.add(room.getName());
-		}
+		roomNames.addAll(roomChats.keySet());
 		return roomNames;
 	}
 }

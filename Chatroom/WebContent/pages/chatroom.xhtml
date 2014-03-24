@@ -20,7 +20,7 @@
 								<h:inputText class="box" pt:placeholder="Search" />
 							</div>
 							<div class="sidePanelContent">
-								<ui:repeat value="#{serverManager.getFriends(userBean.user)}" var="user">
+								<ui:repeat value="#{userManager.getFriends(userBean.user)}" var="user">
 									<h:commandButton value="#{user}"/>
 								</ui:repeat>
 							</div>
@@ -42,10 +42,10 @@
 								<h:inputText class="box" pt:placeholder="Search" />
 							</div>
 							<div class="sidePanelContent">
-								<ui:repeat value="#{serverManager.getRooms(userBean.user)}" var="room">
+								<ui:repeat value="#{roomsBean.getAllRooms()}" var="roomName">
 									<h:form>
-										<h:commandButton value="#{room.name}">
-											<f:ajax listener="#{roomManager.joinRoom(userBean.user, room.name)}" render=":rightTabs" />
+										<h:commandButton value="#{roomName}">
+											<f:ajax listener="#{roomsBean.joinRoom(userBean.user, roomName)}" render=":rightTabs" />
 										</h:commandButton>
 									</h:form>
 								</ui:repeat>

@@ -1,5 +1,7 @@
 package pm190.chatroom;
 
+import org.jivesoftware.smackx.muc.MultiUserChat;
+
 /**
  * 
  * @author Patrick Mackinder
@@ -8,7 +10,7 @@ public class Room
 {
 	private final String name;
 
-	public Room(String name)
+	public Room(String name, MultiUserChat multiUserChat)
 	{
 		this.name = name;
 	}

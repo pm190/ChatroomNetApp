@@ -13,7 +13,7 @@
 			<div class="messageBox">
 				<h:form>
 					<h:inputText id="message" styleClass="box" value="#{messageBean.message}" pt:placeholder="Message"/>
-					<h:commandButton value="send" action="#{messageBean.send}"/>
+					<h:commandButton value="send" action="#{userBean.sendMessage(messageBean.message)}"/>
 				</h:form>
 			</div>
 		</div>
