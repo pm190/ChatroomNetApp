@@ -19,6 +19,7 @@ import pm190.beans.ConnectionBean;
 public class RoomManager
 {
 	private final Map<String, Room> rooms = new HashMap<String, Room>();
+	private final Map<String, List<String>> usersInRooms = new HashMap<String, List<String>>();
 
 	public RoomManager()
 	{
@@ -43,6 +44,11 @@ public class RoomManager
 		try
 		{
 			user.joinRoomWithMUC(name).join(user.getUsername());
+			if(!usersInRooms.containsKey(name))
+			{
+				usersInRooms.put(name, new ArrayList<String>());
+			}
+			usersInRooms.get(name).add(user.getUsername());
 		}
 		catch(XMPPException e)
 		{
@@ -70,28 +76,26 @@ public class RoomManager
 			joinRoom(user, name);
 		}
 	}
-	
-	public void sendMessageToRoom(User user, String message, String roomName)
-	{
-		try
-		{
-			MultiUserChat muc = user.getMultiUserChat(roomName);
-			if(muc != null)
-			{
-				muc.sendMessage(message);
-			}
-		}
-		catch(XMPPException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	public List<String> getAllRooms()
 	{
 		List<String> roomNames = new ArrayList<String>();
 		roomNames.addAll(rooms.keySet());
+		return roomNames;
+	}
+	
+	public List<String> getAllUsersInRoom(String roomName, User user)
+	{
+		List<String> roomNames = new ArrayList<String>();
+		if(roomName != null && !roomName.equals(""))
+		{
+			List<String> names = usersInRooms.get(roomName);
+			if(names != null)
+			{
+				names.remove(user.getUsername());
+				roomNames.addAll(names);
+			}
+		}
 		return roomNames;
 	}
 }

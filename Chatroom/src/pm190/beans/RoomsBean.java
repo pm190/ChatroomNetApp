@@ -29,6 +29,11 @@ public class RoomsBean
 		return roomManager.getAllRooms();
 	}
 	
+	public List<String> getAllUsersInRooms(String roomName, User user)
+	{
+		return roomManager.getAllUsersInRoom(roomName, user);
+	}
+	
 	public void joinRoom(User user, String name)
 	{
 		roomManager.joinRoom(user, name);

@@ -32,7 +32,9 @@
 								<h:inputText class="box" pt:placeholder="Search" />
 							</div>
 							<div class="sidePanelContent">
-								
+								<ui:repeat value="#{roomsBean.getAllUsersInRooms(userBean.currentRoom, userBean.user)}" var="user">
+									<h:commandButton value="#{user}"/>
+								</ui:repeat>
 							</div>
 						</div>
 					</p:tab>
@@ -45,7 +47,9 @@
 								<ui:repeat value="#{roomsBean.getAllRooms()}" var="roomName">
 									<h:form>
 										<h:commandButton value="#{roomName}">
-											<f:ajax listener="#{roomsBean.joinRoom(userBean.user, roomName)}" render=":rightTabs" />
+											<f:actionListener binding="#{userBean.setCurrentRoom(roomName)}"/>
+											<f:actionListener binding="#{userBean.incIndex()}"/>
+											<f:ajax listener="#{roomsBean.joinRoom(userBean.user, roomName)}" render=":rightTabs"/>
 										</h:commandButton>
 									</h:form>
 								</ui:repeat>
@@ -55,7 +59,8 @@
 				</p:tabView>
 			</div>
 			<div class="right">
-				<p:tabView id="rightTabs" value="#{userBean.user.getRoomNames()}" var="roomName">
+				<p:tabView id="rightTabs" value="#{userBean.user.getRoomNames()}" var="roomName" activeIndex="#{userBean.currentRoomIndex}">
+					<p:ajax event="tabChange" listener="#{userBean.roomTabChange}"/> 
 					<p:tab title="#{roomName}">
 						<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
 					</p:tab>

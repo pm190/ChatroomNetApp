@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.util.StringUtils;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
@@ -64,7 +67,8 @@ public class User
 	
 	public MultiUserChat joinRoomWithMUC(String roomName)
 	{
-		roomChats.put(roomName, new MultiUserChat(connection, roomName + "@" + ServerProperties.getServicename()));
+		MultiUserChat muc = new MultiUserChat(connection, roomName + "@" + ServerProperties.getServicename());
+		roomChats.put(roomName, muc);
 		return roomChats.get(roomName);
 	}
 	
@@ -78,5 +82,36 @@ public class User
 		List<String> roomNames = new ArrayList<String>();
 		roomNames.addAll(roomChats.keySet());
 		return roomNames;
+	}
+	
+	public void sendMessageToRoom(String message, String roomName)
+	{
+		try
+		{
+			MultiUserChat muc = getMultiUserChat(roomName);
+			if(muc != null)
+			{
+				muc.sendMessage(message);
+			}
+		}
+		catch(XMPPException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public String nextMessage(String roomName)
+	{
+		MultiUserChat muc = getMultiUserChat(roomName);
+		if(muc != null)
+		{
+			Message msg = muc.pollMessage();
+			if(msg != null)
+			{
+				return StringUtils.parseResource(msg.getFrom()) + ": " + msg.getBody();
+			}
+		}
+		return null;
 	}
 }

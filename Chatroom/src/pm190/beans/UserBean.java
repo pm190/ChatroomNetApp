@@ -1,9 +1,14 @@
 package pm190.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.jivesoftware.smack.XMPPConnection;
+import org.primefaces.component.tabview.TabView;
+import org.primefaces.event.TabChangeEvent;
 
 import pm190.chatroom.User;
 
@@ -19,6 +24,9 @@ public class UserBean
 	private String password = "";
 	private boolean guest = false;
 	private User user;
+	private String currentRoom;
+	private int currentRoomIndex = -1;
+	private List<String> messages;
 	
 	public UserBean()
 	{
@@ -59,6 +67,11 @@ public class UserBean
 		return user;
 	}
 	
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
+	
 	public String login(XMPPConnection connection)
 	{
 		if(!guest)
@@ -75,8 +88,66 @@ public class UserBean
 		return "enterChat";
 	}
 	
-	public void sendMessage(String message)
+	public void sendMessage(String message, String roomName)
 	{
-		
+		user.sendMessageToRoom(message, roomName);
+	}
+
+	public String getCurrentRoom()
+	{
+		return currentRoom;
+	}
+	
+	public void setCurrentRoom(String currentRoom)
+	{
+		this.currentRoom = currentRoom;
+		messages = new ArrayList<String>();
+	}
+
+	public void roomTabChange(TabChangeEvent event)
+	{
+		setCurrentRoom(event.getTab().getTitle());
+		currentRoomIndex = ((TabView)event.getComponent()).getChildren().indexOf(event.getTab());
+	}
+
+	public int getCurrentRoomIndex()
+	{
+		return currentRoomIndex;
+	}
+
+	public void setCurrentRoomIndex(int currentRoomIndex)
+	{
+		this.currentRoomIndex = currentRoomIndex;
+	}
+	
+	public void incIndex()
+	{
+		currentRoomIndex++;
+	}
+	
+	public void decIndex()
+	{
+		currentRoomIndex--;
+	}
+	
+	public List<String> getRoomMessages()
+	{
+		String msg = getMessage();
+		while(msg != null)
+		{
+			messages.add(msg);
+			msg = getMessage();
+		}
+		return messages;
+	}
+	
+	private String getMessage()
+	{
+		String msg = null;
+		if(currentRoom != null)
+		{
+			msg = user.nextMessage(currentRoom);
+		}
+		return msg;
 	}
 }

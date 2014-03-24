@@ -22,11 +22,14 @@ public class UserManager
 	public List<String> getFriends(User user)
 	{
 		List<String> friends = new ArrayList<String>();
-		Roster roster = user.getConnection().getRoster();
-		Collection<RosterEntry> entries = roster.getEntries();
-		for(RosterEntry entry : entries)
+		if(user != null)
 		{
-			friends.add(entry.getUser());
+			Roster roster = user.getConnection().getRoster();
+			Collection<RosterEntry> entries = roster.getEntries();
+			for(RosterEntry entry : entries)
+			{
+				friends.add(entry.getUser());
+			}
 		}
 		return friends;
 	}

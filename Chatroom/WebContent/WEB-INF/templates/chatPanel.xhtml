@@ -5,17 +5,22 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
     xmlns:p="http://primefaces.org/ui">
-    <f:subview>
-	    <div class="chat">
-		    <div id="messages" class="messages">
-		    	
-			</div>
-			<div class="messageBox">
-				<h:form>
-					<h:inputText id="message" styleClass="box" value="#{messageBean.message}" pt:placeholder="Message"/>
-					<h:commandButton value="send" action="#{userBean.sendMessage(messageBean.message)}"/>
-				</h:form>
-			</div>
+    <div class="chat">
+	    <div id="messages" class="messages">
+			<h:form>
+				<h:panelGroup id="msgs" layout="block">
+					<ui:repeat value="#{userBean.getRoomMessages()}" var="msg">
+						<li style="list-style:none">#{msg}</li>
+					</ui:repeat>
+				</h:panelGroup>
+			    <p:poll interval="1" update="msgs"/>
+			</h:form>
 		</div>
-	</f:subview>
+		<div class="messageBox">
+			<h:form>
+				<h:inputText id="message" styleClass="box" value="#{messageBean.message}" pt:placeholder="Message"/>
+				<h:commandButton value="send" action="#{userBean.sendMessage(messageBean.message, userBean.currentRoom)}"/>
+			</h:form>
+		</div>
+	</div>
 </ui:composition>
