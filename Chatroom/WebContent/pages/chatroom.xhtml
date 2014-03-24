@@ -5,39 +5,63 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
-	<ui:composition template="../WEB-INF/templates/master.xhtml">
-		<ui:define name="content">
-			<h:outputStylesheet library="css" name="roompage.css"/>
-			<div class="container">
-				<div class="left">
-					<p:tabView id="leftTabs">
-						<p:tab id="friendsTab" title="Friends">
-							<ui:include src="/WEB-INF/templates/sidePanel.xhtml"/>
-						</p:tab>
-						<p:tab id="usersTab" title="Users">
-							<ui:include src="/WEB-INF/templates/sidePanel.xhtml"/>
-						</p:tab>
-						<p:tab id="roomsTab" title="Rooms">
-							<ui:include src="/WEB-INF/templates/sidePanel.xhtml"/>
-						</p:tab>
-					</p:tabView>
-				</div>
-				<div class="right">
-					<p:tabView id="rightTabs">
-						<p:tab title="Room 1">
-							<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
-						</p:tab>
-						<p:tab title="Room 2">
-							<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
-						</p:tab>
-						<p:tab title="Room 3">
-							<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
-						</p:tab>
-					</p:tabView>
-				</div>
+<ui:composition template="../WEB-INF/templates/master.xhtml">
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="roompage.css" />
+		<div class="container">
+			<div class="left">
+				<p:tabView id="leftTabs">
+					<p:tab id="friendsTab" title="Friends">
+						<div class="sidePanel">
+							<div class="searchBox">
+								<h:inputText class="box" pt:placeholder="Search" />
+							</div>
+							<div class="sidePanelContent">
+								<ui:repeat value="#{serverManager.getFriends(userBean.user)}" var="user">
+									<h:commandButton value="#{user}"/>
+								</ui:repeat>
+							</div>
+						</div>
+					</p:tab>
+					<p:tab id="usersTab" title="Users">
+						<div class="sidePanel">
+							<div class="searchBox">
+								<h:inputText class="box" pt:placeholder="Search" />
+							</div>
+							<div class="sidePanelContent">
+								
+							</div>
+						</div>
+					</p:tab>
+					<p:tab id="roomsTab" title="Rooms">
+						<div class="sidePanel">
+							<div class="searchBox">
+								<h:inputText class="box" pt:placeholder="Search" />
+							</div>
+							<div class="sidePanelContent">
+								<ui:repeat value="#{serverManager.getRooms(userBean.user)}" var="room">
+									<h:form>
+										<h:commandButton value="#{room.name}">
+											<f:ajax listener="#{roomManager.joinRoom(userBean.user, room.name)}" render=":rightTabs" />
+										</h:commandButton>
+									</h:form>
+								</ui:repeat>
+							</div>
+						</div>
+					</p:tab>
+				</p:tabView>
 			</div>
-		</ui:define>
-	</ui:composition>
+			<div class="right">
+				<p:tabView id="rightTabs" value="#{userBean.user.getRoomNames()}" var="roomName">
+					<p:tab title="#{roomName}">
+						<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
+					</p:tab>
+				</p:tabView>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
 </html>

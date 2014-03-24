@@ -14,7 +14,7 @@
 			<h:outputStylesheet library="css" name="accounts.css"/>
 			<div class="createAccount">
 				<h:form>
-					<h:commandButton name="accCre" value="create account" action="createAccount"/>
+					<h:commandButton value="create account" action="createAccount"/>
 				</h:form>
 			</div>
 			<div class="mainLogo" style="">Portal Web Chat</div>
@@ -26,18 +26,18 @@
 				<div id="loginContainer" class="siders">
 					<div id="centralLogin">
 						<h:form>
-							<h:inputText name="login" pt:placeholder="username"/>
+							<h:inputText name="login" pt:placeholder="username" value="#{userBean.username}"/>
 							<br/>
-							<input type="checkbox" name="asGuest" id="desc"
+							<h:selectBooleanCheckbox  type="checkbox" name="asGuest" id="desc" value="#{userBean.guest}"
 								onclick="document.getElementById('passwd').style.display = this.checked ? 'none' : 'block'; this.form.elements['pass'].disabled = this.checked"/>
 								<label for="desc">enter as a guest</label> 
-								<br/><br/>
+								<br/>
+								<br/>
 							<div id="passwd">
-								<h:inputSecret id="pass" name="pass" pt:placeholder="password"/>
+								<h:inputSecret id="pass" name="pass" pt:placeholder="password" value="#{userBean.password}"/>
 							</div>
-							<br/> 
-							<h:inputText name="room" pt:placeholder="select room"/><br/>
-							<h:commandButton value="Enter" action="enterChat"/>
+							<br/>
+							<h:commandButton value="Enter" action="#{userBean.login(connectionBean.connection)}"/>
 						</h:form>
 					</div>
 				</div>

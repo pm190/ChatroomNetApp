@@ -8,12 +8,12 @@
     <f:subview>
 	    <div class="chat">
 		    <div id="messages" class="messages">
-		    	<h:outputLabel id="outLabel" value="#{messageBean.messageOutput}"/>
+		    	
 			</div>
 			<div class="messageBox">
 				<h:form>
-					<h:inputText id="message" styleClass="box" value="#{messageBean.message}" pt:placeholder="Message">
-					</h:inputText>
+					<h:inputText id="message" styleClass="box" value="#{messageBean.message}" pt:placeholder="Message"/>
+					<h:commandButton value="send" action="#{messageBean.send}"/>
 				</h:form>
 			</div>
 		</div>

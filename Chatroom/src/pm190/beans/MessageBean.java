@@ -12,7 +12,6 @@ import javax.faces.bean.SessionScoped;
 public class MessageBean
 {
 	private String message;
-	private String messageOutput;
 
 	public MessageBean()
 	{
@@ -28,19 +27,8 @@ public class MessageBean
 		this.message = message;
 	}
 
-	public String getMessageOutput()
+	public void send()
 	{
-		return messageOutput;
-	}
-	
-	public void setMessageOutput(String message)
-	{
-		this.messageOutput = message;
-	}
-	
-	public void send() 
-	{
-		messageOutput = "User 1: " + message;
-		message = "";
+		
 	}
 }
