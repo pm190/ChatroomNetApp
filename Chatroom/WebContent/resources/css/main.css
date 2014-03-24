@@ -1,8 +1,26 @@
+ div#content {
+ 	height:100%;
+ 	width:100%;
+ }
+ div.createAccount
+ {
+ 	float:right;
+ }
+ 
+  body, html 
+ {
+    font-family:"San-serif", Times, serif;
+    height:100%;
+    width:100%;
+}
+ 
+ 
 body {
 	padding: 0px;
 	font-family: "San-serif", Times, serif;
 	font-size: 20px;
 	color: #ff8900;
+	background-image:url("#{resource['img/simpleBackGround.jpg']}");
 }
 
 html.basicBackground {
@@ -116,4 +134,103 @@ input[placeholder] {
 
 :-ms-input-placeholder {
 	color: #ff8900;
+}
+header.createAccount {
+	position: absolute;
+	transition: .5s ease;
+	top: 15%;
+	left: 80%;
+	resize: both;
+}
+
+div#loginContainer {
+	height: 70%;
+	margin: 0px 15px;
+	border-radius: 30px;
+	vertical-align: top;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+div#accountCreation {
+	position: relative;
+	width: 320px;
+	height: 600px;
+	margin: 0px 50px;
+	border-radius: 30px;
+	background: rgba(0, 0, 0, 0.5);
+	vertical-align: top;
+}
+
+div.siders {
+	display: inline-block;
+}
+
+div#leftSide, div#rightSide
+{
+	height: 70%;
+	width: 37%
+}
+
+div#leftSide
+{
+	float: left;
+}
+img.wave
+{
+	height:100%;
+	width: 100%;
+}
+div#sidersContainer {
+	height: 70%;
+	width: 100%;
+	max-height: 465px;
+	white-space: nowrap;
+}
+
+div.validationLeft {
+	position: absolute;
+	top: 80%;
+}
+
+div.validationRight {
+	position: absolute;
+	top: 80%;
+	left: 80%;
+}
+
+#login {
+	position: relative;
+	left: 35%;
+}
+
+div.pagewrapper {
+	width: 50%;
+}
+
+div#centralLogin {
+	position: relative;
+	padding: 30px;
+}
+
+div.mainLogo {
+	font-family: "Decibel";
+	font-size: 60px;
+	color: #ff8900;
+	margin-left: 20px;
+	height: 12%;
+}
+
+div.subLogo {
+	font-family: "Decibel";
+	font-size: 40px;
+	color: #03bcff;
+	margin: 0px;
+	margin-left: 20px;
+	height: 10%
+}
+
+div#thanks {
+	position: absolute;
+	top: 80%;
+	left: 80%;
 }

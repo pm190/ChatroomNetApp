@@ -11,7 +11,6 @@
 	<ui:composition template="../WEB-INF/templates/master.xhtml">
 		<ui:define name="content">
 			<h:outputStylesheet library="css" name="main.css"/>
-			<h:outputStylesheet library="css" name="accounts.css"/>
 			<div class="createAccount">
 				<h:form>
 					<h:commandButton value="create account" action="createAccount"/>
@@ -21,7 +20,7 @@
 			<div class="subLogo">your xmpp chat client</div>
 			<div id="sidersContainer">
 				<div class="siders" id="leftSide">
-					<h:graphicImage value="#{resource['img/left.png']}" alt="left graphics"/>
+					<h:graphicImage class="wave" value="#{resource['img/left.png']}" alt="left graphics"/>
 				</div>
 				<div id="loginContainer" class="siders">
 					<div id="centralLogin">
@@ -42,7 +41,7 @@
 					</div>
 				</div>
 				<div class="siders" id="rightSide">
-					<h:graphicImage value="#{resource['img/right.png']}" alt="right graphics"/>
+					<h:graphicImage class="wave" value="#{resource['img/right.png']}" alt="right graphics"/>
 				</div>
 			</div>
 			<div id="thanks">
