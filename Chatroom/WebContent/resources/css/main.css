@@ -144,18 +144,16 @@ header.createAccount {
 }
 
 div#loginContainer {
+	float: left;
 	height: 70%;
-	margin: 0px 15px;
+	width: 22%;
 	border-radius: 30px;
 	vertical-align: top;
 	background: rgba(0, 0, 0, 0.5);
 }
 
 div#accountCreation {
-	position: relative;
-	width: 320px;
-	height: 600px;
-	margin: 0px 50px;
+	float: left;
 	border-radius: 30px;
 	background: rgba(0, 0, 0, 0.5);
 	vertical-align: top;
@@ -168,13 +166,17 @@ div.siders {
 div#leftSide, div#rightSide
 {
 	height: 70%;
-	width: 37%
-}
-
-div#leftSide
-{
+	width: 39%;
 	float: left;
 }
+
+div#leftSideAccount, div#rightSideAccount
+{
+	height: 98%;
+	width: 39%;
+	float: left;
+}
+
 img.wave
 {
 	height:100%;
@@ -183,7 +185,15 @@ img.wave
 div#sidersContainer {
 	height: 70%;
 	width: 100%;
-	max-height: 465px;
+	max-height: 600px;
+	white-space: nowrap;
+}
+
+div#accountContainer
+{
+	height: 77%;
+	width: 100%;
+	max-height: 600px;
 	white-space: nowrap;
 }
 
