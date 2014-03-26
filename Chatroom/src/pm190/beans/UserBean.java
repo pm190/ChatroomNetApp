@@ -165,10 +165,6 @@ public class UserBean
 			AccountManager accountManager = new AccountManager(connection);
 			accountManager.createAccount(registerBean.getUsername(), registerBean.getPassword());
 			//TODO Attributes
-			System.out.println(registerBean.getPassword());
-			System.out.println(registerBean.getEmail());
-			System.out.println(registerBean.getDob());
-			System.out.println(registerBean.getDescription());
 			return "home";
 		}
 		catch(XMPPException e)
