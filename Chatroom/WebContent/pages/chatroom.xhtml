@@ -61,7 +61,8 @@
 			<div class="right">
 				<p:tabView id="rightTabs" value="#{userBean.user.getRoomNames()}" var="roomName" activeIndex="#{userBean.currentRoomIndex}">
 					<p:ajax event="tabChange" listener="#{userBean.roomTabChange}"/>
-					<p:tab title="#{roomName}">
+					<p:ajax event="tabClose" listener="#{userBean.roomTabClose}"/>
+					<p:tab title="#{roomName}" closable="true">
 						<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
 					</p:tab>
 				</p:tabView>

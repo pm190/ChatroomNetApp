@@ -16,6 +16,7 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
+import org.primefaces.event.TabCloseEvent;
 
 import pm190.chatroom.User;
 
@@ -188,4 +189,10 @@ public class UserBean
 		}
 		return friends;
 	}
+	
+	public void roomTabClose(TabCloseEvent event) 
+	{
+		//TODO change current room and current room index
+		user.getMultiUserChat(currentRoom).leave();
+    }
 }
