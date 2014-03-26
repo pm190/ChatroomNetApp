@@ -150,4 +150,16 @@ public class UserBean
 		}
 		return msg;
 	}
+	
+	public String registerNewUser(XMPPConnection connection, RegisterBean registerBean)
+	{
+		System.out.println(registerBean.getUsername());
+		System.out.println(registerBean.getPassword());
+		System.out.println(registerBean.getConfirmPassword());
+		System.out.println(registerBean.getEmail());
+		System.out.println(registerBean.getConfirmEmail());
+		System.out.println(registerBean.getDob());
+		System.out.println(registerBean.getDescription());
+		return "home";
+	}
 }

@@ -5,7 +5,7 @@
   <nodes xsi:type="pageflow:PFPage" name="pages/chatroom.xhtml" x="420" y="228" id="pf13954143547904" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13954148145076" inlinks="pf13954143547903" path="/pages/chatroom.xhtml"/>
   <links id="pf13954143547891" target="pf13954143547890" source="pf13954143547902" outcome="createAccount"/>
   <links id="pf13954143547903" target="pf13954143547904" source="pf13954143547902" outcome="enterChat"/>
-  <links id="pf13954146702575" target="pf13954143547902" source="pf13954143547890" outcome="cancel">
+  <links id="pf13954146702575" target="pf13954143547902" source="pf13954143547890" outcome="home">
     <bendPoints d1Width="13" d1Height="-140" d2Width="-159" d2Height="16"/>
   </links>
   <links id="pf13954148145076" target="pf13954143547902" source="pf13954143547904">

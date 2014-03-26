@@ -24,38 +24,38 @@
 				<h:form>
 					<div class="field">
 						<h:inputText id="username" class="text-input"
-							name="enter username" pt:placeholder="enter username" />
+							name="enter username" pt:placeholder="enter username" value="#{registerBean.username}"/>
 					</div>
 					<div class="field">
 						<h:inputSecret id="password" class="text-input" type="password"
-							name="Password" pt:placeholder="type strong password" />
+							name="Password" pt:placeholder="type strong password" value="#{registerBean.password}"/>
 					</div>
 					<div class="field">
 						<h:inputSecret id="rePassword" class="text-input" type="password"
-							name="rePassword" pt:placeholder="confirm password" />
+							name="rePassword" pt:placeholder="confirm password" value="#{registerBean.confirmPassword}"/>
 					</div>
 					<div class="field">
-						<h:inputText id="email" class="text-input" name="email"
-							pt:placeholder="type your e-mail" />
+						<h:inputText id="email" class="text-input" name="email" pt:type="email"
+							pt:placeholder="type your e-mail" value="#{registerBean.email}"/>
 					</div>
 					<div class="field">
-						<h:inputText id="reEmail" class="text-input"
-							name="reEmail" pt:placeholder="confirm your e-mail" />
+						<h:inputText id="reEmail" class="text-input" name="reEmail" pt:type="email" 
+						pt:placeholder="confirm your e-mail" value="#{registerBean.confirmEmail}"/>
 					</div>
 					<div class="field" id="dob">
 						enter date of birth 
-						<h:inputText id="dateofbirth" class="text-input" name="dateofbirth" />
+						<h:inputText id="dateofbirth" class="text-input" name="dateofbirth" pt:type="date" value="#{registerBean.dob}"/>
 					</div>
 					<div class="field" id="personalDescription">
 						describe yourself in one sentence 
-						<h:inputText name="profile" class="text-input"/>
+						<h:inputText name="profile" class="text-input" value="#{registerBean.description}"/>
 					</div>
 					<div class="twoButtons">
 						<div class="field" style="display: inline-block">
-							<h:commandButton value="register" action="register"/>
+							<h:commandButton value="register" action="#{userBean.registerNewUser(connectionBean.connection, registerBean)}"/>
 						</div>
 						<div class="field" style="display: inline-block">
-							<h:commandButton value="cancel" action="cancel"/>
+							<h:commandButton value="cancel" action="home"/>
 						</div>
 					</div>
 				</h:form>
