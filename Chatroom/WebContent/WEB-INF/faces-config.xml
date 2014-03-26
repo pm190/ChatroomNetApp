@@ -35,5 +35,17 @@
 			<to-view-id>/pages/home.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<validator>
+		<description>Validates passwords from account register form</description>
+		<display-name>Password Validator</display-name>
+		<validator-id>passwordValidator</validator-id>
+		<validator-class>pm190.validators.PasswordValidator</validator-class>
+	</validator>
+	<validator>
+		<description>Validate emails on account creation form</description>
+		<display-name>Email Validator</display-name>
+		<validator-id>emailValidator</validator-id>
+		<validator-class>pm190.validators.EmailValidator</validator-class>
+	</validator>
 
 </faces-config>

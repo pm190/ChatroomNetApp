@@ -20,7 +20,7 @@
 								<h:inputText class="box" pt:placeholder="Search" />
 							</div>
 							<div class="sidePanelContent">
-								<ui:repeat value="#{userManager.getFriends(userBean.user)}" var="user">
+								<ui:repeat value="#{userBean.getFriends()}" var="user">
 									<h:commandButton value="#{user}"/>
 								</ui:repeat>
 							</div>

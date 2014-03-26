@@ -24,38 +24,55 @@
 				<h:form>
 					<div class="field">
 						<h:inputText id="username" class="text-input"
-							name="enter username" pt:placeholder="enter username" value="#{registerBean.username}"/>
+							name="enter username" pt:placeholder="enter username"
+							value="#{registerBean.username}" required="true"/>
+						<h:message for="username" style="color: red;"/>
 					</div>
 					<div class="field">
 						<h:inputSecret id="password" class="text-input" type="password"
-							name="Password" pt:placeholder="type strong password" value="#{registerBean.password}"/>
+							name="Password" pt:placeholder="type strong password"
+							value="#{registerBean.password}" required="true">
+							<f:validator validatorId="passwordValidator" />
+							<f:attribute name="confirmPassword" value="#{confirmPassword}" />
+						</h:inputSecret>
+						 <h:message for="password" style="color: red;"/>
 					</div>
 					<div class="field">
 						<h:inputSecret id="rePassword" class="text-input" type="password"
-							name="rePassword" pt:placeholder="confirm password" value="#{registerBean.confirmPassword}"/>
+							name="rePassword" pt:placeholder="confirm password"
+							required="true" binding="#{confirmPassword}" />
 					</div>
 					<div class="field">
-						<h:inputText id="email" class="text-input" name="email" pt:type="email"
-							pt:placeholder="type your e-mail" value="#{registerBean.email}"/>
+						<h:inputText id="email" class="text-input" name="email"
+							pt:type="email" pt:placeholder="type your e-mail"
+							value="#{registerBean.email}">
+							<f:validator validatorId="emailValidator" />
+							<f:attribute name="confirmEmail" value="#{confirmEmail}" />
+						</h:inputText>
+						<h:message for="email" style="color: red;"/>
 					</div>
 					<div class="field">
-						<h:inputText id="reEmail" class="text-input" name="reEmail" pt:type="email" 
-						pt:placeholder="confirm your e-mail" value="#{registerBean.confirmEmail}"/>
+						<h:inputText id="reEmail" class="text-input" name="reEmail"
+							pt:type="email" pt:placeholder="confirm your e-mail" 
+							binding="#{confirmEmail}"/>
 					</div>
 					<div class="field" id="dob">
-						enter date of birth 
-						<h:inputText id="dateofbirth" class="text-input" name="dateofbirth" pt:type="date" value="#{registerBean.dob}"/>
+						enter date of birth
+						<h:inputText id="dateofbirth" class="text-input"
+							name="dateofbirth" pt:type="date" value="#{registerBean.dob}" />
 					</div>
 					<div class="field" id="personalDescription">
-						describe yourself in one sentence 
-						<h:inputText name="profile" class="text-input" value="#{registerBean.description}"/>
+						describe yourself in one sentence
+						<h:inputText name="profile" class="text-input"
+							value="#{registerBean.description}" />
 					</div>
 					<div class="twoButtons">
 						<div class="field" style="display: inline-block">
-							<h:commandButton value="register" action="#{userBean.registerNewUser(connectionBean.connection, registerBean)}"/>
+							<h:commandButton value="register"
+								action="#{userBean.registerNewUser(connectionBean.connection, registerBean)}" />
 						</div>
 						<div class="field" style="display: inline-block">
-							<h:commandButton value="cancel" action="home"/>
+							<h:commandButton value="cancel" action="home" />
 						</div>
 					</div>
 				</h:form>

@@ -1,12 +1,19 @@
 package pm190.beans;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
+import org.jivesoftware.smack.AccountManager;
+import org.jivesoftware.smack.Roster;
+import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 
@@ -153,13 +160,36 @@ public class UserBean
 	
 	public String registerNewUser(XMPPConnection connection, RegisterBean registerBean)
 	{
-		System.out.println(registerBean.getUsername());
-		System.out.println(registerBean.getPassword());
-		System.out.println(registerBean.getConfirmPassword());
-		System.out.println(registerBean.getEmail());
-		System.out.println(registerBean.getConfirmEmail());
-		System.out.println(registerBean.getDob());
-		System.out.println(registerBean.getDescription());
-		return "home";
+		try
+		{
+			AccountManager accountManager = new AccountManager(connection);
+			accountManager.createAccount(registerBean.getUsername(), registerBean.getPassword());
+			//TODO Attributes
+			System.out.println(registerBean.getPassword());
+			System.out.println(registerBean.getEmail());
+			System.out.println(registerBean.getDob());
+			System.out.println(registerBean.getDescription());
+			return "home";
+		}
+		catch(XMPPException e)
+		{
+			FacesContext.getCurrentInstance().addMessage("username", new FacesMessage("Account already exists"));
+			return "";
+		}
+	}
+	
+	public List<String> getFriends()
+	{
+		List<String> friends = new ArrayList<String>();
+		if(user != null)
+		{
+			Roster roster = user.getConnection().getRoster();
+			Collection<RosterEntry> entries = roster.getEntries();
+			for(RosterEntry entry : entries)
+			{
+				friends.add(entry.getUser());
+			}
+		}
+		return friends;
 	}
 }
