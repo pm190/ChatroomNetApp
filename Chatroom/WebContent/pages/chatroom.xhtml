@@ -13,7 +13,7 @@
 		<h:outputStylesheet library="css" name="roompage.css" />
 		<div class="container">
 			<div class="left">
-				<p:tabView id="leftTabs">
+				<p:tabView id="leftTabs" dynamic="true">
 					<p:tab id="friendsTab" title="Friends">
 						<div class="sidePanel">
 							<div class="searchBox">
@@ -59,7 +59,7 @@
 				</p:tabView>
 			</div>
 			<div class="right">
-				<p:tabView id="rightTabs" value="#{userBean.user.getRoomNames()}" var="roomName" activeIndex="#{userBean.currentRoomIndex}">
+				<p:tabView id="rightTabs" value="#{userBean.user.getRoomNames()}" var="roomName" activeIndex="#{userBean.currentRoomIndex}" dynamic="true">
 					<p:ajax event="tabChange" listener="#{userBean.roomTabChange}"/>
 					<p:ajax event="tabClose" listener="#{userBean.roomTabClose}"/>
 					<p:tab title="#{roomName}" closable="true">
