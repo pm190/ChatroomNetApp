@@ -18,7 +18,7 @@ import pm190.beans.ConnectionBean;
  */
 public class RoomManager
 {
-	private final Map<String, Room> rooms = new HashMap<String, Room>();
+	private final Map<String, MultiUserChat> rooms = new HashMap<String, MultiUserChat>();
 	private final Map<String, List<String>> usersInRooms = new HashMap<String, List<String>>();
 
 	public RoomManager()
@@ -39,16 +39,16 @@ public class RoomManager
 		}
 	}
 
-	public void joinRoom(User user, String name)
+	public void joinRoom(User user, String roomName)
 	{
 		try
 		{
-			user.joinRoomWithMUC(name).join(user.getUsername());
-			if(!usersInRooms.containsKey(name))
+			user.joinRoomWithMUC(roomName).join(user.getUsername());
+			if(!usersInRooms.containsKey(roomName))
 			{
-				usersInRooms.put(name, new ArrayList<String>());
+				usersInRooms.put(roomName, new ArrayList<String>());
 			}
-			usersInRooms.get(name).add(user.getUsername());
+			usersInRooms.get(roomName).add(user.getUsername());
 		}
 		catch(XMPPException e)
 		{
@@ -57,23 +57,21 @@ public class RoomManager
 		}
 	}
 	
-	private void createRoomDontJoin(User user, String name)
+	private void createRoomDontJoin(User user, String roomName)
 	{
-		Room room = new Room(name, new MultiUserChat(user.getConnection(), name + "@" + ServerProperties.getServicename()));
-		rooms.put(name, room);
+		rooms.put(roomName, new MultiUserChat(user.getConnection(), roomName + "@" + ServerProperties.getServicename()));
 	}
 
-	public void createRoom(User user, String name)
+	public void createRoom(User user, String roomName)
 	{
-		if(rooms.containsKey(name))
+		if(rooms.containsKey(roomName))
 		{
-			joinRoom(user, name);
+			joinRoom(user, roomName);
 		}
 		else
 		{
-			Room room = new Room(name, new MultiUserChat(user.getConnection(), name + "@" + ServerProperties.getServicename()));
-			rooms.put(name, room);
-			joinRoom(user, name);
+			rooms.put(roomName, new MultiUserChat(user.getConnection(), roomName + "@" + ServerProperties.getServicename()));
+			joinRoom(user, roomName);
 		}
 	}
 
@@ -97,5 +95,16 @@ public class RoomManager
 			}
 		}
 		return roomNames;
+	}
+
+	public void leaveRoom(User user, String roomName)
+	{
+		List<String> users = usersInRooms.get(roomName);
+		users.remove(user.getUsername());
+		if(users.size()==0)
+		{
+			usersInRooms.remove(roomName);
+			rooms.remove(roomName);
+		}
 	}
 }

@@ -4,23 +4,28 @@
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://java.sun.com/jsp/jstl/core">
     <div class="chat">
 	    <div id="messages" class="messages">
-			<h:form>
-				<h:panelGroup id="msgs" layout="block">
-					<ui:repeat value="#{userBean.getRoomMessages()}" var="msg">
-						<li style="list-style:none">#{msg}</li>
-					</ui:repeat>
-				</h:panelGroup>
-			    <p:poll interval="1" update="msgs"/>
+			<h:form id="chatMsgForm">
+				<p:outputPanel id="msgs" layout="block"/>
 			</h:form>
+			<p:socket onMessage="handleMessage" channel="room/#{roomName}" />
 		</div>
-		<div class="messageBox">
-			<h:form>
-				<h:inputText id="message" styleClass="box" value="#{messageBean.message}" pt:placeholder="Message"/>
-				<h:commandButton value="send" action="#{userBean.sendMessage(messageBean.message, userBean.currentRoom)}"/>
-			</h:form>
-		</div>
+		<c:if test="#{roomName != 'help'}">
+			<div class="messageBox">
+				<h:form>
+					<h:inputText id="message" styleClass="box" value="#{messageBean.message}" pt:placeholder="Message"/>
+					<h:commandButton value="send" action="#{userBean.sendMessage(messageBean.message)}"/>
+				</h:form>
+			</div>
+		</c:if>
 	</div>
+	<script type="text/javascript">
+		function handleMessage(message) {
+			var chatContent = $(PrimeFaces.escapeClientId('chatMsgForm:public')), text = message;
+			chatContent.append(text + '<br />');
+		}
+	</script>
 </ui:composition>

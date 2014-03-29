@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" 
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="../WEB-INF/templates/master.xhtml">
@@ -13,7 +13,7 @@
 		<h:outputStylesheet library="css" name="roompage.css" />
 		<div class="container">
 			<div class="left">
-				<p:tabView id="leftTabs" dynamic="true">
+				<p:tabView id="leftTabs">
 					<p:tab id="friendsTab" title="Friends">
 						<div class="sidePanel">
 							<div class="searchBox">
@@ -21,7 +21,7 @@
 							</div>
 							<div class="sidePanelContent">
 								<ui:repeat value="#{userBean.getFriends()}" var="user">
-									<h:commandButton value="#{user}"/>
+									<h:commandButton value="#{user}" />
 								</ui:repeat>
 							</div>
 						</div>
@@ -32,8 +32,10 @@
 								<h:inputText class="box" pt:placeholder="Search" />
 							</div>
 							<div class="sidePanelContent">
-								<ui:repeat value="#{roomsBean.getAllUsersInRooms(userBean.currentRoom, userBean.user)}" var="user">
-									<h:commandButton value="#{user}"/>
+								<ui:repeat
+									value="#{roomsBean.getAllUsersInRoom(userBean.currentRoom, userBean.user)}"
+									var="user">
+									<h:commandButton value="#{user}" />
 								</ui:repeat>
 							</div>
 						</div>
@@ -47,23 +49,23 @@
 								<ui:repeat value="#{roomsBean.getAllRooms()}" var="roomName">
 									<h:form>
 										<h:commandButton value="#{roomName}">
-											<f:actionListener binding="#{userBean.setCurrentRoom(roomName)}"/>
-											<f:actionListener binding="#{userBean.incIndex()}"/>
-											<f:ajax listener="#{roomsBean.joinRoom(userBean.user, roomName)}" render=":rightTabs"/>
+											<f:ajax listener="#{roomsBean.joinRoom(userBean, roomName)}" render=":rightTabs" />
 										</h:commandButton>
 									</h:form>
-								</ui:repeat>
+								</ui:repeat> 
 							</div>
 						</div>
 					</p:tab>
 				</p:tabView>
 			</div>
 			<div class="right">
-				<p:tabView id="rightTabs" value="#{userBean.user.getRoomNames()}" var="roomName" activeIndex="#{userBean.currentRoomIndex}" dynamic="true">
-					<p:ajax event="tabChange" listener="#{userBean.roomTabChange}"/>
-					<p:ajax event="tabClose" listener="#{userBean.roomTabClose}"/>
+				<p:tabView id="rightTabs" value="#{userBean.user.getRoomNames()}" var="roomName">
+					<p:ajax event="tabChange" listener="#{userBean.roomTabChange}" />
+					<p:ajax event="tabClose" listener="#{userBean.roomTabClose}" />
 					<p:tab title="#{roomName}" closable="true">
-						<ui:include src="/WEB-INF/templates/chatPanel.xhtml"/>
+						<ui:include src="/WEB-INF/templates/chatPanel.xhtml">
+							<ui:param name="roomName" value="#{roomName}"/>
+						</ui:include>
 					</p:tab>
 				</p:tabView>
 			</div>

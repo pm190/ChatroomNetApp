@@ -14,10 +14,10 @@ import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
 
+import pm190.chatroom.RoomManagerFactory;
 import pm190.chatroom.User;
 
 /**
@@ -32,9 +32,8 @@ public class UserBean
 	private String password = "";
 	private boolean guest = false;
 	private User user;
+	private final List<String> rooms = new ArrayList<String>();
 	private String currentRoom;
-	private int currentRoomIndex = -1;
-	private List<String> messages;
 	
 	public UserBean()
 	{
@@ -82,81 +81,83 @@ public class UserBean
 	
 	public String login(XMPPConnection connection)
 	{
-		if(!guest)
+		try
 		{
-			//TODO get login exception
-			User user = new User(connection, username, password);
-			this.user = user;
+			if(!guest)
+			{
+				User user = new User(connection, username, password);
+				this.user = user;
+			}
+			else
+			{
+				User user = new User(connection);
+				this.user = user;
+			}
+			return "enterChat";
 		}
-		else
+		catch(XMPPException e)
 		{
-			User user = new User(connection);
-			this.user = user;
+			//TODO do something with exception
+			return "";
 		}
-		return "enterChat";
 	}
 	
-	public void sendMessage(String message, String roomName)
+	public void sendMessage(String message)
 	{
-		user.sendMessageToRoom(message, roomName);
+		user.sendMessageToRoom(message, currentRoom);
 	}
 
 	public String getCurrentRoom()
 	{
 		return currentRoom;
 	}
-	
-	public void setCurrentRoom(String currentRoom)
-	{
-		this.currentRoom = currentRoom;
-		messages = new ArrayList<String>();
-	}
 
 	public void roomTabChange(TabChangeEvent event)
 	{
-		setCurrentRoom(event.getTab().getTitle());
-		currentRoomIndex = ((TabView)event.getComponent()).getChildren().indexOf(event.getTab());
-	}
-
-	public int getCurrentRoomIndex()
-	{
-		return currentRoomIndex;
-	}
-
-	public void setCurrentRoomIndex(int currentRoomIndex)
-	{
-		this.currentRoomIndex = currentRoomIndex;
-	}
-	
-	public void incIndex()
-	{
-		currentRoomIndex++;
-	}
-	
-	public void decIndex()
-	{
-		currentRoomIndex--;
-	}
-	
-	public List<String> getRoomMessages()
-	{
-		String msg = getMessage();
-		while(msg != null)
+		String tab = (String) event.getData();
+		if(!tab.equals("help"))
 		{
-			messages.add(msg);
-			msg = getMessage();
+			currentRoom = tab;
 		}
-		return messages;
 	}
 	
-	private String getMessage()
+	public void roomTabClose(TabCloseEvent event) 
 	{
-		String msg = null;
-		if(currentRoom != null)
+		String tab = (String) event.getData();
+		if(!tab.equals("help"))
 		{
-			msg = user.nextMessage(currentRoom);
+			if(tab.equals(currentRoom))
+			{
+				user.getMultiUserChat(currentRoom).leave();
+				RoomManagerFactory.getInstance().leaveRoom(user, currentRoom);
+				int indx = rooms.indexOf(currentRoom);
+				rooms.remove(indx);
+				int size = rooms.size();
+				if(size == 0)
+				{
+					currentRoom = "";
+				}
+				else
+				{
+					if(indx == size-1)
+					{
+						currentRoom = rooms.get(size-1);
+					}
+				}
+			}
+			else
+			{
+				user.getMultiUserChat(tab).leave();
+				RoomManagerFactory.getInstance().leaveRoom(user, tab);
+				rooms.remove(tab);
+			}
 		}
-		return msg;
+    }
+	
+	public void joinRoom(String roomName)
+	{
+		rooms.add(roomName);
+		currentRoom = roomName;
 	}
 	
 	public String registerNewUser(XMPPConnection connection, RegisterBean registerBean)
@@ -189,10 +190,4 @@ public class UserBean
 		}
 		return friends;
 	}
-	
-	public void roomTabClose(TabCloseEvent event) 
-	{
-		//TODO change current room and current room index
-		user.getMultiUserChat(currentRoom).leave();
-    }
 }

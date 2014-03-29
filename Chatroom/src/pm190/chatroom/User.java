@@ -7,8 +7,6 @@ import java.util.Map;
 
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.packet.Message;
-import org.jivesoftware.smack.util.StringUtils;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 
 /**
@@ -21,38 +19,19 @@ public class User
 	private final String username;
 	private final Map<String, MultiUserChat> roomChats = new HashMap<String, MultiUserChat>();
 	
-	public User(XMPPConnection connection)
+	public User(XMPPConnection connection) throws XMPPException
 	{
 		this.connection = connection;
-		try
-		{
-			connection.loginAnonymously();
-		}
-		catch(XMPPException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally
-		{
-			String fullname = connection.getUser();
-			this.username = fullname.substring(0, fullname.indexOf("@"));
-		}
+		connection.loginAnonymously();
+		String fullname = connection.getUser();
+		this.username = fullname.substring(0, fullname.indexOf("@"));
 	}
 	
-	public User(XMPPConnection connection, String username, String password)
+	public User(XMPPConnection connection, String username, String password) throws XMPPException
 	{
 		this.connection = connection;
 		this.username = username;
-		try
-		{
-			connection.login(username, password);
-		}
-		catch(XMPPException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		connection.login(username, password);
 	}
 
 	public XMPPConnection getConnection()
@@ -67,6 +46,10 @@ public class User
 	
 	public MultiUserChat joinRoomWithMUC(String roomName)
 	{
+		RoomChatListener roomChatListener = new RoomChatListener(connection, roomName);
+		Thread roomThread = new Thread(roomChatListener);
+		roomThread.setDaemon(true);
+		roomThread.start();
 		MultiUserChat muc = new MultiUserChat(connection, roomName + "@" + ServerProperties.getServicename());
 		roomChats.put(roomName, muc);
 		return roomChats.get(roomName);
@@ -99,19 +82,5 @@ public class User
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public String nextMessage(String roomName)
-	{
-		MultiUserChat muc = getMultiUserChat(roomName);
-		if(muc != null)
-		{
-			Message msg = muc.pollMessage();
-			if(msg != null)
-			{
-				return StringUtils.parseResource(msg.getFrom()) + ": " + msg.getBody();
-			}
-		}
-		return null;
 	}
 }
