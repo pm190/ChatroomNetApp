@@ -43,7 +43,7 @@ public class RoomManager
 	{
 		try
 		{
-			user.joinRoomWithMUC(roomName).join(user.getUsername());
+			user.joinRoomWithMUC(roomName);
 			if(!usersInRooms.containsKey(roomName))
 			{
 				usersInRooms.put(roomName, new ArrayList<String>());

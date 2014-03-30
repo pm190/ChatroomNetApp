@@ -24,6 +24,7 @@ public class User
 		this.connection = connection;
 		connection.loginAnonymously();
 		String fullname = connection.getUser();
+		//TODO change to stringutils parse resource
 		this.username = fullname.substring(0, fullname.indexOf("@"));
 	}
 	
@@ -44,15 +45,14 @@ public class User
 		return username;
 	}
 	
-	public MultiUserChat joinRoomWithMUC(String roomName)
+	public void joinRoomWithMUC(String roomName) throws XMPPException
 	{
-		RoomChatListener roomChatListener = new RoomChatListener(connection, roomName);
+		RoomChatListener roomChatListener = new RoomChatListener(connection, roomName, username);
 		Thread roomThread = new Thread(roomChatListener);
 		roomThread.setDaemon(true);
 		roomThread.start();
 		MultiUserChat muc = new MultiUserChat(connection, roomName + "@" + ServerProperties.getServicename());
 		roomChats.put(roomName, muc);
-		return roomChats.get(roomName);
 	}
 	
 	public MultiUserChat getMultiUserChat(String roomName)

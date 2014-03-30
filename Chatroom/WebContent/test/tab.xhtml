@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	#{roomManagerBean.listen(roomName)}
+	<h:form id="#{roomName}form">
+		<p:outputPanel id="messages" layout="block">
+			<ui:repeat var="chatMessage" value="#{roomManagerBean.getMessages(roomName)}">
+				<span style="color:#{chatMessage.colour}">#{chatMessage.from}: #{chatMessage.text}</span><br/>
+			</ui:repeat>
+		</p:outputPanel>
+	</h:form>
+	<h:form>
+		<h:inputText id="#{roomName}message" value="#{messageBean.message}" required="true"/>
+		<h:commandButton value="send" actionListener="#{roomManagerBean.sendMessage(roomName, messageBean.message)}">
+			<f:actionListener binding="#{messageBean.reset()}"/>
+			<f:ajax execute="@form" render="#{roomName}message" />
+		</h:commandButton>
+	</h:form>
+</ui:composition>

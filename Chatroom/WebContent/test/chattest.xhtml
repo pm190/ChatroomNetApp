@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title><ui:insert name="title">Banter Box</ui:insert></title>
+</h:head>
+<h:body>
+	<h:outputStylesheet library="css" name="test.css"/>
+	<p:tabView id="navTabs">
+		<p:tab title="Friends">
+		</p:tab>
+		<p:tab title="Users">
+			<ui:repeat value="#{roomManagerBean.getUsersInRoom()}" var="user">
+				<h:commandButton value="#{user}"/>
+			</ui:repeat>
+		</p:tab>
+		<p:tab title="Rooms">
+			<ui:repeat value="#{roomManagerBean.getAllRoomNames()}" var="roomName">
+				<h:form>
+					<h:commandButton value="#{roomName}" actionListener="#{roomManagerBean.enterRoom(roomName)}">
+						<f:ajax execute="@form" render=":chats" />
+					</h:commandButton>
+				</h:form>
+			</ui:repeat>
+		</p:tab>
+	</p:tabView>
+	<p:socket onMessage="handleUser" channel="/users"/>
+	<p:tabView id="chats" onTabChange="resetTabStyle(index)" activeIndex="#{roomManagerBean.activeTabIndex}">
+		<p:ajax event="tabClose" listener="#{roomManagerBean.leaveRoom}"/>
+		<p:ajax event="tabChange" listener="#{roomManagerBean.changeRoom}"/>
+		<c:forEach items="#{roomManagerBean.getOpenRoomNames()}" var="roomName">
+			<p:tab title="#{roomName}" closable="true">
+				<c:choose>
+					<c:when test="#{roomManagerBean.isSpecialRoom(roomName)}">
+						<ui:include src="/WEB-INF/specialPages/#{roomName}.xhtml"/>
+					</c:when>
+					<c:otherwise>
+						<ui:include src="tab.xhtml">
+							<ui:param name="roomName" value="#{roomName}"></ui:param>
+						</ui:include>
+					</c:otherwise>
+				</c:choose>
+			</p:tab>
+		</c:forEach>
+	</p:tabView>
+	<p:socket onMessage="handleMessage" channel="/message" />
+	<script type='text/javascript'>
+		function handleMessage(chatMessage) {
+			var text = chatMessage.text;
+			var from = chatMessage.from;
+			var colour = chatMessage.colour;
+			var roomName = chatMessage.roomName;
+			var chatContent = $(PrimeFaces.escapeClientId('chats:'+roomName+'form:messages'));
+			chatContent.append('<span style="color:'+colour+'">'+from+': '+text+'</span><br/>');
+			var activeTabIndex = document.getElementById('chats_activeIndex').value;
+			var tabs = document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li');
+			var activeTabName = tabs[activeTabIndex].getElementsByTagName('a')[0].innerHTML;
+			if(activeTabName !== roomName) {
+				for(var i = 0; i &lt; tabs.length; i++) {
+					if(tabs[i].getElementsByTagName('a')[0].innerHTML === roomName) {
+						tabs[i].className='updated';
+					}
+				}
+			}
+		}
+
+		function resetTabStyle(index) {
+			document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li')[index].className='notUpdated';
+		}
+		
+		function handleUser(user) {
+			alert('Yo');
+		}
+	</script>
+</h:body>
+</html>
