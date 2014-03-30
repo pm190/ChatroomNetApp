@@ -13,7 +13,7 @@
 		</p:outputPanel>
 	</h:form>
 	<h:form>
-		<h:inputText id="#{roomName}message" value="#{messageBean.message}" required="true"/>
+		<h:inputText id="#{roomName}message" value="#{messageBean.message}" required="true" autocomplete="off"/>
 		<h:commandButton value="send" actionListener="#{roomManagerBean.sendMessage(roomName, messageBean.message)}">
 			<f:actionListener binding="#{messageBean.reset()}"/>
 			<f:ajax execute="@form" render="#{roomName}message" />

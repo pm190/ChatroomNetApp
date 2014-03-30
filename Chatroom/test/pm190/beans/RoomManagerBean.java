@@ -62,7 +62,12 @@ public class RoomManagerBean {
 		{
 			listener.stopListening();
 		}
+		int index = openRoomNames.indexOf(roomName);
 		openRoomNames.remove(roomName);
+		if(activeTabIndex > index)
+		{
+			activeTabIndex--;
+		}
 	}
 	
 	public void changeRoom(TabChangeEvent e) {
@@ -145,16 +150,19 @@ public class RoomManagerBean {
 	
 	public List<String> getUsersInRoom() {
 		List<String> users = new ArrayList<String>();
-		String roomName = openRoomNames.get(activeTabIndex);
-		if(roomName != null)
+		if(activeTabIndex < openRoomNames.size())
 		{
-			RoomChatListenerUITest listener = listeners.get(roomName);
-			if(listener != null)
+			String roomName = openRoomNames.get(activeTabIndex);
+			if(roomName != null)
 			{
-				Iterator<String> occupants = listener.getMultiUserChat().getOccupants();
-				while(occupants.hasNext())
+				RoomChatListenerUITest listener = listeners.get(roomName);
+				if(listener != null)
 				{
-					users.add(StringUtils.parseResource(occupants.next()));
+					Iterator<String> occupants = listener.getMultiUserChat().getOccupants();
+					while(occupants.hasNext())
+					{
+						users.add(StringUtils.parseResource(occupants.next()));
+					}
 				}
 			}
 		}
