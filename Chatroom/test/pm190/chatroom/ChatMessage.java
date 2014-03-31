@@ -2,7 +2,6 @@ package pm190.chatroom;
 
 public class ChatMessage {
 	private final String text;
-	private final String from;
 	private final String colour;
 	private final String roomName;
 	/**
@@ -11,9 +10,8 @@ public class ChatMessage {
 	 * @param colour
 	 * @param roomName 
 	 */
-	public ChatMessage(String message, String from, String colour, String roomName) {
-		this.text = message;
-		this.from = from;
+	public ChatMessage(String text, String colour, String roomName) {
+		this.text = text;
 		this.colour = colour;
 		this.roomName = roomName;
 	}
@@ -23,13 +21,6 @@ public class ChatMessage {
 	 */
 	public String getText() {
 		return text;
-	}
-	
-	/**
-	 * @return the from
-	 */
-	public String getFrom() {
-		return from;
 	}
 	
 	/**

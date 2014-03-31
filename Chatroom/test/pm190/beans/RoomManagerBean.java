@@ -12,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.util.StringUtils;
+import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
 
@@ -26,7 +27,8 @@ public class RoomManagerBean {
 	private final List<String> specialRoomNames = new ArrayList<String>();
 	private final List<String> allRoomNames = new ArrayList<String>();
 	private final Map<String, RoomChatListenerUITest> listeners = new ConcurrentHashMap<String, RoomChatListenerUITest>();
-	private volatile int activeTabIndex;
+	private volatile int activeRoomTabIndex;
+	private volatile int activeNavTabIndex;
 	
 	public RoomManagerBean() {
 		//TODO read from special pages folder
@@ -51,7 +53,7 @@ public class RoomManagerBean {
 			{
 				openRoomNames.add(roomName);
 			}
-			activeTabIndex = openRoomNames.indexOf(roomName);
+			activeRoomTabIndex = openRoomNames.indexOf(roomName);
 		}
 	}
 
@@ -64,16 +66,16 @@ public class RoomManagerBean {
 		}
 		int index = openRoomNames.indexOf(roomName);
 		openRoomNames.remove(roomName);
-		if(activeTabIndex > index)
+		if(activeRoomTabIndex > index)
 		{
-			activeTabIndex--;
+			activeRoomTabIndex--;
 		}
 	}
 	
 	public void changeRoom(TabChangeEvent e) {
 		String roomName = e.getTab().getTitle();
-		activeTabIndex = openRoomNames.indexOf(roomName);
-		System.out.println("Active Tab Index: " + activeTabIndex);
+		activeRoomTabIndex = openRoomNames.indexOf(roomName);
+		System.out.println("Active Tab Index: " + activeRoomTabIndex);
 	}
 
 	public boolean isSpecialRoom(String roomName)
@@ -133,26 +135,31 @@ public class RoomManagerBean {
 		}
 	}
 
-	/**
-	 * @return the activeTabIndex
-	 */
-	public int getActiveTabIndex() {
-		return activeTabIndex;
+	public int getActiveRoomTabIndex()
+	{
+		return activeRoomTabIndex;
 	}
 
-	/**
-	 * @param activeTabIndex the activeTabIndex to set
-	 */
-	public void setActiveTabIndex(int activeTabIndex) {
-		this.activeTabIndex = activeTabIndex;
-		System.out.println("Tab index changed to: " + activeTabIndex);
+	public void setActiveRoomTabIndex(int activeRoomTabIndex)
+	{
+		this.activeRoomTabIndex = activeRoomTabIndex;
 	}
-	
+
+	public int getActiveNavTabIndex()
+	{
+		return activeNavTabIndex;
+	}
+
+	public void setActiveNavTabIndex(int activeNavTabIndex)
+	{
+		this.activeNavTabIndex = activeNavTabIndex;
+	}
+
 	public List<String> getUsersInRoom() {
 		List<String> users = new ArrayList<String>();
-		if(activeTabIndex < openRoomNames.size())
+		if(activeRoomTabIndex < openRoomNames.size())
 		{
-			String roomName = openRoomNames.get(activeTabIndex);
+			String roomName = openRoomNames.get(activeRoomTabIndex);
 			if(roomName != null)
 			{
 				RoomChatListenerUITest listener = listeners.get(roomName);
@@ -167,5 +174,12 @@ public class RoomManagerBean {
 			}
 		}
 		return users;
+	}
+	
+	public void changeNavTab(TabChangeEvent e)
+	{
+		TabView tabView = (TabView) e.getComponent();
+        activeNavTabIndex = tabView.getChildren().indexOf(e.getTab());
+        System.out.println("Nav tab index: " + activeNavTabIndex);
 	}
 }

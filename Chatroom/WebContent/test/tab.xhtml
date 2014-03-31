@@ -8,7 +8,7 @@
 	<h:form id="#{roomName}form">
 		<p:outputPanel id="messages" layout="block">
 			<ui:repeat var="chatMessage" value="#{roomManagerBean.getMessages(roomName)}">
-				<span style="color:#{chatMessage.colour}">#{chatMessage.from}: #{chatMessage.text}</span><br/>
+				<span style="color:#{chatMessage.colour}">#{chatMessage.text}</span><br/>
 			</ui:repeat>
 		</p:outputPanel>
 	</h:form>

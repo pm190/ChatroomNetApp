@@ -37,6 +37,7 @@ public class RoomChatListenerUITest implements Runnable {
 		DiscussionHistory history = new DiscussionHistory();
 		history.setSince(new Date());
 		muc.join(user, null, history, 5000);
+		muc.addParticipantListener(new UserPresenceListener(roomName, user));
 	}
 	
 	@Override
@@ -46,9 +47,8 @@ public class RoomChatListenerUITest implements Runnable {
 			if(msg != null && msg.getBody() != null && msg.getFrom() != null)
 			{
 				String from = StringUtils.parseResource(msg.getFrom());
-				ChatMessage chatMessage = new ChatMessage(msg.getBody(), from, (from.equals(user) ? "blue" : "orange"), roomName);
+				ChatMessage chatMessage = new ChatMessage(from + ": " + msg.getBody(), (from.equals(user) ? "blue" : "orange"), roomName);
 				System.out.println("Next message: " + chatMessage.getText());
-				System.out.println("Next message from: " + chatMessage.getFrom());
 				System.out.println("Next message colour: " + chatMessage.getColour());
 				messages.add(chatMessage);
 				PushContext pushContext = PushContextFactory.getDefault().getPushContext();

@@ -11,7 +11,8 @@
 </h:head>
 <h:body>
 	<h:outputStylesheet library="css" name="test.css"/>
-	<p:tabView id="navTabs" dynamic="true" cache="false">
+	<p:tabView id="navTabs" activeIndex="#{roomManagerBean.activeNavTabIndex}" dynamic="true" cache="false">
+		<p:ajax event="tabChange" listener="#{roomManagerBean.changeNavTab}"/>
 		<p:tab title="Friends">
 		</p:tab>
 		<p:tab id="usersTab" title="Users">
@@ -30,7 +31,12 @@
 		</p:tab>
 	</p:tabView>
 	<p:socket onMessage="handleUser" channel="/users"/>
-	<p:tabView id="chats" onTabChange="resetTabStyle(index)" activeIndex="#{roomManagerBean.activeTabIndex}" dynamic="true" cache="false">
+	<h:form id="renderNavTabsForm" style="display:none">
+		<h:commandButton id="renderNavTabsButton" value="render">
+			<f:ajax render=":navTabs"/>
+		</h:commandButton>
+	</h:form>
+	<p:tabView id="chats" onTabChange="roomTabChange(index)" activeIndex="#{roomManagerBean.activeRoomTabIndex}" dynamic="true" cache="false">
 		<p:ajax event="tabClose" listener="#{roomManagerBean.leaveRoom}"/>
 		<p:ajax event="tabChange" listener="#{roomManagerBean.changeRoom}"/>
 		<c:forEach items="#{roomManagerBean.getOpenRoomNames()}" var="roomName">
@@ -51,30 +57,42 @@
 	<p:socket onMessage="handleMessage" channel="/message" />
 	<script type='text/javascript'>
 		function handleMessage(chatMessage) {
-			var text = chatMessage.text;
-			var from = chatMessage.from;
-			var colour = chatMessage.colour;
 			var roomName = chatMessage.roomName;
 			var chatContent = $(PrimeFaces.escapeClientId('chats:'+roomName+'form:messages'));
-			chatContent.append('<span style="color:'+colour+'">'+from+': '+text+'</span><br/>');
+			chatContent.append(getChatMessageHTML(chatMessage));
 			var activeTabIndex = document.getElementById('chats_activeIndex').value;
 			var tabs = document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li');
 			var activeTabName = tabs[activeTabIndex].getElementsByTagName('a')[0].innerHTML;
-			if(activeTabName !== roomName) {
+			if(activeTabName !== roomName &amp;&amp; tabs !== null) {
 				for(var i = 0; i &lt; tabs.length; i++) {
-					if(tabs[i].getElementsByTagName('a')[0].innerHTML === roomName) {
+					if(tabs[i] !== null &amp;&amp; tabs[i].getElementsByTagName('a')[0].innerHTML === roomName) {
 						tabs[i].className='updated';
 					}
 				}
 			}
 		}
 
-		function resetTabStyle(index) {
+		function roomTabChange(index) {
 			document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li')[index].className='notUpdated';
+			renderUserTab();
 		}
 		
-		function handleUser(user) {
-			alert('Yo');
+		function renderUserTab()
+		{
+			var activeTabIndex = document.getElementById('navTabs_activeIndex').value;
+			if(activeTabIndex === '1') {
+				document.getElementById('renderNavTabsForm:renderNavTabsButton').click();
+			}
+		}
+		
+		function handleUser(message) {
+			renderUserTab();
+		}
+		
+		function getChatMessageHTML(chatMessage) {
+			var text = chatMessage.text;
+			var colour = chatMessage.colour;
+			return '<span style="color:'+colour+'">'+text+'</span><br/>';
 		}
 	</script>
 </h:body>
