@@ -1,24 +1,23 @@
 package pm190.beans;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import org.jivesoftware.smack.AccountManager;
-import org.jivesoftware.smack.Roster;
-import org.jivesoftware.smack.RosterEntry;
+import org.jivesoftware.smack.ConnectionConfiguration;
+import org.jivesoftware.smack.SmackConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode;
+import org.jivesoftware.smack.util.StringUtils;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
 
-import pm190.chatroom.RoomManagerFactory;
-import pm190.chatroom.User;
+import pm190.chatroom.ChatMessage;
+import pm190.chatroom.ServerPropertyUtils;
+import pm190.chatroom.UserManager;
 
 /**
  * 
@@ -28,15 +27,20 @@ import pm190.chatroom.User;
 @SessionScoped
 public class UserBean
 {
-	private String username = "";
-	private String password = "";
-	private boolean guest = false;
-	private User user;
-	private final List<String> rooms = new ArrayList<String>();
-	private String currentRoom;
-	
-	public UserBean()
+	private static final int PACKET_REPLY_TIMEOUT = 500; // millis
+	private volatile String username = "";
+	private volatile String password = "";
+	private volatile boolean guest = false;
+	private volatile XMPPConnection connection;
+	private volatile UserManager userManager;
+
+	public UserBean() throws XMPPException
 	{
+		SmackConfiguration.setPacketReplyTimeout(PACKET_REPLY_TIMEOUT);
+		ConnectionConfiguration config = new ConnectionConfiguration(ServerPropertyUtils.getServeraddress(), ServerPropertyUtils.getServerport());
+		config.setSecurityMode(SecurityMode.disabled);
+		connection = new XMPPConnection(config);
+		connection.connect();
 	}
 
 	public String getUsername()
@@ -68,99 +72,37 @@ public class UserBean
 	{
 		this.guest = guest;
 	}
+	
+	public UserManager getUserManager()
+	{
+		return userManager;
+	}
 
-	public User getUser()
+	public String login()
 	{
-		return user;
-	}
-	
-	public void setUser(User user)
-	{
-		this.user = user;
-	}
-	
-	public String login(XMPPConnection connection)
-	{
+		System.out.println("attempt login");
 		try
 		{
-			if(!guest)
+			if(guest)
 			{
-				User user = new User(connection, username, password);
-				this.user = user;
+				connection.loginAnonymously();
+				username = StringUtils.parseResource(connection.getUser());
 			}
 			else
 			{
-				User user = new User(connection);
-				this.user = user;
+				connection.login(username, password);
 			}
-			return "enterChat";
+			userManager = new UserManager(connection, username);
 		}
 		catch(XMPPException e)
 		{
-			//TODO do something with exception
+			// TODO return some login error
 			return "";
 		}
+		return "enterChat";
 	}
 	
-	public void sendMessage(String message)
-	{
-		user.sendMessageToRoom(message, currentRoom);
-	}
-
-	public String getCurrentRoom()
-	{
-		return currentRoom;
-	}
-
-	public void roomTabChange(TabChangeEvent event)
-	{
-		String tab = (String) event.getData();
-		if(!tab.equals("help"))
-		{
-			currentRoom = tab;
-		}
-	}
-	
-	public void roomTabClose(TabCloseEvent event) 
-	{
-		String tab = (String) event.getData();
-		if(!tab.equals("help"))
-		{
-			if(tab.equals(currentRoom))
-			{
-				user.getMultiUserChat(currentRoom).leave();
-				RoomManagerFactory.getInstance().leaveRoom(user, currentRoom);
-				int indx = rooms.indexOf(currentRoom);
-				rooms.remove(indx);
-				int size = rooms.size();
-				if(size == 0)
-				{
-					currentRoom = "";
-				}
-				else
-				{
-					if(indx == size-1)
-					{
-						currentRoom = rooms.get(size-1);
-					}
-				}
-			}
-			else
-			{
-				user.getMultiUserChat(tab).leave();
-				RoomManagerFactory.getInstance().leaveRoom(user, tab);
-				rooms.remove(tab);
-			}
-		}
-    }
-	
-	public void joinRoom(String roomName)
-	{
-		rooms.add(roomName);
-		currentRoom = roomName;
-	}
-	
-	public String registerNewUser(XMPPConnection connection, RegisterBean registerBean)
+	public String register(RegisterBean registerBean)
 	{
 		try
 		{
@@ -171,23 +113,100 @@ public class UserBean
 		}
 		catch(XMPPException e)
 		{
-			FacesContext.getCurrentInstance().addMessage("username", new FacesMessage("Account already exists"));
+			//TODO return error, probably username already exists
 			return "";
 		}
 	}
 	
+	//TODO call this on session expire
+	public void expire()
+	{
+		connection.disconnect();
+	}
+	
+	//TODO call this on user logout
+	public void logout()
+	{
+		//TODO figure out how to logout, possible just establish fresh connection
+	}
+	
+	public List<String> getAllRoomNames()
+	{
+		return userManager.getAllRoomNames();
+	}
+
+	public void enterRoom(String roomName)
+	{
+		userManager.enterRoom(roomName);
+	}
+
+	public void leaveRoom(TabCloseEvent e)
+	{
+		userManager.leaveRoom(e);
+	}
+
+	public void changeRoom(TabChangeEvent e)
+	{
+		userManager.changeRoom(e);
+	}
+
+	public boolean isSpecialRoom(String roomName)
+	{
+		return userManager.isSpecialRoom(roomName);
+	}
+
+	public void listen(String roomName)
+	{
+		userManager.listen(roomName);
+	}
+
+	public List<ChatMessage> getMessages(String roomName)
+	{
+		return userManager.getMessages(roomName);
+	}
+
+	public List<String> getOpenRoomNames()
+	{
+		return userManager.getOpenRoomNames();
+	}
+
+	public void sendMessage(String roomName, String message)
+	{
+		userManager.sendMessage(roomName, message);
+	}
+
+	public int getActiveRoomTabIndex()
+	{
+		return userManager.getActiveRoomTabIndex();
+	}
+
+	public void setActiveRoomTabIndex(int activeRoomTabIndex)
+	{
+		userManager.setActiveRoomTabIndex(activeRoomTabIndex);
+	}
+
+	public int getActiveNavTabIndex()
+	{
+		return userManager.getActiveNavTabIndex();
+	}
+
+	public void setActiveNavTabIndex(int activeNavTabIndex)
+	{
+		userManager.setActiveNavTabIndex(activeNavTabIndex);
+	}
+
+	public List<String> getUsersInRoom()
+	{
+		return userManager.getUsersInRoom();
+	}
+
+	public void changeNavTab(TabChangeEvent e)
+	{
+		userManager.changeNavTab(e);
+	}
+	
 	public List<String> getFriends()
 	{
-		List<String> friends = new ArrayList<String>();
-		if(user != null)
-		{
-			Roster roster = user.getConnection().getRoster();
-			Collection<RosterEntry> entries = roster.getEntries();
-			for(RosterEntry entry : entries)
-			{
-				friends.add(entry.getUser());
-			}
-		}
-		return friends;
+		return userManager.getFriends();
 	}
 }

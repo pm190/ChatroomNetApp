@@ -4,7 +4,7 @@ package pm190.chatroom;
  * 
  * @author Patrick Mackinder
  */
-public class ServerProperties
+public class ServerPropertyUtils
 {
 	private static final String serverAddress = "92.236.126.119";
 	private static final int serverPort = 5222;

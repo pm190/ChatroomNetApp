@@ -12,13 +12,13 @@ import org.primefaces.push.PushContextFactory;
  * 
  * @author Patrick Mackinder
  */
-public class UserPresenceListener implements PacketListener
+public class RoomEventListener implements PacketListener
 {
 	private final String roomName;
 	private final String username;
 	private final List<ChatMessage> messages;
 	
-	public UserPresenceListener(String roomName, String username, List<ChatMessage> messages)
+	public RoomEventListener(String roomName, String username, List<ChatMessage> messages)
 	{
 		this.roomName = roomName;
 		this.username = username;

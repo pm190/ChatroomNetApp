@@ -5,12 +5,12 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-	#{roomManagerBean.listen(roomName)}
+	#{userBean.listen(roomName)}
 	<div class="chat">
 		<div class="messages">
 			<h:form id="#{roomName}form">
 				<p:outputPanel id="messages" layout="block">
-					<ui:repeat var="chatMessage" value="#{roomManagerBean.getMessages(roomName)}">
+					<ui:repeat var="chatMessage" value="#{userBean.getMessages(roomName)}">
 						<span style="color:#{chatMessage.colour}">#{chatMessage.text}</span><br/>
 					</ui:repeat>
 				</p:outputPanel>
@@ -19,7 +19,7 @@
 		<div class="messageBox">
 			<h:form>
 				<h:inputText id="#{roomName}message" styleClass="box" value="#{messageBean.message}" required="true" autocomplete="off" pt:placeholder="message"/>
-				<h:commandButton value="send" actionListener="#{roomManagerBean.sendMessage(roomName, messageBean.message)}">
+				<h:commandButton value="send" actionListener="#{userBean.sendMessage(roomName, messageBean.message)}">
 					<f:actionListener binding="#{messageBean.reset()}"/>
 					<f:ajax execute="@form" render="#{roomName}message" />
 				</h:commandButton>
