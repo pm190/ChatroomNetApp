@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<ui:composition template="../WEB-INF/templates/master.xhtml">
+		<ui:define name="content">
+			<h:body>
+				<h:outputStylesheet library="css" name="roompage.css" />
+				<div class="container">
+					<div class="left">
+						<p:tabView id="navTabs" activeIndex="#{roomManagerBean.activeNavTabIndex}" dynamic="true" cache="false">
+							<p:ajax event="tabChange" listener="#{roomManagerBean.changeNavTab}" />
+							<p:tab title="Friends">
+								<div class="sidePanel">
+									
+								</div>
+							</p:tab>
+							<p:tab id="usersTab" title="Users">
+								<div class="sidePanel">
+									<ui:repeat value="#{roomManagerBean.getUsersInRoom()}" var="user">
+										<h:commandButton value="#{user}" />
+									</ui:repeat>
+								</div>
+							</p:tab>
+							<p:tab title="Rooms">
+								<div class="sidePanel">
+								<ui:repeat value="#{roomManagerBean.getAllRoomNames()}" var="roomName">
+										<h:form>
+											<h:commandButton value="#{roomName}" actionListener="#{roomManagerBean.enterRoom(roomName)}">
+												<f:ajax execute="@form" render=":chats" />
+											</h:commandButton>
+										</h:form>
+									</ui:repeat>
+								</div>
+							</p:tab>
+						</p:tabView>
+						<p:socket onMessage="handleUser" channel="/users" />
+						<h:form id="renderNavTabsForm" style="display:none">
+							<h:commandButton id="renderNavTabsButton" value="render">
+								<f:ajax render=":navTabs" />
+							</h:commandButton>
+						</h:form>
+					</div>
+					<div class="right">
+						<p:tabView id="chats" onTabChange="roomTabChange(index)" activeIndex="#{roomManagerBean.activeRoomTabIndex}" dynamic="true" cache="false">
+							<p:ajax event="tabClose" listener="#{roomManagerBean.leaveRoom}" />
+							<p:ajax event="tabChange" listener="#{roomManagerBean.changeRoom}" />
+							<c:forEach items="#{roomManagerBean.getOpenRoomNames()}" var="roomName">
+								<p:tab title="#{roomName}" closable="true">
+									<c:choose>
+										<c:when test="#{roomManagerBean.isSpecialRoom(roomName)}">
+											<ui:include src="/WEB-INF/specialPages/#{roomName}.xhtml" />
+										</c:when>
+										<c:otherwise>
+											<ui:include src="/WEB-INF/templates/roomtab.xhtml">
+												<ui:param name="roomName" value="#{roomName}"></ui:param>
+											</ui:include>
+										</c:otherwise>
+									</c:choose>
+								</p:tab>
+							</c:forEach>
+						</p:tabView>
+						<p:socket onMessage="handleMessage" channel="/message" />
+						<script type='text/javascript'>
+							function handleMessage(chatMessage) {
+								var roomName = chatMessage.roomName;
+								var chatContent = $(PrimeFaces.escapeClientId('chats:'+roomName+'form:messages'));
+								chatContent.append(getChatMessageHTML(chatMessage));
+								var activeTabIndex = document.getElementById('chats_activeIndex').value;
+								var tabs = document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li');
+								var activeTabName = tabs[activeTabIndex].getElementsByTagName('a')[0].innerHTML;
+								if(activeTabName !== roomName &amp;&amp; tabs !== null) {
+									for(var i = 0; i &lt; tabs.length; i++) {
+										if(tabs[i] !== null &amp;&amp; tabs[i].getElementsByTagName('a')[0].innerHTML === roomName) {
+											tabs[i].getElementsByTagName('a')[0].style.backgroundColor = 'red';
+										}
+									}
+								}
+							}
+					
+							function roomTabChange(index) {
+								document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li')[index].style = 'none';
+								renderUserTab();
+							}
+							
+							function renderUserTab()
+							{
+								var activeTabIndex = document.getElementById('navTabs_activeIndex').value;
+								if(activeTabIndex === '1') {
+									document.getElementById('renderNavTabsForm:renderNavTabsButton').click();
+								}
+							}
+							
+							function handleUser(message) {
+								renderUserTab();
+							}
+							
+							function getChatMessageHTML(chatMessage) {
+								var text = chatMessage.text;
+								var colour = chatMessage.colour;
+								return '<span style="color:'+colour+'">'+text+'</span><br/>';
+							}
+						</script>
+					</div>
+				</div>
+			</h:body>
+		</ui:define>
+	</ui:composition>
+</html>

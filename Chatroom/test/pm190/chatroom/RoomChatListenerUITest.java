@@ -16,7 +16,8 @@ import org.primefaces.push.PushContextFactory;
 import pm190.beans.ConnectionBean;
 import pm190.beans.RoomManagerBean;
 
-public class RoomChatListenerUITest implements Runnable {
+public class RoomChatListenerUITest implements Runnable
+{
 	private static final long TIMEOUT = 5000;
 	private final MultiUserChat muc;
 	private final String roomName;
@@ -26,23 +27,26 @@ public class RoomChatListenerUITest implements Runnable {
 	private final RoomManagerBean roomManagerBean;
 	private final String user;
 
-	public RoomChatListenerUITest(String roomName, String user, RoomManagerBean roomManagerBean) throws XMPPException {
+	public RoomChatListenerUITest(String roomName, String user,
+			RoomManagerBean roomManagerBean) throws XMPPException
+	{
 		this.roomName = roomName;
 		this.roomManagerBean = roomManagerBean;
 		this.user = user;
 		XMPPConnection connection = new ConnectionBean().getConnection();
 		connection.loginAnonymously();
-		muc = new MultiUserChat(connection, roomName + "@"
-				+ ServerProperties.getServicename());
+		muc = new MultiUserChat(connection, roomName + "@" + ServerProperties.getServicename());
 		DiscussionHistory history = new DiscussionHistory();
 		history.setSince(new Date());
 		muc.join(user, null, history, 5000);
-		muc.addParticipantListener(new UserPresenceListener(roomName, user));
+		muc.addParticipantListener(new UserPresenceListener(roomName, user, messages));
 	}
-	
+
 	@Override
-	public void run() {
-		while (inRoom) {
+	public void run()
+	{
+		while(inRoom)
+		{
 			Message msg = muc.nextMessage(TIMEOUT);
 			if(msg != null && msg.getBody() != null && msg.getFrom() != null)
 			{
@@ -59,12 +63,14 @@ public class RoomChatListenerUITest implements Runnable {
 		muc.leave();
 		roomManagerBean.leftRoom(roomName);
 	}
-	
-	public void stopListening() {
+
+	public void stopListening()
+	{
 		inRoom = false;
 	}
-	
-	public boolean restartListening() {
+
+	public boolean restartListening()
+	{
 		if(!finished)
 		{
 			inRoom = true;
@@ -72,26 +78,29 @@ public class RoomChatListenerUITest implements Runnable {
 		}
 		return false;
 	}
-	
+
 	public List<ChatMessage> getMessages()
 	{
 		System.out.println("print msgs");
 		return messages;
 	}
-	
+
 	public void sendMessage(String message)
 	{
 		if(!finished && inRoom)
 		{
-			try {
+			try
+			{
 				muc.sendMessage(message);
-			} catch (XMPPException e) {
+			}
+			catch(XMPPException e)
+			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 	public MultiUserChat getMultiUserChat()
 	{
 		return muc;

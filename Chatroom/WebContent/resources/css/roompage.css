@@ -12,24 +12,24 @@ div.right {
     width:70%;
     float: left;
 }
-div#leftTabs, div#rightTabs {
+div#navTabs, div#chats {
 	height:100%;
 	width:100%;
 	background:transparent;
 	padding:0px;
 	border:0px;
 }
-div#rightTabs > ul, div#leftTabs > ul {
+div#chats > ul, div#navTabs > ul {
 	background:transparent;
 	margin-left: 50px;
 }
-div#rightTabs > ul > li, div#leftTabs > ul > li {
+div#chats > ul > li, div#navTabs > ul > li {
 	background: transparent;
 	border: none;
 	box-shadow: none;
 	webkit-box-shadow: none;
 }
-div#rightTabs > ul > li > a, div#leftTabs > ul > li > a {
+div#chats > ul > li > a, div#navTabs > ul > li > a {
 	text-shadow: none;
 	font-weight: normal;
 }
