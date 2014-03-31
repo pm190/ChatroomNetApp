@@ -11,10 +11,10 @@
 </h:head>
 <h:body>
 	<h:outputStylesheet library="css" name="test.css"/>
-	<p:tabView id="navTabs">
+	<p:tabView id="navTabs" dynamic="true" cache="false">
 		<p:tab title="Friends">
 		</p:tab>
-		<p:tab title="Users">
+		<p:tab id="usersTab" title="Users">
 			<ui:repeat value="#{roomManagerBean.getUsersInRoom()}" var="user">
 				<h:commandButton value="#{user}"/>
 			</ui:repeat>
@@ -30,7 +30,7 @@
 		</p:tab>
 	</p:tabView>
 	<p:socket onMessage="handleUser" channel="/users"/>
-	<p:tabView id="chats" onTabChange="resetTabStyle(index)" activeIndex="#{roomManagerBean.activeTabIndex}">
+	<p:tabView id="chats" onTabChange="resetTabStyle(index)" activeIndex="#{roomManagerBean.activeTabIndex}" dynamic="true" cache="false">
 		<p:ajax event="tabClose" listener="#{roomManagerBean.leaveRoom}"/>
 		<p:ajax event="tabChange" listener="#{roomManagerBean.changeRoom}"/>
 		<c:forEach items="#{roomManagerBean.getOpenRoomNames()}" var="roomName">
