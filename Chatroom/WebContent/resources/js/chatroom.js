@@ -14,13 +14,7 @@ function handleMessage(chatMessage) {
 	}
 }
 
-function roomTabChange(index) {
-	document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li')[index].style = 'none';
-	renderUserTab();
-}
-
-function renderUserTab()
-{
+function renderUserTab() {
 	var activeTabIndex = document.getElementById('navTabs_activeIndex').value;
 	if(activeTabIndex === '1') {
 		document.getElementById('renderNavTabsForm:renderNavTabsButton').click();

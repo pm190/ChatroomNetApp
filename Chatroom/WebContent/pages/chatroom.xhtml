@@ -16,7 +16,9 @@
 							<p:ajax event="tabChange" listener="#{userBean.changeNavTab}" />
 							<p:tab title="Friends">
 								<div class="sidePanel">
-									
+									<ui:repeat value="#{userBean.getFriends()}" var="friend">
+										<h:commandButton value="#{friend}"/>
+									</ui:repeat>
 								</div>
 							</p:tab>
 							<p:tab id="usersTab" title="Users">
@@ -28,7 +30,11 @@
 							</p:tab>
 							<p:tab title="Rooms">
 								<div class="sidePanel">
-								<ui:repeat value="#{userBean.getAllRoomNames()}" var="roomName">
+									<h:form>
+										<h:inputText value="#{roomBean.roomName}"/>
+										<h:commandButton value="create room" actionListener="#{userBean.createRoom(roomBean.roomName)}"/>
+									</h:form>
+									<ui:repeat value="#{userBean.getAllRoomNames()}" var="roomName">
 										<h:form>
 											<h:commandButton value="#{roomName}" actionListener="#{userBean.enterRoom(roomName)}">
 												<f:ajax execute="@form" render=":chats" />
@@ -65,9 +71,15 @@
 							</c:forEach>
 						</p:tabView>
 						<p:socket onMessage="handleMessage" channel="/message" />
-						<h:outputScript library="js" name="chatroom.js"/>
 					</div>
 				</div>
+				<h:outputScript library="js" name="chatroom.js"/>
+				<script type="text/javascript">
+					function roomTabChange(index) {
+						document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li')[index].getElementsByTagName('a')[0].removeAttribute('style');
+						renderUserTab();
+					}
+				</script>
 			</h:body>
 		</ui:define>
 	</ui:composition>

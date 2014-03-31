@@ -11,22 +11,22 @@ public class ServerPropertyUtils
 	private static final String serverDomain = "olympus";
 	private static final String serviceName = "conference.olympus";
 
-	public static String getServeraddress()
+	public static String getServerAddress()
 	{
 		return serverAddress;
 	}
 
-	public static int getServerport()
+	public static int getServerPort()
 	{
 		return serverPort;
 	}
 
-	public static String getServerdomain()
+	public static String getServerDomain()
 	{
 		return serverDomain;
 	}
 
-	public static String getServicename()
+	public static String getServiceName()
 	{
 		return serviceName;
 	}

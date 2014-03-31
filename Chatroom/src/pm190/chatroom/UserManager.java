@@ -12,7 +12,12 @@ import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.util.StringUtils;
+import org.jivesoftware.smackx.Form;
+import org.jivesoftware.smackx.FormField;
+import org.jivesoftware.smackx.muc.HostedRoom;
+import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
@@ -30,15 +35,33 @@ public class UserManager
 
 	public UserManager(XMPPConnection connection, String username)
 	{
-		this.connection= connection;
+		this.connection = connection;
 		this.username = username;
 		// TODO read from special pages folder
 		specialRoomNames.add("help");
-		enterRoom("help");
-		// TODO get all rooms from server
+		enterRoom("help"); // start with help tab open
 		allRoomNames.addAll(specialRoomNames);
-		allRoomNames.add("lobby");
-		allRoomNames.add("room101");
+
+		Collection<HostedRoom> hostedRooms = getHostedRooms();
+		for(HostedRoom room : hostedRooms)
+		{
+			allRoomNames.add(StringUtils.parseName(room.getJid()));
+		}
+	}
+
+	private Collection<HostedRoom> getHostedRooms()
+	{
+		Collection<HostedRoom> rooms = new ArrayList<HostedRoom>();
+		try
+		{
+			return MultiUserChat.getHostedRooms(connection, "conference." + ServerPropertyUtils.getServerDomain());
+		}
+		catch(XMPPException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rooms;
 	}
 
 	/**
@@ -92,17 +115,23 @@ public class UserManager
 	public void listen(String roomName)
 	{
 		System.out.println("listen requested");
+		RoomChatListener listener = listeners.get(roomName);
+		if(listener != null)
+		{
+			if(listener.restartListening())
+			{
+				return;
+			}
+		}
+		MultiUserChat muc = new MultiUserChat(connection, roomName + "@" + ServerPropertyUtils.getServiceName());
+		createListener(roomName, muc);
+	}
+
+	private void createListener(String roomName, MultiUserChat muc)
+	{
 		try
 		{
-			RoomChatListener listener = listeners.get(roomName);
-			if(listener != null)
-			{
-				if(listener.restartListening())
-				{
-					return;
-				}
-			}
-			listener = new RoomChatListener(roomName, username, connection, this);
+			RoomChatListener listener = new RoomChatListener(roomName, username, connection, this, muc);
 			listeners.put(roomName, listener);
 			Thread t = new Thread(listener);
 			t.setDaemon(true);
@@ -198,7 +227,7 @@ public class UserManager
 		activeNavTabIndex = tabView.getChildren().indexOf(e.getTab());
 		System.out.println("Nav tab index: " + activeNavTabIndex);
 	}
-	
+
 	public List<String> getFriends()
 	{
 		List<String> friends = new ArrayList<String>();
@@ -206,8 +235,63 @@ public class UserManager
 		Collection<RosterEntry> entries = roster.getEntries();
 		for(RosterEntry entry : entries)
 		{
-			friends.add(entry.getUser());
+			if(roster.getPresence(entry.getUser()).getMode() == Presence.Mode.available)
+			{
+				friends.add(entry.getUser());
+			}
 		}
 		return friends;
+	}
+
+	/**
+	 * @param roomName
+	 */
+	public void createRoom(String roomName)
+	{
+		for(HostedRoom room : getHostedRooms())
+		{
+			if(StringUtils.parseName(room.getJid()).equals(roomName))
+			{
+				return;
+			}
+		}
+		try
+		{
+			MultiUserChat muc = new MultiUserChat(connection, roomName + "@" + ServerPropertyUtils.getServiceName());
+			muc.create(username);
+
+			// Get the the room's configuration form
+			Form form = muc.getConfigurationForm();
+			// Create a new form to submit based on the original form
+			Form submitForm = form.createAnswerForm();
+			// Add default answers to the form to submit
+			Iterator<FormField> fields = form.getFields();
+			while(fields.hasNext())
+			{
+				FormField field = (FormField) fields.next();
+				if(!FormField.TYPE_HIDDEN.equals(field.getType()) && field.getVariable() != null)
+				{
+					// Sets the default value as the answer
+					submitForm.setDefaultAnswer(field.getVariable());
+				}
+			}
+			// Sets the new owner of the room
+			List<String> owners = new ArrayList<String>();
+			owners.add(connection.getUser());
+			submitForm.setAnswer("muc#roomconfig_roomowners", owners);
+			submitForm.setAnswer("muc#roomconfig_roomname", roomName);
+	        submitForm.setAnswer("muc#roomconfig_persistentroom", true);
+			// Send the completed form (with default values) to the server to
+			// configure the room
+			muc.sendConfigurationForm(submitForm);
+			createListener(roomName, muc);
+			allRoomNames.add(roomName);
+			openRoomNames.add(roomName);
+		}
+		catch(XMPPException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

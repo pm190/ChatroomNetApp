@@ -23,13 +23,13 @@ public class RoomChatListener implements Runnable
 	private final List<ChatMessage> messages = new ArrayList<ChatMessage>();
 	private final UserManager roomManagerBean;
 	private final String user;
-
-	public RoomChatListener(String roomName, String user, XMPPConnection connection, UserManager roomManagerBean) throws XMPPException
+	
+	public RoomChatListener(String roomName, String user, XMPPConnection connection, UserManager roomManagerBean, MultiUserChat muc) throws XMPPException
 	{
 		this.roomName = roomName;
 		this.roomManagerBean = roomManagerBean;
 		this.user = user;
-		muc = new MultiUserChat(connection, roomName + "@" + ServerPropertyUtils.getServicename());
+		this.muc = muc;
 		DiscussionHistory history = new DiscussionHistory();
 		history.setSince(new Date());
 		muc.join(user, null, history, 5000);

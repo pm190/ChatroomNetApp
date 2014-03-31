@@ -37,7 +37,7 @@ public class UserBean
 	public UserBean() throws XMPPException
 	{
 		SmackConfiguration.setPacketReplyTimeout(PACKET_REPLY_TIMEOUT);
-		ConnectionConfiguration config = new ConnectionConfiguration(ServerPropertyUtils.getServeraddress(), ServerPropertyUtils.getServerport());
+		ConnectionConfiguration config = new ConnectionConfiguration(ServerPropertyUtils.getServerAddress(), ServerPropertyUtils.getServerPort());
 		config.setSecurityMode(SecurityMode.disabled);
 		connection = new XMPPConnection(config);
 		connection.connect();
@@ -208,5 +208,10 @@ public class UserBean
 	public List<String> getFriends()
 	{
 		return userManager.getFriends();
+	}
+	
+	public void createRoom(String roomName)
+	{
+		userManager.createRoom(roomName);
 	}
 }
