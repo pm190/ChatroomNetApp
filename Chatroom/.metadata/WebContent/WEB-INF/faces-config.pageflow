@@ -3,12 +3,12 @@
   <nodes xsi:type="pageflow:PFPage" name="pages/accounts.xhtml" x="132" y="204" id="pf13954143547890" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13954146702575" inlinks="pf13954143547891" path="/pages/accounts.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/home.xhtml" x="312" y="48" id="pf13954143547902" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf13954143547891 pf13954143547903" inlinks="pf13954146702575 pf13954148145076" path="/pages/home.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/chatroom.xhtml" x="420" y="228" id="pf13954143547904" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13954148145076" inlinks="pf13954143547903" path="/pages/chatroom.xhtml"/>
-  <links id="pf13954143547891" target="pf13954143547890" source="pf13954143547902" outcome="createAccount"/>
-  <links id="pf13954143547903" target="pf13954143547904" source="pf13954143547902" outcome="enterChat"/>
-  <links id="pf13954146702575" target="pf13954143547902" source="pf13954143547890" outcome="home">
+  <links id="pf13954143547891" target="pf13954143547890" source="pf13954143547902" outcome="createAccount" redirect="true"/>
+  <links id="pf13954143547903" target="pf13954143547904" source="pf13954143547902" outcome="enterChat" redirect="true"/>
+  <links id="pf13954146702575" target="pf13954143547902" source="pf13954143547890" outcome="home" redirect="true">
     <bendPoints d1Width="13" d1Height="-140" d2Width="-159" d2Height="16"/>
   </links>
-  <links id="pf13954148145076" target="pf13954143547902" source="pf13954143547904">
+  <links id="pf13954148145076" target="pf13954143547902" source="pf13954143547904" redirect="true">
     <bendPoints d1Width="32" d1Height="-142" d2Width="150" d2Height="38"/>
   </links>
 </pageflow:Pageflow>

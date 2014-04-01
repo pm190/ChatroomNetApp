@@ -10,6 +10,7 @@
 		<navigation-case>
 			<from-outcome>createAccount</from-outcome>
 			<to-view-id>/pages/accounts.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -18,6 +19,7 @@
 		<navigation-case>
 			<from-outcome>enterChat</from-outcome>
 			<to-view-id>/pages/chatroom.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -26,6 +28,7 @@
 		<navigation-case>
 			<from-outcome>home</from-outcome>
 			<to-view-id>/pages/home.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -33,6 +36,7 @@
 		<from-view-id>/pages/chatroom.xhtml</from-view-id>
 		<navigation-case>
 			<to-view-id>/pages/home.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<validator>
