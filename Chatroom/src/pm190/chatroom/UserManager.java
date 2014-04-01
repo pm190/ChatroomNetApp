@@ -15,7 +15,6 @@ import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.util.StringUtils;
 import org.jivesoftware.smackx.Form;
-import org.jivesoftware.smackx.FormField;
 import org.jivesoftware.smackx.muc.HostedRoom;
 import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.primefaces.component.tabview.TabView;
@@ -259,34 +258,11 @@ public class UserManager
 		{
 			MultiUserChat muc = new MultiUserChat(connection, roomName + "@" + ServerPropertyUtils.getServiceName());
 			muc.create(username);
-
-			// Get the the room's configuration form
-			Form form = muc.getConfigurationForm();
-			// Create a new form to submit based on the original form
-			Form submitForm = form.createAnswerForm();
-			// Add default answers to the form to submit
-			Iterator<FormField> fields = form.getFields();
-			while(fields.hasNext())
-			{
-				FormField field = (FormField) fields.next();
-				if(!FormField.TYPE_HIDDEN.equals(field.getType()) && field.getVariable() != null)
-				{
-					// Sets the default value as the answer
-					submitForm.setDefaultAnswer(field.getVariable());
-				}
-			}
-			// Sets the new owner of the room
-			List<String> owners = new ArrayList<String>();
-			owners.add(connection.getUser());
-			submitForm.setAnswer("muc#roomconfig_roomowners", owners);
-			submitForm.setAnswer("muc#roomconfig_roomname", roomName);
-	        submitForm.setAnswer("muc#roomconfig_persistentroom", true);
-			// Send the completed form (with default values) to the server to
-			// configure the room
-			muc.sendConfigurationForm(submitForm);
+			muc.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
 			createListener(roomName, muc);
 			allRoomNames.add(roomName);
 			openRoomNames.add(roomName);
+			activeRoomTabIndex = openRoomNames.indexOf(roomName);
 		}
 		catch(XMPPException e)
 		{

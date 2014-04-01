@@ -32,7 +32,10 @@ public class RoomChatListener implements Runnable
 		this.muc = muc;
 		DiscussionHistory history = new DiscussionHistory();
 		history.setSince(new Date());
-		muc.join(user, null, history, 5000);
+		if(!muc.isJoined())
+		{
+			muc.join(user, null, history, 5000);
+		}
 		muc.addParticipantListener(new RoomEventListener(roomName, user, messages));
 	}
 
