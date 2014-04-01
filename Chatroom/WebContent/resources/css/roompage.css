@@ -114,3 +114,12 @@ span.leave {
 span.join {
 	color: grey;
 }
+form.chatMessageForm
+{
+	height: 100%;
+	overflow: scroll;
+}
+div.chatMessageContent
+{
+	padding: 1em;
+}

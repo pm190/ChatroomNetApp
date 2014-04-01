@@ -8,8 +8,8 @@
 	#{userBean.listen(roomName)}
 	<div class="chat">
 		<div class="messages">
-			<h:form id="#{roomName}form">
-				<p:outputPanel id="messages" layout="block">
+			<h:form id="#{roomName}form" class="chatMessageForm">
+				<p:outputPanel styleClass="chatMessageContent" id="messages" layout="block">
 					<ui:repeat var="chatMessage" value="#{userBean.getMessages(roomName)}">
 						<span class="#{chatMessage.colourClass}">#{chatMessage.text}</span><br/>
 					</ui:repeat>
