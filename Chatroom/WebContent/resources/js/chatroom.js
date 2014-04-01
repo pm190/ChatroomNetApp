@@ -8,10 +8,15 @@ function handleMessage(chatMessage) {
 	if(activeTabName !== roomName && tabs !== null) {
 		for(var i = 0; i < tabs.length; i++) {
 			if(tabs[i] !== null && tabs[i].getElementsByTagName('a')[0].innerHTML === roomName) {
-				tabs[i].getElementsByTagName('a')[0].style.backgroundColor = 'red';
+					tabs[i].getElementsByTagName('a')[0].style.backgroundColor = 'red';
 			}
 		}
 	}
+}
+
+function roomTabChange(index) {
+	document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li')[index].getElementsByTagName('a')[0].removeAttribute('style');
+	renderUserTab();
 }
 
 function renderUserTab() {
