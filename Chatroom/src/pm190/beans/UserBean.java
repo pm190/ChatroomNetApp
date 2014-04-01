@@ -81,23 +81,29 @@ public class UserBean
 	public String login()
 	{
 		System.out.println("attempt login");
-		try
+		//TODO login as different user
+		System.out.println("Anon: " + connection.isAnonymous());
+		System.out.println("Auth: " + connection.isAuthenticated());
+		if(!(connection.isAnonymous() || connection.isAuthenticated()))
 		{
-			if(guest)
+			try
 			{
-				connection.loginAnonymously();
-				username = StringUtils.parseResource(connection.getUser());
+				if(guest)
+				{
+					connection.loginAnonymously();
+					username = StringUtils.parseResource(connection.getUser());
+				}
+				else
+				{
+					connection.login(username, password);
+				}
+				userManager = new UserManager(connection, username);
 			}
-			else
+			catch(XMPPException e)
 			{
-				connection.login(username, password);
+				// TODO return some login error
+				return "";
 			}
-			userManager = new UserManager(connection, username);
-		}
-		catch(XMPPException e)
-		{
-			// TODO return some login error
-			return "";
 		}
 		return "enterChat";
 	}
