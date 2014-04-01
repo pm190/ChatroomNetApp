@@ -32,7 +32,7 @@ public class RoomEventListener implements PacketListener
 		String from = StringUtils.parseResource(packet.getFrom());
 		if(!username.equals(from) && validStatus(status))
 		{
-			ChatMessage chatMessage = new ChatMessage(from + getStatusMessage(status), getStatusColour(status), roomName);
+			ChatMessage chatMessage = new ChatMessage(from + getStatusMessage(status), getStatusColourClass(status), roomName);
 			messages.add(chatMessage);
 			PushContext pushContext = PushContextFactory.getDefault().getPushContext();
 			pushContext.push("/message", chatMessage);
@@ -57,15 +57,15 @@ public class RoomEventListener implements PacketListener
 		}
 	}
 	
-	private String getStatusColour(String status)
+	private String getStatusColourClass(String status)
 	{
 		if(status.equals("available"))
 		{
-			return "green";
+			return "join";
 		}
 		else
 		{
-			return "grey";
+			return "leave";
 		}
 	}
 }

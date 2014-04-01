@@ -68,6 +68,14 @@ public class UserManager
 	 */
 	public List<String> getAllRoomNames()
 	{
+		Collection<HostedRoom> rooms = getHostedRooms();
+		List<String> roomNames = new ArrayList<String>();
+		for(HostedRoom room : rooms)
+		{
+			roomNames.add(StringUtils.parseName(room.getJid()));
+		}
+		roomNames.addAll(specialRoomNames);
+		allRoomNames.retainAll(roomNames);
 		return allRoomNames;
 	}
 

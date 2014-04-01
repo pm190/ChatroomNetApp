@@ -12,6 +12,7 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode;
 import org.jivesoftware.smack.util.StringUtils;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
 
@@ -209,6 +210,8 @@ public class UserBean
 	public void changeNavTab(TabChangeEvent e)
 	{
 		userManager.changeNavTab(e);
+		RequestContext requestContext = RequestContext.getCurrentInstance();  
+		requestContext.execute("navTabChange('1')");
 	}
 	
 	public List<String> getFriends()

@@ -32,6 +32,6 @@ function handleUser(message) {
 
 function getChatMessageHTML(chatMessage) {
 	var text = chatMessage.text;
-	var colour = chatMessage.colour;
-	return '<span style="color:'+colour+'">'+text+'</span><br/>';
+	var colourClass = chatMessage.colour;
+	return '<span class="'+colourClass+'">'+text+'</span><br/>';
 }

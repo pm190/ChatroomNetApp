@@ -11,7 +11,7 @@
 			<h:form id="#{roomName}form">
 				<p:outputPanel id="messages" layout="block">
 					<ui:repeat var="chatMessage" value="#{userBean.getMessages(roomName)}">
-						<span style="color:#{chatMessage.colour}">#{chatMessage.text}</span><br/>
+						<span class="#{chatMessage.colourClass}">#{chatMessage.text}</span><br/>
 					</ui:repeat>
 				</p:outputPanel>
 			</h:form>

@@ -87,8 +87,7 @@ input.box {
 	background: -moz-linear-gradient(top, #0C91EC 0%, #257AB6 100%);
 	color: #ff8900;
 }
-input:focus
-{
+input:focus {
 	outline: 0;
 }
 ::-webkit-input-placeholder {
@@ -102,4 +101,16 @@ input:focus
 }
 :-ms-input-placeholder{
     color:#ff8900;
+}
+span.self {
+	color: blue;
+}
+span.other {
+	color: orange;
+}
+span.leave {
+	color: green;
+}
+span.join {
+	color: grey;
 }
