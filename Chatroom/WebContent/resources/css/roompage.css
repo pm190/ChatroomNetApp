@@ -113,15 +113,11 @@ span.leave {
 	color: grey;
 }
 span.join {
-<<<<<<< HEAD
 	color: green;
-=======
-	color: grey;
 }
 form.chatMessageForm
 {
 	height: 100%;
-	overflow-y: scroll;
 }
 div.chatMessageContent
 {
@@ -152,5 +148,4 @@ input.createRoomButton
 {
 	border-radius: 4px;
 	margin-left: 3%;
->>>>>>> c29a60a62019e972d6a6ca1f292dc4ed78ace02a
 }
