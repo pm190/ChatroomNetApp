@@ -12,7 +12,10 @@
 		<h:body>
 			<h:outputStylesheet library="css" name="roompage.css" />
 			<!-- <h:outputScript library="javax.faces" name="jsffix.js" target="head" />  -->
-			<div class="container">
+			<div class="container" id="container">
+				<h:form id="renderPage" style="display:none">
+					<h:commandButton value="render"/>
+				</h:form>
 				<h:form styleClass="logOutForm">
 					<h:commandButton styleClass="logOutButton" value="logout" action="#{userBean.logout}" />
 				</h:form>
@@ -99,7 +102,9 @@
 						var roomName = chatMessage.roomName;
 						var chatContent = $(PrimeFaces.escapeClientId('chats:'+roomName+'form:messages'));
 						chatContent.append(getChatMessageHTML(chatMessage));
-						chatContent.scrollTop(chatContent.height());
+						var msgForm = document.getElementById('chats:'+roomName+'form');
+						msgForm.scrollTop = msgForm.scrollHeight;
+						chatContent.scrollTop = chatContent.scrollHeight;
 						var activeTabIndex = document.getElementById('chats_activeIndex').value;
 						var tabs = document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li');
 						var activeTabName = tabs[activeTabIndex].getElementsByTagName('a')[0].innerHTML;
