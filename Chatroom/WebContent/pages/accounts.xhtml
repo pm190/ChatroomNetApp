@@ -23,13 +23,13 @@
 					<div class="field">
 						<h:inputText id="username" class="text-input"
 							name="enter username" pt:placeholder="enter username"
-							value="#{registerBean.username}" required="true"/>
+							value="#{registerBean.username}" required="true" requiredMessage="Value is required"/>
 						<h:message for="username" style="color: red;"/>
 					</div>
 					<div class="field">
 						<h:inputSecret id="password" class="text-input" type="password"
 							name="Password" pt:placeholder="type strong password"
-							value="#{registerBean.password}" required="true">
+							value="#{registerBean.password}" required="true" requiredMessage="Value is required">
 							<f:validator validatorId="passwordValidator" />
 							<f:attribute name="confirmPassword" value="#{confirmPassword}" />
 						</h:inputSecret>

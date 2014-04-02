@@ -52,5 +52,11 @@
 		<validator-id>emailValidator</validator-id>
 		<validator-class>pm190.validators.EmailValidator</validator-class>
 	</validator>
+	<validator>
+		<description>validates room names</description>
+		<display-name>Room Name Validator</display-name>
+		<validator-id>roomNameValidator</validator-id>
+		<validator-class>pm190.validators.RoomNameValidator</validator-class>
+	</validator>
 
 </faces-config>
