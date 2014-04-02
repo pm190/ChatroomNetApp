@@ -12,8 +12,8 @@
   body, html 
  {
     font-family:"San-serif", Times, serif;
-    height:100%;
-    width:100%;
+    height:98%;
+    width:99%;
 }
  
  
@@ -237,10 +237,28 @@ div.subLogo {
 	height: 10%
 }
 
+form.logOutForm{
+	width:100%;
+	height: 4%;
+}
+input.logOutButton{
+	float: right;
+}
+
+
 div#thanks {
 	position: absolute;
 	left: 80%;
 }
 
+input.offline
+{
+	background: grey;
+	color: lightgrey;
+	border-radius: 4px;
+}
 
-	
+input.online
+{
+	border-radius: 4px;
+}

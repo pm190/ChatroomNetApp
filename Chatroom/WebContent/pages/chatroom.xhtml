@@ -7,85 +7,94 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-	<ui:composition template="../WEB-INF/templates/master.xhtml">
-		<ui:define name="content">
-			<h:body>
-				<h:form>
-					<h:commandButton value="logout" action="#{userBean.logout}"/>
+<ui:composition template="../WEB-INF/templates/master.xhtml">
+	<ui:define name="content">
+		<h:body>
+			<h:outputStylesheet library="css" name="roompage.css" />
+			<!-- <h:outputScript library="javax.faces" name="jsffix.js" target="head" />  -->
+			<div class="container">
+				<h:form styleClass="logOutForm">
+					<h:commandButton styleClass="logOutButton" value="logout" action="#{userBean.logout}" />
 				</h:form>
-				<h:outputStylesheet library="css" name="roompage.css" />
-				<!-- <h:outputScript library="javax.faces" name="jsffix.js" target="head" />  -->
-				<div class="container">
-					<div class="left">
-						<p:tabView id="navTabs" activeIndex="#{userBean.activeNavTabIndex}" dynamic="true" cache="false">
-							<p:ajax event="tabChange" listener="#{userBean.changeNavTab}" />
-							<p:tab title="Friends">
-								<div class="sidePanel">
-									<ui:repeat value="#{userBean.getFriends()}" var="friend">
-										<h:commandButton style="#{friend.style}" disabled="#{friend.offline}" value="#{friend.name}"/>
-									</ui:repeat>
-								</div>
-							</p:tab>
-							<p:tab id="usersTab" title="Users">
-								<div class="sidePanel">
-									<ui:repeat value="#{userBean.getUsersInRoom()}" var="user">
-										<h:commandButton value="#{user}" />
-									</ui:repeat>
-								</div>
-							</p:tab>
-							<p:tab title="Rooms">
-								<div class="sidePanel">
+				<div class="left">
+					<p:tabView id="navTabs" activeIndex="#{userBean.activeNavTabIndex}"
+						dynamic="true" cache="false">
+						<p:ajax event="tabChange" listener="#{userBean.changeNavTab}" />
+						<p:tab title="Friends">
+							<div class="sidePanel">
+								<ui:repeat value="#{userBean.getFriends()}" var="friend">
+									<h:commandButton styleClass="#{friend.style}"
+										disabled="#{friend.offline}" value="#{friend.name}" />
+								</ui:repeat>
+							</div>
+						</p:tab>
+						<p:tab id="usersTab" title="Users">
+							<div class="sidePanel">
+								<ui:repeat value="#{userBean.getUsersInRoom()}" var="user">
+									<h:commandButton value="#{user}" />
+								</ui:repeat>
+							</div>
+						</p:tab>
+						<p:tab title="Rooms">
+							<div class="sidePanel">
+								<h:form>
+									<h:inputText styleClass="createRoomInput"
+										value="#{roomBean.roomName}" autocomplete="off"
+										pt:placeholder="new room name" />
+									<h:commandButton styleClass="createRoomButton"
+										value="create room"
+										actionListener="#{userBean.createRoom(roomBean.roomName)}">
+										<f:actionListener binding="#{roomBean.reset()}" />
+									</h:commandButton>
+								</h:form>
+								<br />
+								<ui:repeat value="#{userBean.getAllRoomNames()}" var="roomName">
 									<h:form>
-										<h:inputText styleClass="createRoomInput" value="#{roomBean.roomName}" autocomplete="off" pt:placeholder="new room name"/>
-										<h:commandButton styleClass="createRoomButton" value="create room" actionListener="#{userBean.createRoom(roomBean.roomName)}">
-											<f:actionListener binding="#{roomBean.reset()}"/>
+										<h:commandButton styleClass="roomInput" value="#{roomName}"
+											actionListener="#{userBean.enterRoom(roomName)}">
+											<f:ajax execute="@form" render=":chats" />
 										</h:commandButton>
 									</h:form>
-									<br/>
-									<ui:repeat value="#{userBean.getAllRoomNames()}" var="roomName">
-										<h:form>
-											<h:commandButton styleClass="roomInput" value="#{roomName}" actionListener="#{userBean.enterRoom(roomName)}">
-												<f:ajax execute="@form" render=":chats" />
-											</h:commandButton>
-										</h:form>
-									</ui:repeat>
-								</div>
-							</p:tab>
-						</p:tabView>
-						<h:form id="renderNavTabsForm" style="display:none">
-							<h:commandButton id="renderNavTabsButton" value="render">
-								<f:ajax render=":navTabs" />
-							</h:commandButton>
-						</h:form>
-					</div>
-					<div class="right">
-						<p:tabView id="chats" onTabChange="roomTabChange(index)" activeIndex="#{userBean.activeRoomTabIndex}" dynamic="true" cache="false">
-							<p:ajax event="tabClose" listener="#{userBean.leaveRoom}" />
-							<p:ajax event="tabChange" listener="#{userBean.changeRoom}" />
-							<c:forEach items="#{userBean.getOpenRoomNames()}" var="roomName">
-								<p:tab title="#{roomName}" closable="true">
-									<c:choose>
-										<c:when test="#{userBean.isSpecialRoom(roomName)}">
-											<ui:include src="/WEB-INF/specialPages/#{roomName}.xhtml" />
-										</c:when>
-										<c:otherwise>
-											<ui:include src="/WEB-INF/templates/roomtab.xhtml">
-												<ui:param name="roomName" value="#{roomName}"></ui:param>
-											</ui:include>
-										</c:otherwise>
-									</c:choose>
-								</p:tab>
-							</c:forEach>
-						</p:tabView>
-						<p:socket onMessage="handleMessage" channel="/message" />
-						<p:socket onMessage="handleUser" channel="/user" />
-						<p:socket onMessage="handleRoom" channel="/room"/>
-					</div>
+								</ui:repeat>
+							</div>
+						</p:tab>
+					</p:tabView>
+					<h:form id="renderNavTabsForm" style="display:none">
+						<h:commandButton id="renderNavTabsButton" value="render">
+							<f:ajax render=":navTabs" />
+						</h:commandButton>
+					</h:form>
 				</div>
-				<!-- <h:outputScript library="js" name="chatroom.js"/> 
+				<div class="right">
+					<p:tabView id="chats" onTabChange="roomTabChange(index)"
+						activeIndex="#{userBean.activeRoomTabIndex}" dynamic="true"
+						cache="false">
+						<p:ajax event="tabClose" listener="#{userBean.leaveRoom}" />
+						<p:ajax event="tabChange" listener="#{userBean.changeRoom}" />
+						<c:forEach items="#{userBean.getOpenRoomNames()}" var="roomName">
+							<p:tab title="#{roomName}" closable="true">
+								<c:choose>
+									<c:when test="#{userBean.isSpecialRoom(roomName)}">
+										<ui:include src="/WEB-INF/specialPages/#{roomName}.xhtml" />
+									</c:when>
+									<c:otherwise>
+										<ui:include src="/WEB-INF/templates/roomtab.xhtml">
+											<ui:param name="roomName" value="#{roomName}"></ui:param>
+										</ui:include>
+									</c:otherwise>
+								</c:choose>
+							</p:tab>
+						</c:forEach>
+					</p:tabView>
+					<p:socket onMessage="handleMessage" channel="/message" />
+					<p:socket onMessage="handleUser" channel="/user" />
+					<p:socket onMessage="handleRoom" channel="/room" />
+				</div>
+			</div>
+			<!-- <h:outputScript library="js" name="chatroom.js"/> 
 					Not included as js not working from file in firefox
 				-->
-				<script type="text/javascript">
+			<script type="text/javascript">
 					function handleMessage(chatMessage) {
 						var roomName = chatMessage.roomName;
 						var chatContent = $(PrimeFaces.escapeClientId('chats:'+roomName+'form:messages'));
@@ -136,7 +145,7 @@
 						return '<span class="'+colourClass+'">'+text+'</span><br/>';
 					}
 				</script>
-			</h:body>
-		</ui:define>
-	</ui:composition>
+		</h:body>
+	</ui:define>
+</ui:composition>
 </html>
