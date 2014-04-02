@@ -81,7 +81,6 @@ public class RoomChatListener implements Runnable
 
 	public List<ChatMessage> getMessages()
 	{
-		System.out.println("print msgs");
 		return messages;
 	}
 

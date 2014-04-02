@@ -11,6 +11,7 @@
 		<ui:define name="content">
 			<h:body>
 				<h:outputStylesheet library="css" name="roompage.css" />
+				<h:outputScript library="javax.faces" name="jsffix.js" target="head" />
 				<div class="container">
 					<div class="left">
 						<p:tabView id="navTabs" activeIndex="#{userBean.activeNavTabIndex}" dynamic="true" cache="false">
@@ -33,7 +34,9 @@
 								<div class="sidePanel">
 									<h:form>
 										<h:inputText value="#{roomBean.roomName}" autocomplete="off" pt:placeholder="new room name"/>
-										<h:commandButton value="create room" actionListener="#{userBean.createRoom(roomBean.roomName)}"/>
+										<h:commandButton value="create room" actionListener="#{userBean.createRoom(roomBean.roomName)}">
+											<f:actionListener binding="#{roomBean.reset()}"/>
+										</h:commandButton>
 									</h:form>
 									<br/>
 									<ui:repeat value="#{userBean.getAllRoomNames()}" var="roomName">
@@ -46,7 +49,6 @@
 								</div>
 							</p:tab>
 						</p:tabView>
-						<p:socket onMessage="handleUser" channel="/users" />
 						<h:form id="renderNavTabsForm" style="display:none">
 							<h:commandButton id="renderNavTabsButton" value="render">
 								<f:ajax render=":navTabs" />
@@ -73,6 +75,8 @@
 							</c:forEach>
 						</p:tabView>
 						<p:socket onMessage="handleMessage" channel="/message" />
+						<p:socket onMessage="handleUser" channel="/users" />
+						<p:socket onMessage="handleRoom" channel="/room"/>
 					</div>
 				</div>
 				<!-- <h:outputScript library="js" name="chatroom.js"/> 
@@ -107,8 +111,11 @@
 						}
 					}
 					
-					function navTabChange(index) {
-						document.getElementById('renderNavTabsForm:renderNavTabsButton').click();
+					function handleRoom(message) {
+						var activeTabIndex = document.getElementById('navTabs_activeIndex').value;
+						if(activeTabIndex === '2') {
+							document.getElementById('renderNavTabsForm:renderNavTabsButton').click();
+						}
 					}
 
 					function handleUser(message) {

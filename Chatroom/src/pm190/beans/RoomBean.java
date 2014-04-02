@@ -26,4 +26,9 @@ public class RoomBean
 	{
 		this.roomName = roomName;
 	}
+	
+	public void reset()
+	{
+		this.roomName = "";
+	}
 }

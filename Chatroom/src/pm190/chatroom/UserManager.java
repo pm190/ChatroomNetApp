@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.RosterEntry;
@@ -20,14 +21,16 @@ import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
+import org.primefaces.push.PushContext;
+import org.primefaces.push.PushContextFactory;
 
 public class UserManager
 {
 	private final XMPPConnection connection;
 	private final String username;
-	private final List<String> openRoomNames = new ArrayList<String>();
-	private final List<String> specialRoomNames = new ArrayList<String>();
-	private final List<String> allRoomNames = new ArrayList<String>();
+	private final List<String> openRoomNames = new CopyOnWriteArrayList<String>();
+	private final List<String> specialRoomNames = new CopyOnWriteArrayList<String>();
+	private final List<String> allRoomNames = new CopyOnWriteArrayList<String>();
 	private final Map<String, RoomChatListener> listeners = new ConcurrentHashMap<String, RoomChatListener>();
 	private volatile int activeRoomTabIndex;
 	private volatile int activeNavTabIndex;
@@ -75,7 +78,9 @@ public class UserManager
 			roomNames.add(StringUtils.parseName(room.getJid()));
 		}
 		roomNames.addAll(specialRoomNames);
-		allRoomNames.retainAll(roomNames);
+		allRoomNames.clear();
+		allRoomNames.addAll(roomNames);
+		System.out.println(username +  " rooms: " + allRoomNames);
 		return allRoomNames;
 	}
 
@@ -105,6 +110,7 @@ public class UserManager
 		{
 			activeRoomTabIndex--;
 		}
+		
 	}
 
 	public void changeRoom(TabChangeEvent e)
@@ -271,6 +277,8 @@ public class UserManager
 			allRoomNames.add(roomName);
 			openRoomNames.add(roomName);
 			activeRoomTabIndex = openRoomNames.indexOf(roomName);
+			PushContext pushContext = PushContextFactory.getDefault().getPushContext();
+			pushContext.push("/room", "room added");
 		}
 		catch(XMPPException e)
 		{
