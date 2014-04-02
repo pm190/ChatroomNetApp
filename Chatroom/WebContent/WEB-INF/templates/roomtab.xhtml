@@ -8,8 +8,8 @@
 	#{userBean.listen(roomName)}
 	<div class="chat">
 		<div class="messages">
-			<h:form id="#{roomName}form">
-				<p:outputPanel id="messages" layout="block">
+			<h:form id="#{roomName}form" class="chatMessageForm">
+				<p:outputPanel styleClass="chatMessageContent" id="messages" layout="block">
 					<ui:repeat var="chatMessage" value="#{userBean.getMessages(roomName)}">
 						<span class="#{chatMessage.colourClass}">#{chatMessage.text}</span><br/>
 					</ui:repeat>
@@ -19,7 +19,7 @@
 		<div class="messageBox">
 			<h:form>
 				<h:inputText id="#{roomName}message" styleClass="box" value="#{messageBean.message}" required="true" autocomplete="off" pt:placeholder="message"/>
-				<h:commandButton value="send" actionListener="#{userBean.sendMessage(roomName, messageBean.message)}">
+				<h:commandButton value="send" styleClass="send" actionListener="#{userBean.sendMessage(roomName, messageBean.message)}">
 					<f:actionListener binding="#{messageBean.reset()}"/>
 					<f:ajax execute="@form" render="#{roomName}message" />
 				</h:commandButton>

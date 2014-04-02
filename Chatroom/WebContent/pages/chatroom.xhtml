@@ -33,15 +33,15 @@
 							<p:tab title="Rooms">
 								<div class="sidePanel">
 									<h:form>
-										<h:inputText value="#{roomBean.roomName}" autocomplete="off" pt:placeholder="new room name"/>
-										<h:commandButton value="create room" actionListener="#{userBean.createRoom(roomBean.roomName)}">
+										<h:inputText styleClass="createRoomInput" value="#{roomBean.roomName}" autocomplete="off" pt:placeholder="new room name"/>
+										<h:commandButton styleClass="createRoomButton" value="create room" actionListener="#{userBean.createRoom(roomBean.roomName)}">
 											<f:actionListener binding="#{roomBean.reset()}"/>
 										</h:commandButton>
 									</h:form>
 									<br/>
 									<ui:repeat value="#{userBean.getAllRoomNames()}" var="roomName">
 										<h:form>
-											<h:commandButton value="#{roomName}" actionListener="#{userBean.enterRoom(roomName)}">
+											<h:commandButton styleClass="roomInput" value="#{roomName}" actionListener="#{userBean.enterRoom(roomName)}">
 												<f:ajax execute="@form" render=":chats" />
 											</h:commandButton>
 										</h:form>

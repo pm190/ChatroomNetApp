@@ -1,7 +1,9 @@
+
  div#content {
  	height:100%;
  	width:100%;
  }
+ 
  div.createAccount
  {
  	float:right;
@@ -237,6 +239,8 @@ div.subLogo {
 
 div#thanks {
 	position: absolute;
-	top: 80%;
 	left: 80%;
 }
+
+
+	
