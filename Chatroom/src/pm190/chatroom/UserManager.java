@@ -3,11 +3,9 @@ package pm190.chatroom;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -15,7 +13,6 @@ import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.util.StringUtils;
 import org.jivesoftware.smackx.Form;
 import org.jivesoftware.smackx.muc.HostedRoom;
@@ -35,7 +32,6 @@ public class UserManager
 	private final List<String> openRoomNames = new CopyOnWriteArrayList<String>();
 	private final List<String> specialRoomNames = new CopyOnWriteArrayList<String>();
 	private final List<String> allRoomNames = new CopyOnWriteArrayList<String>();
-	private final Set<String> onlineFriends = new HashSet<String>();
 	private final Map<String, RoomChatListener> listeners = new ConcurrentHashMap<String, RoomChatListener>();
 	private volatile int activeRoomTabIndex;
 	private volatile int activeNavTabIndex;
@@ -266,6 +262,22 @@ public class UserManager
 		}
 		friends.addAll(offlineFriends);
 		return friends;
+	}
+	
+	public void addFriend(String username)
+	{
+		System.out.println("Attempt add friend");
+		Roster roster = connection.getRoster();
+		try
+		{
+			roster.createEntry(username, username, null);
+			System.out.println("Added friend " + username);
+		}
+		catch(XMPPException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

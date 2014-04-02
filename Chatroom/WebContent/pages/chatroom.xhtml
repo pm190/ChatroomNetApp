@@ -34,7 +34,9 @@
 						<p:tab id="usersTab" title="Users">
 							<div class="sidePanel">
 								<ui:repeat value="#{userBean.getUsersInRoom()}" var="user">
-									<h:commandButton value="#{user}" />
+									<h:form>
+										<h:commandButton value="#{user}" actionListener="#{userBean.addFriend(user)}"/>
+									</h:form>
 								</ui:repeat>
 							</div>
 						</p:tab>

@@ -232,6 +232,11 @@ public class UserBean implements HttpSessionListener
 		return userManager.getFriends();
 	}
 	
+	public void addFriend(String username)
+	{
+		userManager.addFriend(username);
+	}
+	
 	public void createRoom(String roomName)
 	{
 		userManager.createRoom(roomName);
