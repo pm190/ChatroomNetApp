@@ -99,6 +99,7 @@
 						var roomName = chatMessage.roomName;
 						var chatContent = $(PrimeFaces.escapeClientId('chats:'+roomName+'form:messages'));
 						chatContent.append(getChatMessageHTML(chatMessage));
+						chatContent.scrollTop(chatContent.height());
 						var activeTabIndex = document.getElementById('chats_activeIndex').value;
 						var tabs = document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li');
 						var activeTabName = tabs[activeTabIndex].getElementsByTagName('a')[0].innerHTML;
