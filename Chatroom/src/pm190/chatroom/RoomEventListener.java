@@ -36,7 +36,7 @@ public class RoomEventListener implements PacketListener
 			messages.add(chatMessage);
 			PushContext pushContext = PushContextFactory.getDefault().getPushContext();
 			pushContext.push("/message", chatMessage);
-			pushContext.push("/users", "user left/joined room");
+			pushContext.push("/user", "user left/joined room");
 		}
 	}
 	

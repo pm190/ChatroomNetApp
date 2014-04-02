@@ -8,7 +8,7 @@
   <links id="pf13954146702575" target="pf13954143547902" source="pf13954143547890" outcome="home" redirect="true">
     <bendPoints d1Width="13" d1Height="-140" d2Width="-159" d2Height="16"/>
   </links>
-  <links id="pf13954148145076" target="pf13954143547902" source="pf13954143547904" redirect="true">
+  <links id="pf13954148145076" target="pf13954143547902" source="pf13954143547904" outcome="logout" redirect="true">
     <bendPoints d1Width="32" d1Height="-142" d2Width="150" d2Height="38"/>
   </links>
 </pageflow:Pageflow>

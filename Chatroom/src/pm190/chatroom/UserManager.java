@@ -3,9 +3,11 @@ package pm190.chatroom;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -24,6 +26,8 @@ import org.primefaces.event.TabCloseEvent;
 import org.primefaces.push.PushContext;
 import org.primefaces.push.PushContextFactory;
 
+import pm190.beans.OnlineUsersBean;
+
 public class UserManager
 {
 	private final XMPPConnection connection;
@@ -31,6 +35,7 @@ public class UserManager
 	private final List<String> openRoomNames = new CopyOnWriteArrayList<String>();
 	private final List<String> specialRoomNames = new CopyOnWriteArrayList<String>();
 	private final List<String> allRoomNames = new CopyOnWriteArrayList<String>();
+	private final Set<String> onlineFriends = new HashSet<String>();
 	private final Map<String, RoomChatListener> listeners = new ConcurrentHashMap<String, RoomChatListener>();
 	private volatile int activeRoomTabIndex;
 	private volatile int activeNavTabIndex;
@@ -241,18 +246,25 @@ public class UserManager
 		System.out.println("Nav tab index: " + activeNavTabIndex);
 	}
 
-	public List<String> getFriends()
+	public List<Friend> getFriends()
 	{
-		List<String> friends = new ArrayList<String>();
+		List<Friend> friends = new ArrayList<Friend>();
+		List<Friend> offlineFriends = new ArrayList<Friend>();
 		Roster roster = connection.getRoster();
 		Collection<RosterEntry> entries = roster.getEntries();
 		for(RosterEntry entry : entries)
 		{
-			if(roster.getPresence(entry.getUser()).getMode() == Presence.Mode.available)
+			String user = entry.getUser();
+			if(OnlineUsersBean.contains(user))
 			{
-				friends.add(entry.getUser());
+				friends.add(new Friend(user, false));
+			}
+			else
+			{
+				offlineFriends.add(new Friend(user, true));
 			}
 		}
+		friends.addAll(offlineFriends);
 		return friends;
 	}
 

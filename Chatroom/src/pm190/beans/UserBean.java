@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
 
 import org.jivesoftware.smack.AccountManager;
 import org.jivesoftware.smack.ConnectionConfiguration;
@@ -14,8 +16,11 @@ import org.jivesoftware.smack.ConnectionConfiguration.SecurityMode;
 import org.jivesoftware.smack.util.StringUtils;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
+import org.primefaces.push.PushContext;
+import org.primefaces.push.PushContextFactory;
 
 import pm190.chatroom.ChatMessage;
+import pm190.chatroom.Friend;
 import pm190.chatroom.ServerPropertyUtils;
 import pm190.chatroom.UserManager;
 
@@ -25,7 +30,7 @@ import pm190.chatroom.UserManager;
  */
 @ManagedBean
 @SessionScoped
-public class UserBean
+public class UserBean implements HttpSessionListener
 {
 	private static final int PACKET_REPLY_TIMEOUT = 500; // millis
 	private volatile String username = "";
@@ -97,7 +102,10 @@ public class UserBean
 				{
 					connection.login(username, password);
 				}
+				PushContext pushContext = PushContextFactory.getDefault().getPushContext();
+				pushContext.push("/user", "user logged in");
 				userManager = new UserManager(connection, username);
+				OnlineUsersBean.addUser(username);
 			}
 			catch(XMPPException e)
 			{
@@ -128,12 +136,18 @@ public class UserBean
 	public void expire()
 	{
 		connection.disconnect();
+		OnlineUsersBean.removeUser(username);
 	}
 	
 	//TODO call this on user logout
-	public void logout()
+	public String logout() throws XMPPException
 	{
-		//TODO figure out how to logout, possible just establish fresh connection
+		expire();
+		ConnectionConfiguration config = new ConnectionConfiguration(ServerPropertyUtils.getServerAddress(), ServerPropertyUtils.getServerPort());
+		config.setSecurityMode(SecurityMode.disabled);
+		connection = new XMPPConnection(config); //create and connect new sesson incase user wants to log back in
+		connection.connect();
+		return "logout";
 	}
 	
 	public List<String> getAllRoomNames()
@@ -211,7 +225,7 @@ public class UserBean
 		userManager.changeNavTab(e);
 	}
 	
-	public List<String> getFriends()
+	public List<Friend> getFriends()
 	{
 		return userManager.getFriends();
 	}
@@ -219,5 +233,17 @@ public class UserBean
 	public void createRoom(String roomName)
 	{
 		userManager.createRoom(roomName);
+	}
+
+	@Override
+	public void sessionCreated(HttpSessionEvent arg0)
+	{
+	}
+
+	@Override
+	public void sessionDestroyed(HttpSessionEvent arg0)
+	{
+		System.out.println("Session Destroyed");
+		expire();
 	}
 }

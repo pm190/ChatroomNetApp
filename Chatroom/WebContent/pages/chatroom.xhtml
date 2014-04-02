@@ -10,8 +10,11 @@
 	<ui:composition template="../WEB-INF/templates/master.xhtml">
 		<ui:define name="content">
 			<h:body>
+				<h:form>
+					<h:commandButton value="logout" action="#{userBean.logout}"/>
+				</h:form>
 				<h:outputStylesheet library="css" name="roompage.css" />
-				<h:outputScript library="javax.faces" name="jsffix.js" target="head" />
+				<!-- <h:outputScript library="javax.faces" name="jsffix.js" target="head" />  -->
 				<div class="container">
 					<div class="left">
 						<p:tabView id="navTabs" activeIndex="#{userBean.activeNavTabIndex}" dynamic="true" cache="false">
@@ -19,7 +22,7 @@
 							<p:tab title="Friends">
 								<div class="sidePanel">
 									<ui:repeat value="#{userBean.getFriends()}" var="friend">
-										<h:commandButton value="#{friend}"/>
+										<h:commandButton style="#{friend.style}" disabled="#{friend.offline}" value="#{friend.name}"/>
 									</ui:repeat>
 								</div>
 							</p:tab>
@@ -75,7 +78,7 @@
 							</c:forEach>
 						</p:tabView>
 						<p:socket onMessage="handleMessage" channel="/message" />
-						<p:socket onMessage="handleUser" channel="/users" />
+						<p:socket onMessage="handleUser" channel="/user" />
 						<p:socket onMessage="handleRoom" channel="/room"/>
 					</div>
 				</div>
@@ -120,7 +123,12 @@
 
 					function handleUser(message) {
 						renderUserTab();
+						var activeTabIndex = document.getElementById('navTabs_activeIndex').value;
+						if(activeTabIndex === '0') {
+							document.getElementById('renderNavTabsForm:renderNavTabsButton').click();
+						}
 					}
+					
 
 					function getChatMessageHTML(chatMessage) {
 						var text = chatMessage.text;

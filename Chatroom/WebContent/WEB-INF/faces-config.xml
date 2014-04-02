@@ -35,6 +35,7 @@
 		<display-name>pages/chatroom.xhtml</display-name>
 		<from-view-id>/pages/chatroom.xhtml</from-view-id>
 		<navigation-case>
+			<from-outcome>logout</from-outcome>
 			<to-view-id>/pages/home.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
