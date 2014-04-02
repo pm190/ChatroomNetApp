@@ -137,6 +137,8 @@ public class UserBean implements HttpSessionListener
 	{
 		connection.disconnect();
 		OnlineUsersBean.removeUser(username);
+		PushContext pushContext = PushContextFactory.getDefault().getPushContext();
+		pushContext.push("/user", "user logged out");
 	}
 	
 	//TODO call this on user logout
