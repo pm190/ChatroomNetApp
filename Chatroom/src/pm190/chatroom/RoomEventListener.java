@@ -30,12 +30,13 @@ public class RoomEventListener implements PacketListener
 	{
 		String status = packet.toString();
 		String from = StringUtils.parseResource(packet.getFrom());
+		System.out.println("New room packet=" + status + " from=" + from);
 		if(!username.equals(from) && validStatus(status))
 		{
 			ChatMessage chatMessage = new ChatMessage(from + getStatusMessage(status), getStatusColourClass(status), roomName);
 			messages.add(chatMessage);
 			PushContext pushContext = PushContextFactory.getDefault().getPushContext();
-			pushContext.push("/message", chatMessage);
+			pushContext.push("/message/"+username, chatMessage);
 			pushContext.push("/user", "user left/joined room");
 		}
 	}

@@ -96,7 +96,7 @@
 							</p:tab>
 						</c:forEach>
 					</p:tabView>
-					<p:socket onMessage="handleMessage" channel="/message" />
+					<p:socket onMessage="handleMessage" channel="/message/#{userBean.username}" />
 					<p:socket onMessage="handleUser" channel="/user" />
 					<p:socket onMessage="handleRoom" channel="/room" />
 				</div>
@@ -137,6 +137,7 @@
 					}
 					
 					function handleRoom(message) {
+						alert('room change');
 						var activeTabIndex = document.getElementById('navTabs_activeIndex').value;
 						if(activeTabIndex === '2') {
 							document.getElementById('renderNavTabsForm:renderNavTabsButton').click();
