@@ -241,6 +241,11 @@ public class UserBean implements HttpSessionListener
 	{
 		userManager.createRoom(roomName);
 	}
+	
+	public boolean isLoggedIn()
+	{
+		return (connection.isAnonymous() || connection.isAuthenticated());
+	}
 
 	@Override
 	public void sessionCreated(HttpSessionEvent arg0)
