@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
@@ -248,12 +251,12 @@ public class UserBean implements HttpSessionListener
 	}
 
 	@Override
-	public void sessionCreated(HttpSessionEvent arg0)
+	public void sessionCreated(HttpSessionEvent event)
 	{
 	}
 
 	@Override
-	public void sessionDestroyed(HttpSessionEvent arg0)
+	public void sessionDestroyed(HttpSessionEvent event)
 	{
 		System.out.println("Session Destroyed");
 		expire();
