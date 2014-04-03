@@ -12,9 +12,13 @@
 		<h:body>
 			<h:outputStylesheet library="css" name="roompage.css" />
 			<!-- <h:outputScript library="javax.faces" name="jsffix.js" target="head" />  -->
-			<div class="container">
+			<div class="container" id="container">
+				<h:form id="renderPage" style="display:none">
+					<h:commandButton value="render" />
+				</h:form>
 				<h:form styleClass="logOutForm">
-					<h:commandButton styleClass="logOutButton" value="logout" action="#{userBean.logout}" />
+					<h:commandButton styleClass="logOutButton" value="logout"
+						action="#{userBean.logout}" />
 				</h:form>
 				<div class="left">
 					<p:tabView id="navTabs" activeIndex="#{userBean.activeNavTabIndex}"
@@ -31,16 +35,22 @@
 						<p:tab id="usersTab" title="Users">
 							<div class="sidePanel">
 								<ui:repeat value="#{userBean.getUsersInRoom()}" var="user">
-									<h:commandButton value="#{user}" />
+									<h:form>
+										<h:commandButton value="#{user}"
+											actionListener="#{userBean.addFriend(user)}" />
+									</h:form>
 								</ui:repeat>
 							</div>
 						</p:tab>
 						<p:tab title="Rooms">
 							<div class="sidePanel">
 								<h:form>
-									<h:inputText styleClass="createRoomInput"
+									<h:inputText id="createRoom" styleClass="createRoomInput"
 										value="#{roomBean.roomName}" autocomplete="off"
-										pt:placeholder="new room name" />
+										pt:placeholder="new room name">
+										<f:validator validatorId="roomNameValidator" />
+									</h:inputText>
+									<h:message for="createRoom" style="color:red" />
 									<h:commandButton styleClass="createRoomButton"
 										value="create room"
 										actionListener="#{userBean.createRoom(roomBean.roomName)}">
@@ -99,7 +109,9 @@
 						var roomName = chatMessage.roomName;
 						var chatContent = $(PrimeFaces.escapeClientId('chats:'+roomName+'form:messages'));
 						chatContent.append(getChatMessageHTML(chatMessage));
-						chatContent.scrollTop(chatContent.height());
+						var msgForm = document.getElementById('chats:'+roomName+'form');
+						msgForm.scrollTop = msgForm.scrollHeight;
+						chatContent.scrollTop = chatContent.scrollHeight;
 						var activeTabIndex = document.getElementById('chats_activeIndex').value;
 						var tabs = document.getElementById('chats').getElementsByTagName('ul')[0].getElementsByTagName('li');
 						var activeTabName = tabs[activeTabIndex].getElementsByTagName('a')[0].innerHTML;

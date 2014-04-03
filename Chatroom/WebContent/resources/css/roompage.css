@@ -78,7 +78,7 @@ div.searchBox {
 	margin-top: 10px;
 }
 input.box {
-	width: 80%;
+	width: 75%;
 	height: 100%;
 	display: inline-block;
 	border:0px;
@@ -119,6 +119,7 @@ span.join {
 form.chatMessageForm
 {
 	height: 100%;
+	overflow-y: scroll;	
 }
 div.chatMessageContent
 {
