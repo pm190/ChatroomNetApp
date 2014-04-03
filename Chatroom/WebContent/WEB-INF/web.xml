@@ -30,6 +30,16 @@
 		<servlet-name>Push Servlet</servlet-name>
 		<url-pattern>/primepush/*</url-pattern>
 	</servlet-mapping>
+	<filter>
+	    <filter-name>LoginPageFilter</filter-name>
+	    <filter-class>
+	        pm190.validators.LoginFilter
+	    </filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>LoginPageFilter</filter-name>
+	    <url-pattern>/pages/chatroom.xhtml</url-pattern>
+	</filter-mapping>
 	<welcome-file-list>
 		<welcome-file>pages/home.xhtml</welcome-file>
 	</welcome-file-list>
