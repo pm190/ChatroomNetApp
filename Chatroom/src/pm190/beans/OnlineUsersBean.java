@@ -1,7 +1,7 @@
 package pm190.beans;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -14,7 +14,7 @@ import javax.faces.bean.ManagedBean;
 @ApplicationScoped
 public class OnlineUsersBean
 {
-	private static final Set<String> users = new HashSet<String>();
+	private static final Set<String> users = new CopyOnWriteArraySet<String>();
 	
 	public static void addUser(String user)
 	{

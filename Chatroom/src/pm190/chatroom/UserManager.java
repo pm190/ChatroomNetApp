@@ -162,6 +162,8 @@ public class UserManager
 	public void leftRoom(String roomName)
 	{
 		listeners.remove(roomName);
+		PushContext pushContext = PushContextFactory.getDefault().getPushContext();
+		pushContext.push("/room", "room removed");
 	}
 
 	public RoomChatListener getListener(String roomName) throws XMPPException

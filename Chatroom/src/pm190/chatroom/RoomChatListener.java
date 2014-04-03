@@ -51,10 +51,10 @@ public class RoomChatListener implements Runnable
 				if(!from.equals(""))
 				{
 					ChatMessage chatMessage = new ChatMessage(from + ": " + msg.getBody(), (from.equals(user) ? "self" : "other"), roomName);
-					System.out.println("Current User=" + user + " from=" + from + " msg=" + msg.getBody() + " class=" + chatMessage.getColourClass());
 					messages.add(chatMessage);
 					PushContext pushContext = PushContextFactory.getDefault().getPushContext();
-					pushContext.push("/message", chatMessage);
+					pushContext.push("/message/"+user, chatMessage);
+					System.out.println("Current User=" + user + " from=" + from + " msg=" + msg.getBody() + " class=" + chatMessage.getColourClass() + " this=" + this + " pc=" + pushContext);
 				}
 			}
 		}
