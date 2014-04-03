@@ -111,7 +111,8 @@ a,input[type=date] {
 
 @font-face {
 	font-family: 'Decibel';
-	src: url("../misc/Decibel_2.ttf");
+	src: url("#{resource['misc/Decibel_2.ttf']}");
+
 }
 
 input[placeholder] {
@@ -151,6 +152,7 @@ div#loginContainer {
 }
 
 div#accountCreation {
+	width: 20%;
 	float: left;
 	border-radius: 30px;
 	background: rgba(0, 0, 0, 0.5);
