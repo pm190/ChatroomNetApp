@@ -9,7 +9,7 @@ import org.primefaces.push.PushContext;
 import org.primefaces.push.PushContextFactory;
 
 /**
- * 
+ * Listens to room events, notably users leaving and joining rooms.
  * @author Patrick Mackinder
  */
 public class RoomEventListener implements PacketListener
@@ -18,6 +18,12 @@ public class RoomEventListener implements PacketListener
 	private final String username;
 	private final List<ChatMessage> messages;
 	
+	/**
+	 * Create new room
+	 * @param roomName of room to listen to
+	 * @param username of listening user
+	 * @param messages list to add message to
+	 */
 	public RoomEventListener(String roomName, String username, List<ChatMessage> messages)
 	{
 		this.roomName = roomName;
@@ -25,6 +31,10 @@ public class RoomEventListener implements PacketListener
 		this.messages = messages;
 	}
 
+	/**
+	 * Process a packet from room, only interested with available and unavailable statuses
+	 * Push messages to users to notify them of user joining/leaving
+	 */
 	@Override
 	public void processPacket(Packet packet)
 	{

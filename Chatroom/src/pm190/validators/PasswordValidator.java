@@ -8,11 +8,14 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- * 
+ * Validates password strings
  * @author Patrick Mackinder
  */
 public class PasswordValidator implements Validator
 {
+	/**
+	 * Validates password against confirm password, checks for equality and non-empty strings
+	 */
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException
 	{

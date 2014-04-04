@@ -8,11 +8,14 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- * 
+ * Email validator for handling email addresses as strings
  * @author Patrick Mackinder
  */
 public class EmailValidator implements Validator
 {
+	/**
+	 * Validates email address against confirm email address field, only checks for equality not format
+	 */
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException
 	{

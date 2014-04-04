@@ -11,12 +11,15 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- * 
+ * Validates room names
  * @author Patrick Mackinder
  */
 @FacesValidator("roomNameValidator")
 public class RoomNameValidator implements Validator
 {
+	/**
+	 * Validates room name, only alphanumeric and no spaces
+	 */
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException
 	{
