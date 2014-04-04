@@ -4,12 +4,12 @@ div.container {
 }
 div.left {
     height:100%;
-    width:31%;
+    width:33%;
     float: left;
 }
 div.right {
     height:92%;
-    width:69%;
+    width:67%;
     float: left;
 }
 div#navTabs, div#chats {
